@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.idea
+validator_keys
+keyshares
+**/node_modules
+**/artifacts
+**/.idea
+**/cache
