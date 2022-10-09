@@ -129,3 +129,8 @@ dmypy.json
 .pyre/
 .idea
 validator_keys
+keyshares
+**/node_modules
+**/artifacts
+**/.idea
+**/cache

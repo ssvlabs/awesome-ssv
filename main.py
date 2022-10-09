@@ -1,7 +1,6 @@
 import os
 from typing import Any
 from eth_typing import HexAddress, HexStr
-
 from ssv.ssv_cli import SSV, OperatorData
 from staking_deposit.credentials import CredentialList
 from staking_deposit.exceptions import ValidationError
@@ -11,13 +10,17 @@ from staking_deposit.utils.intl import load_text
 from staking_deposit.utils.validation import verify_deposit_data_json
 from staking_deposit.key_handling.key_derivation.mnemonic import get_mnemonic
 from staking_deposit.utils.constants import WORD_LISTS_PATH
+import argparse
+import time
+from utils.eth_connector import EthNode
+from utils.stakepool import StakingPool
+from utils.keysmanager import KeysManager
+from utils.ssv_network import SSVNetwork
 
 
-def generate_keys(validator_start_index: int,
+def generate_keys(mnemonic, validator_start_index: int,
                   num_validators: int, folder: str, chain: str, keystore_password: str,
                   eth1_withdrawal_address: HexAddress, **kwargs: Any):
-    mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)
-    print(mnemonic)
     mnemonic_password = ""
     amounts = [MAX_DEPOSIT_AMOUNT] * num_validators
     folder = os.path.join(folder, DEFAULT_VALIDATOR_KEYS_FOLDER_NAME)
@@ -42,13 +45,74 @@ def generate_keys(validator_start_index: int,
     return credentials, keystore_filefolders, deposits_file
 
 
+def start_staking(config):
+    """
+
+    :return:
+    """
+    while True:
+        mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)
+        web3_eth = EthNode(config.eth_rpc, config.private_key)
+        if web3_eth.get_balance(config.staking_pool)>=0:
+            # print("balance of staking pool:"+str(web3_eth.get_balance(config.staking_pool)))
+            # num_validators = int(web3_eth.get_balance(config.staking_pool) / 32)
+            #
+            # stake_pool = StakingPool(config.staking_pool, web3_eth.eth_node)
+            # print("creating validators")
+            # credentials, keystores, deposit_file = generate_keys(mnemonic=mnemonic, validator_start_index=1,
+            #                                                      num_validators=num_validators, folder="",
+            #                                                      chain=GOERLI,
+            #                                                      keystore_password="test1234",
+            #                                                      eth1_withdrawal_address=HexAddress(
+            #                                                          HexStr(stake_pool.get_withdrawal_address())))
+            # print("keys created are:\n")
+            # print(keystores)
+            # print("submitting validators")
+            #
+            # for cred in credentials.credentials:
+            #     tx = stake_pool.deposit_validator(cred.deposit_datum_dict["pubkey"],
+            #                                  cred.deposit_datum_dict["withdrawal_credentials"],
+            #                                  cred.deposit_datum_dict["signature"],
+            #                                  cred.deposit_datum_dict["deposit_data_root"],
+            #                                  web3_eth.account.address)
+            #     web3_eth.make_tx(tx)
+            #     print("deposit the key"+str(cred.deposit_datum_dict["pubkey"]))
+            # print("submitted validators\n")
+            keystores = ['validator_keys/keystore-m_12381_3600_1_0_0-1665309440.json', 'validator_keys/keystore-m_12381_3600_2_0_0-1665309440.json']
+            keysmanager = KeysManager(config.keys_manager, web3_eth.eth_node)
+            operator_id = keysmanager.get_operator_ids()
+            print("operator ids are:\n")
+            print(operator_id)
+            ssv_contract = SSVNetwork(config.ssv_contract, web3_eth.eth_node)
+            network_fees = 0 if ssv_contract.get_network_fee() is None else ssv_contract.get_network_fee()
+            print("network fee is:\n")
+            print(network_fees)
+            for keyfile in keystores:
+                ssv = SSV(keyfile, "test1234")
+                op = OperatorData("https://api.ssv.network")
+                file = ssv.generate_shares(op.get_operator_data(operator_id), network_fees)
+                shares = ssv.stake_shares(file)
+                tx = keysmanager.send_key_shares(shares["validatorPublicKey"], operator_id,
+                                            shares["sharePublicKeys"], shares["sharePrivateKey"], int(shares["ssvAmount"]),
+                                            web3_eth.account.address)
+                web3_eth.make_tx(tx)
+        time.sleep(10)
+        print("trying again")
+
+
 if __name__ == '__main__':
-    credentials, keystores, deposit_file = generate_keys(validator_start_index=1, num_validators=2, folder="",
-                                                         chain=GOERLI,
-                                                         keystore_password="test", eth1_withdrawal_address=HexAddress(
-            HexStr("0x70997970C51812dc3A010C7d01b50e0d17dc79C8")))
-    for keyfile in keystores:
-        ssv = SSV(keyfile,"test")
-        op = OperatorData("https://api.ssv.network")
-        file = ssv.generate_shares(op.get_operator_data([1, 2, 9, 42]))
-        ssv.stake_shares(file)
+    parser = argparse.ArgumentParser(description="Command line tool for SSV backend")
+    parser.add_argument("-priv", "--private-key",
+                        help="Private key for the account you have whitelisted for staking contacts", required=True)
+    parser.add_argument("-st", "--staking-pool",
+                        help="staking pool contract address", required=True)
+    parser.add_argument("-key", "--keys-manager",
+                        help="Keys manager contract address", required=True)
+    parser.add_argument("-ssv", "--ssv-contract",
+                        help="ssv network contract address", required=True)
+    parser.add_argument("-eth", "--eth-rpc",
+                        help="rpc url for ethereum node", required=True)
+
+    args = parser.parse_args()
+
+    start_staking(args)

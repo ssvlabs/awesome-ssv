@@ -43,36 +43,41 @@ class OperatorData:
             operator = Operator(operator_data["id"], operator_data["public_key"], operator_data["fee"],
                                 operator_data["name"])
             operators_data.append(operator)
+        # print("operator_data")
+        # print(operator_data)
         return operators_data
 
 
 class SSV:
     CLI_PATH = os.getcwd() + "/ssv/ssv-keys-lin"
-    SSV_CONTRACT = None
     ssv_share_file = None
     keystore_file = None
     keystore_pass = None
 
-    def __init__(self, keystore_file, keystore_password, contract_address=None):
+    def __init__(self, keystore_file, keystore_password):
         """
 
         :param keystore_folder:
         """
         self.keystore_file = keystore_file
         self.keystore_pass = keystore_password
-        self.SSV_CONTRACT = contract_address
 
-    def generate_shares(self, operator_data: list[Operator]):
+    def generate_shares(self, operator_data: list[Operator], network_fees):
         """
 
         :return:
         """
+        print("===================================================================================")
         operator_ids = [str(operator.id) for operator in operator_data]
         operator_pubkeys = [operator.pubkey for operator in operator_data]
-        operator_fee = sum([operator.fee for operator in operator_data])
-        output = check_output([self.CLI_PATH, "key-shares", "-ks", self.keystore_file, "-ps", self.keystore_pass, "-oid",
-                               ",".join(operator_ids), "-ok", ",".join(operator_pubkeys), "-ssv", str(operator_fee)])
-        return str(output).partition("key shares file at ")[2].partition(".json")[0] + ".json"
+        total_ssv_fee = (sum([operator.fee for operator in operator_data]) + network_fees) * 2628000
+        output_folder = os.getcwd() + "/keyshares"
+        output = check_output(
+            [self.CLI_PATH, "key-shares", "-ks", self.keystore_file, "-ps", self.keystore_pass, "-oid",
+             ",".join(operator_ids), "-ok", ",".join(operator_pubkeys), "-ssv", str(total_ssv_fee), "-of",
+             output_folder])
+        print(output)
+        return output_folder + output.decode("utf-8").partition("keyshares")[2].partition(".json")[0] + ".json"
 
     def stake_shares(self, share_file_path):
         """
@@ -81,10 +86,17 @@ class SSV:
         """
         print(share_file_path)
         with open(share_file_path, "r") as file_path:
+            print(file_path)
             shares = json.load(file_path)
         file_path.close()
-        print(shares)
+        return shares["payload"]["readable"]
 
 
 if __name__ == '__main__':
-    print(os.getcwd())
+    ssv = SSV(
+        "/home/rohit/Documents/hackathon-bogota/ssv-service/validator_keys/keystore-m_12381_3600_1_0_0-1665252210.json",
+        "test")
+    op = OperatorData("https://api.ssv.network")
+    operators = op.get_operator_data([1, 2, 192, 42])
+    share_file = str(ssv.generate_shares(operators, 1200084048))
+    ssv.stake_shares(share_file)
