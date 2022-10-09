@@ -1,12 +1,5 @@
 from web3 import Web3
 
-abi_stakepool = {
-
-}
-abi_keysmanager = [
-
-]
-
 
 class EthNode:
     account = None
@@ -32,5 +25,4 @@ class EthNode:
             print('TX reverted')
 
     def get_balance(self, address):
-        return self.eth_node.eth.get_balance(address)/10**18
-
+        return self.eth_node.eth.get_balance(address) / 10 ** 18
