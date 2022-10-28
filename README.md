@@ -5,7 +5,7 @@ You can use this to repo to act as backend of your ssv staking solution
 - [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
 - [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators keys
 
-### Demo Contracts
+### Demo Contracts on Goerli
 - Staking Pool Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
 - Keys-manager Contract: [0x2b54244C61346DcD14CB77f8642CeA941Aa82664](https://goerli.etherscan.io/address/0x2b54244C61346DcD14CB77f8642CeA941Aa82664#code)
 - RoETH Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
@@ -26,9 +26,13 @@ You can use this to repo to act as backend of your ssv staking solution
 
 ### How to deploy the system?
 #### deploying smart contracts
-- install the dependencies
+- make the script executable
 ```
-npm install
+chmod +x setup.sh
+```
+- run the script, it'll install all dependencies.
+```
+./setup.sh
 ```
 - In the scripts/deploy.js change the following:
   - withdrawal credential you want for your validators
