@@ -45,6 +45,10 @@ npx hardhat run scripts/deploy.js --network goerli
 
 The contract addresses will be logged on console. You can use them while running the backend
 
+```
+NOTE: If you are deloying the system on Local you'll need to deploy Deposit Contract for validator activation for Ethereum and SSV contracts to interact
+```
+
 #### Deploying the backend
 
 To deploy the backend install requirements for python
