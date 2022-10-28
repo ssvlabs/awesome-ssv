@@ -3,6 +3,7 @@ from subprocess import check_output
 import requests
 from collections import namedtuple
 import os
+import platform
 
 # output = check_output(["./ssv-keys-lin", "key-shares", "-ks",
 #                        "/home/rohit/Documents/hackathon-bogota/ssv-service/validator_keys/keystore-m_12381_3600_1_0_0-1665236798.json",
@@ -49,7 +50,8 @@ class OperatorData:
 
 
 class SSV:
-    CLI_PATH = os.getcwd() + "/ssv/ssv-keys-lin"
+    CLI_PATH_LINUX_MAC = os.getcwd() + "/ssv/ssv-cli"
+    CLI_PATH_WIN = os.getcwd() + "/ssv/ssv-cli.exe"
     ssv_share_file = None
     keystore_file = None
     keystore_pass = None
@@ -72,10 +74,13 @@ class SSV:
         operator_pubkeys = [operator.pubkey for operator in operator_data]
         total_ssv_fee = (sum([operator.fee for operator in operator_data]) + network_fees) * 2628000
         output_folder = os.getcwd() + "/keyshares"
+        cli_path = self.CLI_PATH_LINUX_MAC if 'Linux' in platform.system() or 'Darwin' in platform.system() else self.CLI_PATH_WIN
+        # output2=check_output(["ls","-la"])
+        # print(output2)
         output = check_output(
-            [self.CLI_PATH, "key-shares", "-ks", self.keystore_file, "-ps", self.keystore_pass, "-oid",
-             ",".join(operator_ids), "-ok", ",".join(operator_pubkeys), "-ssv", str(total_ssv_fee), "-of",
-             output_folder])
+            [cli_path, "key-shares", "-ks", self.keystore_file, "-ps", self.keystore_pass, "-oid",
+               ",".join(operator_ids), "-ok", ",".join(operator_pubkeys), "-ssv", str(total_ssv_fee), "-of",
+               output_folder])
         print(output)
         return output_folder + output.decode("utf-8").partition("keyshares")[2].partition(".json")[0] + ".json"
 

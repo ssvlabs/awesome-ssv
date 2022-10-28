@@ -1,0 +1,103 @@
+{
+  "name": "ssv-keys",
+  "version": "0.0.4",
+  "description": "Library to work with keystore file, with private key to get shares and to build final payload for transaction in SSV Network.",
+  "author": "SSV.Network",
+  "repository": "https://github.com/bloxapp/ssv-keys",
+  "license": "MIT",
+  "keywords": [
+    "ssv",
+    "ssv.network",
+    "keystore",
+    "shares"
+  ],
+  "main": "./dist/tsc/src/main.js",
+  "types": "./dist/tsc/src/main.d.ts",
+  "bin": {
+    "ssv-keys": "./dist/tsc/src/cli.js"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "dev:cli": "ts-node src/cli.ts",
+    "dev:icli": "ts-node src/cli-interactive.ts",
+    "icli": "node ./dist/tsc/src/cli-interactive.js",
+    "cli": "node ./dist/tsc/src/cli.js",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "clean": "rm -rf dist build package",
+    "ts-node": "ts-node",
+    "docs": "typedoc",
+    "build": "tsc -p tsconfig.json",
+    "build-all": "yarn clean && yarn build && yarn esbuild",
+    "esbuild": "node ./esbuild.js",
+    "pre-commit": "yarn test && yarn lint && yarn build-all",
+    "package-linux": "pkg dist/tsc/src/cli.js --targets node14-linux-x64 --output bin/linux/ssv-keys-lin --compress GZip",
+    "package-macos": "pkg dist/tsc/src/cli.js --targets node14-macos-x64 --output bin/macos/ssv-keys-mac --compress GZip",
+    "package-win": "pkg dist/tsc/src/cli.js --targets node14-win-x64 --output bin/win/ssv-keys.exe --compress GZip",
+    "package-all": "yarn package-linux && yarn package-macos && yarn package-win"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@types/argparse": "^2.0.10",
+    "@types/atob": "^2.1.2",
+    "@types/btoa": "^1.2.3",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^15.14.9",
+    "@types/figlet": "^1.5.4",
+    "@types/underscore": "^1.11.4",
+    "@types/yargs": "^17.0.12",
+    "@types/prompts": "^2.0.14",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "esbuild": "^0.14.38",
+    "esbuild-node-externals": "^1.4.1",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.4",
+    "jest": "^26.6.3",
+    "jest-environment-jsdom": "^26.6.2",
+    "jest-environment-node": "^26.6.2",
+    "jest-environment-uint8array": "^1.0.0",
+    "jest-watch-typeahead": "0.6.5",
+    "jsdom": "^16.5.3",
+    "jsdom-global": "^3.0.2",
+    "pkg": "^5.7.0",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.22.15",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "assert": "^2.0.0",
+    "atob": "^2.1.2",
+    "bls-eth-wasm": "^1.0.4",
+    "bls-signatures": "^0.2.5",
+    "btoa": "^1.2.1",
+    "class-validator": "^0.13.2",
+    "colors": "^1.4.0",
+    "crypto": "^1.0.1",
+    "eth2-keystore-js": "^1.0.8",
+    "ethereumjs-util": "^7.0.10",
+    "ethereumjs-wallet": "^1.0.1",
+    "events": "^3.3.0",
+    "figlet": "^1.5.2",
+    "js-base64": "^3.7.2",
+    "jsencrypt": "^3.2.1",
+    "minimist": "^1.2.6",
+    "moment": "^2.29.3",
+    "node-jsencrypt": "^1.0.0",
+    "prompts": "https://github.com/meshin-blox/prompts.git",
+    "scrypt-js": "^3.0.1",
+    "stream": "^0.0.2",
+    "underscore": "^1.13.4",
+    "web3": "1.7.3",
+    "yargs": "^17.5.1"
+  },
+  "licenses": [
+    {
+      "MIT": "SEE LICENSE IN LICENCE FILE"
+    }
+  ]
+}

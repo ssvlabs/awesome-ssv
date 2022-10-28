@@ -53,32 +53,32 @@ def start_staking(config):
     while True:
         mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)
         web3_eth = EthNode(config.eth_rpc, config.private_key)
-        if web3_eth.get_balance(config.staking_pool)>=0:
-            # print("balance of staking pool:"+str(web3_eth.get_balance(config.staking_pool)))
-            # num_validators = int(web3_eth.get_balance(config.staking_pool) / 32)
-            #
-            # stake_pool = StakingPool(config.staking_pool, web3_eth.eth_node)
-            # print("creating validators")
-            # credentials, keystores, deposit_file = generate_keys(mnemonic=mnemonic, validator_start_index=1,
-            #                                                      num_validators=num_validators, folder="",
-            #                                                      chain=GOERLI,
-            #                                                      keystore_password="test1234",
-            #                                                      eth1_withdrawal_address=HexAddress(
-            #                                                          HexStr(stake_pool.get_withdrawal_address())))
-            # print("keys created are:\n")
-            # print(keystores)
-            # print("submitting validators")
-            #
-            # for cred in credentials.credentials:
-            #     tx = stake_pool.deposit_validator(cred.deposit_datum_dict["pubkey"],
-            #                                  cred.deposit_datum_dict["withdrawal_credentials"],
-            #                                  cred.deposit_datum_dict["signature"],
-            #                                  cred.deposit_datum_dict["deposit_data_root"],
-            #                                  web3_eth.account.address)
-            #     web3_eth.make_tx(tx)
-            #     print("deposit the key"+str(cred.deposit_datum_dict["pubkey"]))
-            # print("submitted validators\n")
-            keystores = ['validator_keys/keystore-m_12381_3600_1_0_0-1665309440.json', 'validator_keys/keystore-m_12381_3600_2_0_0-1665309440.json']
+        if web3_eth.get_balance(config.staking_pool) >= 32:
+            print("balance of staking pool:" + str(web3_eth.get_balance(config.staking_pool)))
+            num_validators = int(web3_eth.get_balance(config.staking_pool) / 32)
+
+            stake_pool = StakingPool(config.staking_pool, web3_eth.eth_node)
+            print("creating validators")
+            credentials, keystores, deposit_file = generate_keys(mnemonic=mnemonic, validator_start_index=1,
+                                                                 num_validators=num_validators, folder="",
+                                                                 chain=GOERLI,
+                                                                 keystore_password="test1234",
+                                                                 eth1_withdrawal_address=HexAddress(
+                                                                     HexStr(stake_pool.get_withdrawal_address())))
+            print("keys created are:\n")
+            print(keystores)
+            print("submitting validators")
+
+            for cred in credentials.credentials:
+                tx = stake_pool.deposit_validator(cred.deposit_datum_dict["pubkey"],
+                                                  cred.deposit_datum_dict["withdrawal_credentials"],
+                                                  cred.deposit_datum_dict["signature"],
+                                                  cred.deposit_datum_dict["deposit_data_root"],
+                                                  web3_eth.account.address)
+                web3_eth.make_tx(tx)
+                print("deposit the key" + str(cred.deposit_datum_dict["pubkey"]))
+            print("submitted validators\n")
+            # keystores = ['validator_keys/keystore-m_12381_3600_1_0_0-1665309440.json', 'validator_keys/keystore-m_12381_3600_2_0_0-1665309440.json']
             keysmanager = KeysManager(config.keys_manager, web3_eth.eth_node)
             operator_id = keysmanager.get_operator_ids()
             print("operator ids are:\n")
@@ -93,9 +93,12 @@ def start_staking(config):
                 file = ssv.generate_shares(op.get_operator_data(operator_id), network_fees)
                 shares = ssv.stake_shares(file)
                 tx = keysmanager.send_key_shares(shares["validatorPublicKey"], operator_id,
-                                            shares["sharePublicKeys"], shares["sharePrivateKey"], int(shares["ssvAmount"]),
-                                            web3_eth.account.address)
+                                                 shares["sharePublicKeys"], shares["sharePrivateKey"],
+                                                 int(shares["ssvAmount"]),
+                                                 web3_eth.account.address)
                 web3_eth.make_tx(tx)
+            else:
+                print("pool balance less than 32")
         time.sleep(10)
         print("trying again")
 
