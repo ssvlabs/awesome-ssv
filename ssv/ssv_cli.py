@@ -36,7 +36,7 @@ class OperatorData:
             if tries == 2:
                 response.raise_for_status()
 
-    def get_operator_data(self, ids: list[int]):
+    def get_operator_data(self, ids):
         operators_data = []
         for id in ids:
             operator_url_id = self.API_URL + self.operator_call + str(id)
