@@ -5,6 +5,8 @@ from collections import namedtuple
 import os
 import platform
 
+from typing import List
+
 # output = check_output(["./ssv-keys-lin", "key-shares", "-ks",
 #                        "/home/rohit/Documents/hackathon-bogota/ssv-service/validator_keys/keystore-m_12381_3600_1_0_0-1665236798.json",
 #                        "-ps", "test", "-oid", "1,2,9,42", "-ok",
@@ -36,7 +38,7 @@ class OperatorData:
             if tries == 2:
                 response.raise_for_status()
 
-    def get_operator_data(self, ids):
+    def get_operator_data(self, ids: List[int]):
         operators_data = []
         for id in ids:
             operator_url_id = self.API_URL + self.operator_call + str(id)
@@ -64,7 +66,7 @@ class SSV:
         self.keystore_file = keystore_file
         self.keystore_pass = keystore_password
 
-    def generate_shares(self, operator_data: list[Operator], network_fees):
+    def generate_shares(self, operator_data: List[Operator], network_fees):
         """
 
         :return:
