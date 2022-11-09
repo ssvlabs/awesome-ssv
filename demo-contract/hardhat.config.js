@@ -28,6 +28,9 @@ module.exports = {
       chainId: 5,
       gasMultiplier: 2,
       accounts: [process.env.DEPLOYER_KEY]
+    },
+    localhost :{
+      url: "http://localhost:8545"
     }
   }
 };
