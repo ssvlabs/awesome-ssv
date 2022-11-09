@@ -128,12 +128,7 @@ def start_staking(config):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Command line tool for SSV backend",
-                                     usage='''
-                                     
-                                     '''
-
-                                     )
+    parser = argparse.ArgumentParser(description="Command line tool for SSV backend")
     subparses = parser.add_subparsers()
     stake = subparses.add_parser("stake",
                                  help="used to start a service that tracks stakinpool contract for keys and key shares")
