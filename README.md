@@ -49,20 +49,34 @@ The contract addresses will be logged on console. You can use them while running
 NOTE: If you are deloying the system on Local you'll need to deploy Deposit Contract for validator activation for Ethereum and SSV contracts to interact
 ```
 
-#### Deploying the backend
+#### Using the scripts
 
-To deploy the backend install requirements for python
+- For options use 
+```
+python main.py -h
+```
+- There are two options
+  - stake: use this to start the backend service for the staking pool
+  - create-keys: use this to create validator keys and key-shares for operators separately
+  
+- To deploy the backend for staking pool install requirements for python
 ```
 pip install -r requirements.txt
 ```
-Following arguments are needed to run the script
-- PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
-- STAKING_POOL(-st): staking pool contract address 
-- KEYSMANAGER(-key): keys manager contract address
-- SSV_CONTRACT(-ssv): ssv network contract address
-- ETH_RPC(-eth): rpc endpoint for ethereum node
+- Following arguments are needed to run the script
+  - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
+  - STAKING_POOL(-st): staking pool contract address 
+  - SSV_CONTRACT(-ssv): ssv network contract address
+  - ETH_RPC(-eth): rpc endpoint for ethereum node
 ```
-python main.py -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -key <KEYSMANAGER> -ssv <SSV_CONTRACT>
-
+python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv <SSV_CONTRACT>
 ```
 
+- To create keys
+  - OPERATOR_IDS: operator ids for keyshares
+  - KEY_COUNT: no. of validator keys to create
+  - WITHDRAWAL_CREDENTIALS: withdrawal credentials for validator keys
+  - KEYSTORE_PASSWORD: keystore password for validator keys
+```
+python main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
+```

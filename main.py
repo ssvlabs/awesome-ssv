@@ -14,7 +14,6 @@ import argparse
 import time
 from utils.eth_connector import EthNode
 from utils.stakepool import StakingPool
-from utils.keysmanager import KeysManager
 from utils.ssv_network import SSVNetwork
 
 
@@ -43,6 +42,33 @@ def generate_keys(mnemonic, validator_start_index: int,
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     return credentials, keystore_filefolders, deposits_file
+
+
+def create_keys(config):
+    """
+
+    :param config:
+    :return:
+    """
+    mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)
+
+    credentials, keystores, deposit_file = generate_keys(mnemonic=mnemonic, validator_start_index=1,
+                                                         num_validators=config.number_count, folder="",
+                                                         chain=GOERLI,
+                                                         keystore_password=config.keystore_password,
+                                                         eth1_withdrawal_address=HexAddress(
+                                                             HexStr(config.withdrawal_credential)))
+    print("Keys and shares creates are present in the following files:")
+    op = OperatorData("https://api.ssv.network")
+    for keyfile in keystores:
+        ssv = SSV(keyfile, config.keystore_password)
+        file = ssv.generate_shares(op.get_operator_data(config.operator_ids), network_fees=0)
+        print("Validator private key file:")
+        print(keyfile)
+        print("SSV key shares file:")
+        print(file)
+    print("for making deposit to deposit contract via launchpad or yourself you can use the following file:")
+    print(deposit_file)
 
 
 def start_staking(config):
@@ -79,8 +105,7 @@ def start_staking(config):
                 print("deposit the key" + str(cred.deposit_datum_dict["pubkey"]))
             print("submitted validators\n")
             # keystores = ['validator_keys/keystore-m_12381_3600_1_0_0-1665309440.json', 'validator_keys/keystore-m_12381_3600_2_0_0-1665309440.json']
-            keysmanager = KeysManager(config.keys_manager, web3_eth.eth_node)
-            operator_id = keysmanager.get_operator_ids()
+            operator_id = stake_pool.get_operator_ids()
             print("operator ids are:\n")
             print(operator_id)
             ssv_contract = SSVNetwork(config.ssv_contract, web3_eth.eth_node)
@@ -92,10 +117,10 @@ def start_staking(config):
                 op = OperatorData("https://api.ssv.network")
                 file = ssv.generate_shares(op.get_operator_data(operator_id), network_fees)
                 shares = ssv.stake_shares(file)
-                tx = keysmanager.send_key_shares(shares["validatorPublicKey"], operator_id,
-                                                 shares["sharePublicKeys"], shares["sharePrivateKey"],
-                                                 int(shares["ssvAmount"]),
-                                                 web3_eth.account.address)
+                tx = stake_pool.send_key_shares(shares["validatorPublicKey"], operator_id,
+                                                shares["sharePublicKeys"], shares["sharePrivateKey"],
+                                                int(shares["ssvAmount"]),
+                                                web3_eth.account.address)
                 web3_eth.make_tx(tx)
             else:
                 print("pool balance less than 32")
@@ -105,17 +130,30 @@ def start_staking(config):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Command line tool for SSV backend")
-    parser.add_argument("-priv", "--private-key",
-                        help="Private key for the account you have whitelisted for staking contacts", required=True)
-    parser.add_argument("-st", "--staking-pool",
-                        help="staking pool contract address", required=True)
-    parser.add_argument("-key", "--keys-manager",
-                        help="Keys manager contract address", required=True)
-    parser.add_argument("-ssv", "--ssv-contract",
-                        help="ssv network contract address", required=True)
-    parser.add_argument("-eth", "--eth-rpc",
-                        help="rpc url for ethereum node", required=True)
+    subparses = parser.add_subparsers()
+    stake = subparses.add_parser("stake",
+                                 help="used to start a service that tracks stakinpool contract for keys and key shares")
+    keys = subparses.add_parser("create-keys", help="create n keys and their keyshares")
+
+    stake.add_argument("-priv", "--private-key",
+                       help="Private key for the account you have whitelisted for staking contacts", required=True)
+    stake.add_argument("-st", "--staking-pool",
+                       help="staking pool contract address", required=True)
+    stake.add_argument("-ssv", "--ssv-contract",
+                       help="ssv network contract address", required=True)
+    stake.add_argument("-eth", "--eth-rpc",
+                       help="rpc url for ethereum node", required=True)
+    keys.add_argument("-id", "--operator-ids", type=int, nargs="+", required=True,
+                      help="operator ids with space in between for which the key shares are to be created")
+    keys.add_argument("-n", "--number-count", type=int, required=True,
+                      help="Number of keys and keyshares you want to create")
+    keys.add_argument("-wc", "--withdrawal-credential", required=True,
+                      help="withdrawal credentials to be used for creating validator keys")
+    keys.add_argument("-pass", "--keystore-password", required=True,
+                      help="keystore password for validator keys")
 
     args = parser.parse_args()
-
-    start_staking(args)
+    if "keystore_password" in args.__dict__:
+        create_keys(args)
+    else:
+        start_staking(args)

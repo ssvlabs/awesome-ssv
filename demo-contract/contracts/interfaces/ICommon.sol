@@ -10,13 +10,9 @@ interface ICommon {
 
     function changeOracle(address new_address)  external;
 
-    function changeKeysManager(address new_address)  external;
-
     function getRoETH() external  view returns (address);
 
     function getStakingPool() external  view returns (address);
-
-    function getKeysManager() external  view returns (address);
 
     function getOracle() external  view returns (address);
 
