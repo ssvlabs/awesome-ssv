@@ -59,9 +59,10 @@ def create_keys(config):
                                                          eth1_withdrawal_address=HexAddress(
                                                              HexStr(config.withdrawal_credential)))
     print("Keys and shares creates are present in the following files:")
+    op = OperatorData("https://api.ssv.network")
     for keyfile in keystores:
         ssv = SSV(keyfile, config.keystore_password)
-        file = ssv.generate_shares(config.operator_ids, network_fees=0)
+        file = ssv.generate_shares(op.get_operator_data(config.operator_ids), network_fees=0)
         print("Validator private key file:")
         print(keyfile)
         print("SSV key shares file:")
