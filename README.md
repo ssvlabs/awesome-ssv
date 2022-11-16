@@ -1,10 +1,10 @@
 # Awesome SSV
 
-This repo 1. showcases how to [create and run LSD staking pool]() leveraging ssv.network, 2. is a curated list of [SSV projects & resources]()
+This repo 1. showcases how to [create and run LSD staking pool](/RUN_THIS_REPO.md) leveraging ssv.network, 2. is a curated list of [SSV projects & resources](##2.SSVprojects&resources)
 
 ## 1. Create and run LSD staking pool
 
-Open [RUN_THIS_REPO.md]() for instructions on how to run this repo.
+Open [RUN_THIS_REPO.md](/RUN_THIS_REPO.md) for instructions on how to run this repo.
 
 ### Credits
 
