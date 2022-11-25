@@ -3,6 +3,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 require("@openzeppelin/hardhat-upgrades");
+require('dotenv').config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -26,7 +27,7 @@ module.exports = {
     goerli: {
       url: process.env.GOERLI_URL,
       chainId: 5,
-      gasMultiplier: 2,
+      gasMultiplier:  3,
       accounts: [process.env.DEPLOYER_KEY]
     },
     localhost :{

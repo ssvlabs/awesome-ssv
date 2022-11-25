@@ -22,15 +22,15 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 - Common Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
 
-### How it works?
+## How it works?
 
-#### User Actions
+### User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- That's it!! User can just relax and wait for their ssvETH to compound over time and till then use the same tokens in other DeFi protocols
+- That's it!! User can just relax and wait for their ssvETH to autocompound over time and till then use the same tokens in other DeFi protocols
 
-#### Protocol
+### Protocol
 
 - The backend keeps a close eye on stakingpool contract.
 
@@ -42,9 +42,9 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 - Saves the keystore and keyshares for verification at a later stage
 
-### How to deploy the system?
+## How to deploy the system?
 
-#### deploying smart contracts
+### deploying smart contracts
 
 - make the script executable
 
@@ -62,47 +62,66 @@ chmod +x setup.sh
 
 ```
 
-- In the scripts/deploy.js change the following:
-
-- withdrawal credential you want for your validators
-
-- operator-ids with your operators
-
-- whitelist address to make tx to staking pool and keysmanager
-
-- Go to demo contract folder and run the script for deployment
+- Go to demo contract folder and make copy of the `env.example` file
 
 ```
+cd demo-contract/
+cp .env.example .env
+```
 
+In `.env` add your private key that will be used for your pool deployment and yor web3 RPC URL. You can obtain one from [infura](https://app.infura.io/)
+
+Now go to scripts/deploy.js and change the following:
+
+- whitelist address to make tx to staking pool and keysmanager, recomended to use your deployer address for ease of use
+
+- withdrawal credential you want for your validators (Optional, this is testnet deployment)
+
+- operator-ids (Optional, you can keep the default operators)
+
+now run:
+
+```
 npx hardhat run scripts/deploy.js --network goerli
-
 ```
 
-The contract addresses will be logged on console. You can use them while running the backend
+The contract addresses will be logged on console. You need them to save them for running the backend
+
+**NOTE:** If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator activation and SSV contracts to interact with.
+
+### Staking ETH & funding the pool
+
+Now you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
+When you have some goerliETH send it to your deployer and run the script below.
 
 ```
-
-NOTE: If you are deloying the system on Local you'll need to deploy Deposit Contract for validator activation for Ethereum and SSV contracts to interact
-
+npx hardhat run scripts/stake.js --network goerli
 ```
 
-#### Using the scripts
-
-- For options use
+Your staking pool needs to be funded with some SSV. It will use it to pay operators for running your distributed validator. You can get some from [SSV faucet here](https://faucet.ssv.network/).
 
 ```
-
-python main.py -h
-
+npx hardhat run scripts/fund_pool.js --network goerli
 ```
 
-- There are two options
+---
 
-- stake: use this to start the backend service for the staking pool
+#### Using the backend scripts
 
-- create-keys: use this to create validator keys and key-shares for operators separately
+##### Requirements
 
-- To deploy the backend for staking pool install requirements for python
+You need python to run following scripts.
+
+go to the main project folder first
+
+```
+cd ..
+```
+
+
+
+
+To deploy the backend for your staking pool you need to install requirements:
 
 ```
 
@@ -110,7 +129,7 @@ pip install -r requirements.txt
 
 ```
 
-- Following arguments are needed to run the script
+Following arguments are needed to run the script
 
 - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
 
@@ -122,9 +141,25 @@ pip install -r requirements.txt
 
 ```
 
-python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv <SSV_CONTRACT>
+python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv <SSV_CONTRACT>
 
 ```
+
+- For options use
+
+```
+
+python main.py -h
+
+```
+
+- There are two options
+
+  - stake: use this to start the backend service for the staking pool
+
+  - create-keys: use this to create validator keys and key-shares for operators separately
+
+
 
 - To create keys
 
@@ -145,3 +180,4 @@ python main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CRE
 ### LICENSE
 
 MIT License
+```
