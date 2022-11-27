@@ -26,6 +26,7 @@ contract SSVETH is ERC20, Ownable {
         _mint(recipient, amount);
     }
 
+
     function changeSharePrice(uint256 new_price) external onlyOwner {
         sharePrice = new_price;
     }

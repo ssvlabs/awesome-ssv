@@ -54,8 +54,8 @@ contract StakingPool is ReentrancyGuard {
     function stake() public payable {
         require(msg.value > 0, "Can't stake zero amount");
         uint256 amount_minted = msg.value * ssvETH.sharePrice() / 1e18;
-        ssvETH.mint(tx.origin, amount_minted);
-        emit UserStaked(tx.origin, msg.value);
+        ssvETH.mint(msg.sender, amount_minted);
+        emit UserStaked(msg.sender, msg.value);
     }
 
     function depositValidator(bytes calldata pubkey,
