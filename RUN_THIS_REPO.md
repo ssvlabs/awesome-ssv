@@ -6,6 +6,10 @@ This repo showcases minimalistic backend for an LSD staking pool. It is for lear
 
 Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service) is this minimalistic staking pool based on!
 
+### Dependencies
+
+- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here
+
 ### External Libraries used
 
 - [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
@@ -22,15 +26,15 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 - Common Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
 
-### How it works?
+## How it works?
 
-#### User Actions
+### User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- That's it!! User can just relax and wait for their ssvETH to compound over time and till then use the same tokens in other DeFi protocols
+- That's it!! User can just relax and wait for their ssvETH to autocompound over time and till then use the same tokens in other DeFi protocols
 
-#### Protocol
+### Protocol
 
 - The backend keeps a close eye on stakingpool contract.
 
@@ -42,9 +46,31 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 - Saves the keystore and keyshares for verification at a later stage
 
-### How to deploy the system?
+## How to deploy the system?
 
-#### deploying smart contracts
+### Brownie Environment setup
+
+1. You will need to setup your RPC
+   you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one from [infura here](https://app.infura.io/)
+
+2. You need to set up your deployer private key
+   you can do so by writing into your console `brownie accounts new <your private key>` more on brownie account management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+
+### Changes
+
+Now go to demo-contract/scripts/utils/helpers.py and change the following:
+
+line 16: `account_name = "deployer0"` to your account name you have setup in the previous step
+
+Now go to demo-contract/scripts/b_deploy.py and change the following:
+
+- `whitelist` to make tx to staking pool and keysmanager, recomended to use your deployer address for ease of use
+
+- `withdrawal_creds` where you want for your validators (Optional, this is testnet deployment)
+
+- `operator_ids` (Optional, you can keep the default operators)
+
+### deploying smart contracts
 
 - make the script executable
 
@@ -62,47 +88,51 @@ chmod +x setup.sh
 
 ```
 
-- In the scripts/deploy.js change the following:
-
-- withdrawal credential you want for your validators
-
-- operator-ids with your operators
-
-- whitelist address to make tx to staking pool and keysmanager
-
-- Go to demo contract folder and run the script for deployment
+- Go to demo contract folder and make copy of the `env.example` file
 
 ```
-
-npx hardhat run scripts/deploy.js --network goerli
-
+cd demo-contract/
 ```
 
-The contract addresses will be logged on console. You can use them while running the backend
+now run:
 
 ```
-
-NOTE: If you are deloying the system on Local you'll need to deploy Deposit Contract for validator activation for Ethereum and SSV contracts to interact
-
+brownie run ./scripts/b_deploy.py --network goerli
 ```
 
-#### Using the scripts
+The contract addresses will be logged on console. You need them to save them for running the backend
 
-- For options use
+**NOTE:** If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with. You can still deploy and test the contracts locally.
+
+### Staking ETH & funding the pool
+
+Now you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
+
+When you have enough (32) goerliETH for to test depositing a validator change the value in the `b_stake.py` script and run it:
 
 ```
-
-python main.py -h
-
+brownie run ./scripts/b_stake.py --network goerli
 ```
 
-- There are two options
+Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly to the pool.
 
-- stake: use this to start the backend service for the staking pool
+It will use it to pay operators for running your distributed validator. You can get some from [SSV faucet here](https://faucet.ssv.network/).
 
-- create-keys: use this to create validator keys and key-shares for operators separately
+---
 
-- To deploy the backend for staking pool install requirements for python
+#### Using the backend scripts
+
+##### Requirements
+
+You need python to run following scripts.
+
+go to the main project folder first
+
+```
+cd ..
+```
+
+To deploy the backend for your staking pool you need to install requirements:
 
 ```
 
@@ -110,7 +140,7 @@ pip install -r requirements.txt
 
 ```
 
-- Following arguments are needed to run the script
+Following arguments are needed to run the script
 
 - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
 
@@ -122,9 +152,23 @@ pip install -r requirements.txt
 
 ```
 
-python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv <SSV_CONTRACT>
+python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv <SSV_CONTRACT>
 
 ```
+
+- For options use
+
+```
+
+python main.py -h
+
+```
+
+- There are two options
+
+  - stake: use this to start the backend service for the staking pool
+
+  - create-keys: use this to create validator keys and key-shares for operators separately
 
 - To create keys
 
@@ -138,7 +182,15 @@ python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -ssv 
 
 ```
 
-python main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
+python3 main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
+
+```
+
+EXAMPLE
+
+```
+
+python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
 
 ```
 
