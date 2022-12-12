@@ -22,6 +22,12 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
   - Staking pools for peer-to-peer staking on trusted node operators (friends)
 
+### Staking services
+
+- [Casimir](https://github.com/consensusnetworks/casimir) - Decentralized Self Custody Staking and Asset Management for Ethereum and more.
+
+  - Casimir is a cross chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
+
 ### Notification services
 
 - [HAL](https://app.hal.xyz/) - The Crypto Notification System
@@ -31,8 +37,6 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 - [Hellman - allerts](https://alert.hellman.team/metrics) / [Hellman - repo](https://github.com/HellmanResearch)
 
   - HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/users with 7\*24 hours monitoring of account balance, operation performance & status.
-
-### Staking services
 
 ### Tools
 
