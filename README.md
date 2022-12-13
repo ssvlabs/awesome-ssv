@@ -14,16 +14,12 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
 ### Staking pools
 
-<<<<<<< HEAD
 - [GARUDA](https://github.com/RohitAudit/ssv-service) - Garuda ssv-service
 
   - User stakes their eth to a staking contract through which he is given a liquid staked derivative token called roETH. That's it!! User can just relax and wait for their roETH to compound over time and till then use the same tokens in other DeFi protocols
 
 - [FRENS](github.com/frens-pool) - stake with friends
 
-=======
-- [FRENS](github.com/frens-pool) - stake with friends
->>>>>>> brownie
   - Staking pools for peer-to-peer staking on trusted node operators (friends)
 
 ### Staking services
