@@ -32,7 +32,9 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- That's it!! User can just relax and wait for their ssvETH to autocompound over time and till then use the same tokens in other DeFi protocols
+- That's it!! User can just relax and wait for their ssvETH to autoautocompound over time and till then use the same tokens in other DeFi protocols
+
+### Protocol
 
 ### Protocol
 
@@ -94,6 +96,28 @@ chmod +x setup.sh
 cd demo-contract/
 ```
 
+**Brownie Environment setup**
+
+1. You will need to setup your RPC
+   you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one from [infura here](https://app.infura.io/)
+
+2. You need to set up your deployer private key
+   you can do so by writing into your console `brownie accounts new <your private key>` more on brownie account management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+
+### Changes
+
+Now go to demo-contract/scripts/utils/helpers.py and change the following:
+
+line 16: `account_name = "deployer0"` to your account name you have setup in the previous step
+
+Now go to demo-contract/scripts/b_deploy.py and change the following:
+
+- `whitelist` to make tx to staking pool and keysmanager, recomended to use your deployer address for ease of use
+
+- `withdrawal_creds` where you want for your validators (Optional, this is testnet deployment)
+
+- `operator_ids` (Optional, you can keep the default operators)
+
 now run:
 
 ```
@@ -112,6 +136,24 @@ When you have enough (32) goerliETH for to test depositing a validator change th
 
 ```
 brownie run ./scripts/b_stake.py --network goerli
+```
+
+Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly to the pool.
+
+It will use it to pay operators for running your distributed validator. You can get some from [SSV faucet here](https://faucet.ssv.network/).
+
+---
+
+#### Using the backend scripts
+
+##### Requirements
+
+You need python to run following scripts.
+
+go to the main project folder first
+
+```
+cd ..
 ```
 
 Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly to the pool.
@@ -192,8 +234,7 @@ EXAMPLE
 
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
 
-```
-
 ### LICENSE
 
 MIT License
+```
