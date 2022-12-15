@@ -2,6 +2,7 @@
 
 from brownie import *
 from scripts.utils.helpers import *
+import json
 
 
 def main():
@@ -31,3 +32,18 @@ def main():
 
     print("staking...")
     stakingPool.stake({'value': 0.001 * 10 ** 18, 'from': deployer})
+
+    print("unStaking...")
+    ssvETH.approve(stakingPool.address, 0.001 * 10 ** 18, {'from': deployer})
+    stakingPool.unStake(0.001 * 10 ** 18, {'from': deployer})
+
+    with open('contrat_addresses.json', "r") as f:
+        data = json.load(f)
+
+    data["stakingPool_addr"] = stakingPool.address
+    data["ssvETH_addr"] = ssvETH.address
+
+    with open('contrat_addresses.json', 'w') as f:
+        json.dump(data, f)
+
+    print("addresses written")

@@ -8,7 +8,7 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 ### Dependencies
 
-- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here
+- **eth-Brownie** to install it follow the instructions from [eth-Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
 
 ### External Libraries used
 
@@ -18,13 +18,14 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 ### Demo Contracts on Goerli
 
+<!--
 - Staking Pool Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
 
 - Keys-manager Contract: [0x2b54244C61346DcD14CB77f8642CeA941Aa82664](https://goerli.etherscan.io/address/0x2b54244C61346DcD14CB77f8642CeA941Aa82664#code)
 
 - RoETH Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
 
-- Common Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
+- Common Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code) -->
 
 ## How it works?
 
@@ -50,29 +51,7 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](http
 
 ## How to deploy the system?
 
-### Brownie Environment setup
-
-1. You will need to setup your RPC
-   you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one from [infura here](https://app.infura.io/)
-
-2. You need to set up your deployer private key
-   you can do so by writing into your console `brownie accounts new <your private key>` more on brownie account management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
-
-### Changes
-
-Now go to demo-contract/scripts/utils/helpers.py and change the following:
-
-line 16: `account_name = "deployer0"` to your account name you have setup in the previous step
-
-Now go to demo-contract/scripts/b_deploy.py and change the following:
-
-- `whitelist` to make tx to staking pool and keysmanager, recomended to use your deployer address for ease of use
-
-- `withdrawal_creds` where you want for your validators (Optional, this is testnet deployment)
-
-- `operator_ids` (Optional, you can keep the default operators)
-
-### deploying smart contracts
+### Install prerequisites
 
 - make the script executable
 
@@ -82,7 +61,8 @@ chmod +x setup.sh
 
 ```
 
-- run the script, it'll install all dependencies.
+- run the script, it'll install all dependencies. \
+  BE PATIENT, this can take couple of minutes.
 
 ```
 
@@ -90,11 +70,13 @@ chmod +x setup.sh
 
 ```
 
-- Go to demo contract folder and make copy of the `env.example` file
+- Go to demo contract folder
 
 ```
 cd demo-contract/
 ```
+
+Install **eth-Brownie** + Ganache local blockchain, follow the instructions from [eth-Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
 
 **Brownie Environment setup**
 
@@ -102,9 +84,32 @@ cd demo-contract/
    you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one from [infura here](https://app.infura.io/)
 
 2. You need to set up your deployer private key
-   you can do so by writing into your console `brownie accounts new <your private key>` more on brownie account management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+
+```
+brownie accounts new deployer0
+
+```
+
+Brownie v1.19.0 - Python development framework for Ethereum
+
+```
+Enter the private key you wish to add: <your private key>
+
+Enter the password to encrypt this account with:
+
+SUCCESS: A new account '0x0000536dbD99d918092249Ef4eDe4a69A35CccCa' has been generated with the id 'deployer0'
+
+```
+
+more on brownie account management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+
+---
 
 ### Changes
+
+If you created a new deplyer "deployer0" **you can skip the next step**.
+
+#### Updating deployer
 
 Now go to demo-contract/scripts/utils/helpers.py and change the following:
 
@@ -118,7 +123,9 @@ Now go to demo-contract/scripts/b_deploy.py and change the following:
 
 - `operator_ids` (Optional, you can keep the default operators)
 
-now run:
+---
+
+### Deployment
 
 ```
 brownie run ./scripts/b_deploy.py --network goerli
@@ -144,29 +151,7 @@ It will use it to pay operators for running your distributed validator. You can 
 
 ---
 
-#### Using the backend scripts
-
-##### Requirements
-
-You need python to run following scripts.
-
-go to the main project folder first
-
-```
-cd ..
-```
-
-Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly to the pool.
-
-It will use it to pay operators for running your distributed validator. You can get some from [SSV faucet here](https://faucet.ssv.network/).
-
----
-
-#### Using the backend scripts
-
-##### Requirements
-
-You need python to run following scripts.
+### Running pool manager backend
 
 go to the main project folder first
 
@@ -181,6 +166,18 @@ To deploy the backend for your staking pool you need to install requirements:
 pip install -r requirements.txt
 
 ```
+
+#### Fund deployer
+
+- SSV
+
+Your staking pool needs to be funded with some SSV. Keep **at least 50 SSV** at your deployer address, or send it directly to the pool.
+
+It will use it to pay operators for running your distributed validator. You can get some from [SSV faucet here](https://faucet.ssv.network/).
+
+#### Run pool manager
+
+**NOTE**: you need to stake via stakepool, if you want to test the script creating and distributing validator.
 
 Following arguments are needed to run the script
 
@@ -234,7 +231,10 @@ EXAMPLE
 
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
 
+```
+
+If your console is showing `trying again` it means there is not enough stake in your staking pool, go to previos step _Staking ETH & funding the pool_ fund the pool and run the script again.
+
 ### LICENSE
 
 MIT License
-```
