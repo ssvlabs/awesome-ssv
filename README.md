@@ -28,6 +28,16 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
   - Casimir is a cross chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
 
+### Operator services
+
+- [Stereum](https://github.com/stereum-dev/ethereum-node/) - a Node Setup GUI that build an easy SSV Network Operator Setup.
+
+  - If you got an Ubuntu server, you can use Stereum's Node tool to connect to it and install / maintain a SSV Operator without having to access the CLI. If you have any question about it, let us know 😄.
+
+- [ChainUp Cloud](https://cloud.chainup.com/) — ChainUp Cloud is an All in one SSV platform
+
+  - Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
+
 ### Notification services
 
 - [HAL](https://app.hal.xyz/) - The Crypto Notification System

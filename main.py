@@ -35,7 +35,8 @@ def generate_keys(mnemonic, validator_start_index: int,
         start_index=validator_start_index,
         hex_eth1_withdrawal_address=eth1_withdrawal_address,
     )
-    keystore_filefolders = credentials.export_keystores(password=keystore_password, folder=folder)
+    keystore_filefolders = credentials.export_keystores(
+        password=keystore_password, folder=folder)
     deposits_file = credentials.export_deposit_data_json(folder=folder)
     if not credentials.verify_keystores(keystore_filefolders=keystore_filefolders, password=keystore_password):
         raise ValidationError(load_text(['err_verify_keystores']))
@@ -62,7 +63,8 @@ def create_keys(config):
     op = OperatorData("https://api.ssv.network")
     for keyfile in keystores:
         ssv = SSV(keyfile, config.keystore_password)
-        file = ssv.generate_shares(op.get_operator_data(config.operator_ids), network_fees=0)
+        file = ssv.generate_shares(op.get_operator_data(
+            config.operator_ids), network_fees=0)
         print("Validator private key file:")
         print(keyfile)
         print("SSV key shares file:")
@@ -80,8 +82,10 @@ def start_staking(config):
         mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)
         web3_eth = EthNode(config.eth_rpc, config.private_key)
         if web3_eth.get_balance(config.staking_pool) >= 32:
-            print("balance of staking pool:" + str(web3_eth.get_balance(config.staking_pool)))
-            num_validators = int(web3_eth.get_balance(config.staking_pool) / 32)
+            print("balance of staking pool:" +
+                  str(web3_eth.get_balance(config.staking_pool)))
+            num_validators = int(
+                web3_eth.get_balance(config.staking_pool) / 32)
 
             stake_pool = StakingPool(config.staking_pool, web3_eth.eth_node)
             print("creating validators")
@@ -102,20 +106,23 @@ def start_staking(config):
                                                   cred.deposit_datum_dict["deposit_data_root"],
                                                   web3_eth.account.address)
                 web3_eth.make_tx(tx)
-                print("deposit the key" + str(cred.deposit_datum_dict["pubkey"]))
+                print("deposit the key" +
+                      str(cred.deposit_datum_dict["pubkey"]))
             print("submitted validators\n")
             # keystores = ['validator_keys/keystore-m_12381_3600_1_0_0-1665309440.json', 'validator_keys/keystore-m_12381_3600_2_0_0-1665309440.json']
             operator_id = stake_pool.get_operator_ids()
             print("operator ids are:\n")
             print(operator_id)
             ssv_contract = SSVNetwork(config.ssv_contract, web3_eth.eth_node)
-            network_fees = 0 if ssv_contract.get_network_fee() is None else ssv_contract.get_network_fee()
+            network_fees = 0 if ssv_contract.get_network_fee(
+            ) is None else ssv_contract.get_network_fee()
             print("network fee is:\n")
             print(network_fees)
             for keyfile in keystores:
                 ssv = SSV(keyfile, "test1234")
                 op = OperatorData("https://api.ssv.network")
-                file = ssv.generate_shares(op.get_operator_data(operator_id), network_fees)
+                file = ssv.generate_shares(
+                    op.get_operator_data(operator_id), network_fees)
                 shares = ssv.stake_shares(file)
                 tx = stake_pool.send_key_shares(shares["validatorPublicKey"], operator_id,
                                                 shares["sharePublicKeys"], shares["sharePrivateKey"],
@@ -129,11 +136,13 @@ def start_staking(config):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Command line tool for SSV backend")
+    parser = argparse.ArgumentParser(
+        description="Command line tool for SSV backend")
     subparses = parser.add_subparsers()
     stake = subparses.add_parser("stake",
                                  help="used to start a service that tracks stakinpool contract for keys and key shares")
-    keys = subparses.add_parser("create-keys", help="create n keys and their keyshares")
+    keys = subparses.add_parser(
+        "create-keys", help="create n keys and their keyshares")
 
     stake.add_argument("-priv", "--private-key",
                        help="Private key for the account you have whitelisted for staking contacts", required=True)

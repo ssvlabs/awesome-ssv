@@ -1,1 +1,4 @@
-{ "stakingPool_addr": "", "ssvETH_addr": "" }
+{
+  "stakingPool_addr": "0x5c69Aeb46150c6944819e190Bfb7075b4C09024d",
+  "ssvETH_addr": "0xa86E5310416D893a73d78F65ad79d591b0429C36"
+}

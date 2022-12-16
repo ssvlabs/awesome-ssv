@@ -94,7 +94,8 @@ class StakingPool:
 
         :param keysmanager_address:
         """
-        self.contract = web3.eth.contract(address=stakepool_contract, abi=self.abi)
+        self.contract = web3.eth.contract(
+            address=stakepool_contract, abi=self.abi)
 
     def get_withdrawal_address(self):
         return self.contract.functions.WITHDRAWAL_ADDRESS().call()
@@ -115,5 +116,5 @@ class StakingPool:
 
         :return:
         """
-        return self.contract.functions.submitValidatorShares(pubkey, operator_ids, sharesPublicKeys, sharesEncrypted,
-                                                             amount).buildTransaction({"from": account_address})
+        return self.contract.functions.depositShares(pubkey, operator_ids, sharesPublicKeys, sharesEncrypted,
+                                                     amount).buildTransaction({"from": account_address})
