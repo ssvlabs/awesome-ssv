@@ -18,10 +18,6 @@ fi
 
 echo "setup for ssv keys cli done"
 
-echo "installing dependencies for demo contract"
-
-npm install --prefix demo-contract
-
 echo "downloading dependencies for python"
 
 pip install -r requirements.txt

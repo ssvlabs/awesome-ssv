@@ -13,7 +13,7 @@ def get_deployer():
             account_name = "live_deployer"
         else:
             # TODO change to your wallet name
-            account_name = "deployer0"
+            account_name = "deployer"
 
         if network.show_active() == "mainnet-fork":
             publish = False
