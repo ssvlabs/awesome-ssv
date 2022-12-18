@@ -5,6 +5,7 @@ reports:
     - SafeMath
 dependencies:
   - OpenZeppelin/openzeppelin-contracts@4.2.0
+  - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0
 compiler:
   solc:
     remappings:

@@ -1,4 +1,1 @@
-{
-  "stakingPool_addr": "0x5c69Aeb46150c6944819e190Bfb7075b4C09024d",
-  "ssvETH_addr": "0xa86E5310416D893a73d78F65ad79d591b0429C36"
-}
+{"stakingPool_addr": "0x4ce3Ce528E5A87dDf67f2d101ce914a130A99e03", "ssvETH_addr": "0x9EeD54C76be94D5Fc2745ba46430c0785f31C834", "deposit_contract_addr": "0xCaD2BBcf4B214FB2595e96514EB2b0101292Faf5", "ssv_network_contract_addr": "0xa0D4cD310bf9C4dEa7433C49667315ebaa5095F3", "ssv_token_address_addr": "0xF7c5E4e779E3FB90DCa67FB556CEADeDa4880f7C"}
