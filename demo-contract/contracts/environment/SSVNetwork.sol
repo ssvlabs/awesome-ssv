@@ -3,10 +3,10 @@
 pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin-upgradable/contracts/access/OwnableUpgradeable.sol";
+import "../../node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "./utils/VersionedContract.sol";
 import "./utils/Types.sol";
-import "../../interfaces/mocks/ISSVNetwork.sol";
+import "./ISSVNetwork.sol";
 
 contract SSVNetwork is OwnableUpgradeable, ISSVNetwork, VersionedContract {
     using Types256 for uint256;
