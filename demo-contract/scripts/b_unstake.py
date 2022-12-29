@@ -14,14 +14,11 @@ def main():
         contract_addresses = json.load(f)
 
     stakingPoolAddress = contract_addresses["stakingPool_addr"]
+    ssvETHaddress = contract_addresses["ssvETH_addr"]
 
     stakingPool = StakingPool.at(stakingPoolAddress)
+    ssvETH = SSVETH.at(ssvETHaddress)
 
-    print("staking...")
-    stakingPool.stake({'value': 32 * 10 ** 18, 'from': deployer})
-
-    # data["stakingPool_addr"] = stakingPool.address
-    # data["ssvETH_addr"] = ssvETH.address
-
-    # with open('contrat_addresses.json', 'w') as f:
-    #     json.dump(data, f)
+    print("unStaking...")
+    ssvETH.approve(stakingPool.address, 0.001 * 10 ** 18, {'from': deployer})
+    stakingPool.unStake(0.001 * 10 ** 18, {'from': deployer})

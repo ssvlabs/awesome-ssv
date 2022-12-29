@@ -4,9 +4,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// import "./interfaces/IRoEth.sol";
-// import "./interfaces/ICommon.sol";
-
 contract SSVETH is ERC20, Ownable {
     address public minter;
     uint256 public sharePrice = 1e18;
@@ -17,10 +14,6 @@ contract SSVETH is ERC20, Ownable {
         minter = msg.sender;
     }
 
-    // function setMinter(address minter_address) external {
-    //     require(msg.sender == CommonContract.getAdmin(),"Only admin can set this");
-    //     minter = minter_address;
-    // }
 
     function mint(address recipient, uint256 amount) external onlyOwner {
         _mint(recipient, amount);

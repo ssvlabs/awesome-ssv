@@ -2,19 +2,16 @@
 
 from brownie import *
 from scripts.utils.helpers import *
-import json
 
 
 def main():
 
     deployer = get_deployer()
 
-    with open('contrat_addresses.json', "r") as f:
-        contract_addresses = json.load(f)
-
-    stakingPoolAddress = contract_addresses["stakingPool_addr"]
+    # TODO change poolAddress, for your pool address which you can find printed on your console
+    stakingPoolAddress = "0xe7440EE513760E2b431E07AF300060c3501a2A01"
 
     stakingPool = StakingPool.at(stakingPoolAddress)
 
     print("staking...")
-    stakingPool.stake({'value': 32 * 10 ** 18, 'from': deployer})
+    stakingPool.stake({'value': 0.1 * 10 ** 18, 'from': deployer})
