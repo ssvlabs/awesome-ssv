@@ -117,6 +117,22 @@ The contract addresses will be logged on console. You need them to save them for
 **NOTE:** If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator
 activation, SSV token and SSV contract to interact with. You can still deploy and test the contracts locally.
 
+### Forking Goerli
+
+This repo works best with local forked Goerli network as the network contains the SSV contract
+- Add the network:
+  - `brownie networks add development goerli-fork cmd=ganache-cli host=http://127.0.0.1 fork=<ENDPOINT> accounts=10 mnemonic=brownie port=8545`
+  - ENDPOINT = goerli endpoint from alchemy or infura
+- Start the network:
+  - `brownie console --network goerli-fork`
+- Now you can use this network to deploy your contracts and interact with SSV contracts
+- Change the values in b_deploy.py file for the goerli testnet 
+- In the brownie console run:
+  - `run('b_deploy')`
+  - To get staking pool address run the following in brownie console: `StakingPool`
+  - To stake some eth run: `StakingPool[0].stake({'value':64*10**18})`
+- Now you can start the backend scripts
+
 ### Staking ETH & funding the pool
 
 Now you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with
@@ -205,7 +221,7 @@ EXAMPLE
 
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
 
+```
 ### LICENSE
 
 MIT License
-```
