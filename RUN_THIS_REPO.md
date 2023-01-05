@@ -89,14 +89,14 @@ cd demo-contract/
    from [infura here](https://app.infura.io/)
 
 2. You need to set up your deployer private key
-   you can do so by writing into your console `brownie accounts new <your private key>` more on brownie account
+   you can do so by writing into your console `brownie accounts new deployer` more on brownie account
    management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
 
 ### Changes
 
 Now go to demo-contract/scripts/utils/helpers.py and change the following:
 
-line 16: `account_name = "deployer0"` to your account name you have setup in the previous step
+line 16: `account_name = "deployer"` to your account name you have setup in the previous step
 
 Now go to demo-contract/scripts/b_deploy.py and change the following:
 
@@ -159,14 +159,14 @@ pip install -r requirements.txt
 ```
 
 - Following arguments are needed to run the script
-    - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
-    - STAKING_POOL(-st): staking pool contract address
-    - SSV_CONTRACT(-ssv): ssv network contract address
-    - SSV_TOKEN(-token): ssv token contract address
-    - ETH_RPC(-eth): rpc endpoint for ethereum node
+  - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
+  - STAKING_POOL(-st): staking pool contract address
+  - SSV_CONTRACT(-ssv): ssv network contract address
+  - SSV_TOKEN(-token): ssv token contract address
+  - ETH_RPC(-eth): rpc endpoint for ethereum node
 
 ```
-python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT> 
+python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT>
 ```
 
 - For options use
@@ -179,9 +179,9 @@ python main.py -h
 
 - There are two options
 
-    - stake: use this to start the backend service for the staking pool
+  - stake: use this to start the backend service for the staking pool
 
-    - create-keys: use this to create validator keys and key-shares for operators separately
+  - create-keys: use this to create validator keys and key-shares for operators separately
 
 - To create keys
 
