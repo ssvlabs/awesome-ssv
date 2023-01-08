@@ -3,7 +3,7 @@
 pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../../node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin-upgradable/contracts/access/OwnableUpgradeable.sol";
 import "./utils/VersionedContract.sol";
 import "./utils/Types.sol";
 import "./ISSVNetwork.sol";

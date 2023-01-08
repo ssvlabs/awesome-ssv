@@ -99,14 +99,14 @@ def start_staking(config):
                 print("keys created are:\n")
                 print(keystores)
                 print("submitting validators")
-                for index,cred in enumerate(credentials.credentials):
+                for index, cred in enumerate(credentials.credentials):
                     tx = stake_pool.deposit_validator(cred.deposit_datum_dict["pubkey"],
                                                       cred.deposit_datum_dict["withdrawal_credentials"],
                                                       cred.deposit_datum_dict["signature"],
                                                       cred.deposit_datum_dict["deposit_data_root"],
                                                       web3_eth.account.address)
                     web3_eth.make_tx(tx)
-                    fallback[cred.deposit_datum_dict["pubkey"].hex()] = {"keystore":keystores[index],"ssv_share":""}
+                    fallback[cred.deposit_datum_dict["pubkey"].hex()] = {"keystore": keystores[index], "ssv_share": ""}
                     print("deposit the key" + str(cred.deposit_datum_dict["pubkey"]))
                 print("submitted validators\n")
                 operator_id = stake_pool.get_operator_ids()
@@ -117,7 +117,7 @@ def start_staking(config):
                 network_fees = 0 if ssv_contract.get_network_fee() is None else ssv_contract.get_network_fee()
                 print("network fee is:\n")
                 print(network_fees)
-                pubkeys = fallback.keys()
+                pubkeys = list(fallback.keys())
                 for pubkey in pubkeys:
                     ssv = SSV(fallback[pubkey]["keystore"], "test1234")
                     if fallback[pubkey]["ssv_share"] == "":
@@ -145,7 +145,8 @@ def start_staking(config):
                             print(
                                 "WARNING!!!! Balance too low for account and stakepool for SSV tokens. Please add some")
                         else:
-                            raise Exception("ERROR!!!! keys shares not added as your account doesn't have enough SSV tokens")
+                            raise Exception(
+                                "ERROR!!!! keys shares not added as your account doesn't have enough SSV tokens")
                     tx = stake_pool.send_key_shares(shares["validatorPublicKey"], operator_id,
                                                     shares["sharePublicKeys"], shares["sharePrivateKey"],
                                                     int(shares["ssvAmount"]),
