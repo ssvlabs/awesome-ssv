@@ -81,7 +81,7 @@ class StakingPool:
                 "type": "uint256"
             }
         ],
-        "name": "submitValidatorShares",
+        "name": "depositShares",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -102,7 +102,8 @@ class StakingPool:
 
     def deposit_validator(self, pubkey, withdrawal_creds, signature, deposit_data_root, account_address):
         return self.contract.functions.depositValidator(pubkey, withdrawal_creds, signature,
-                                                        deposit_data_root).buildTransaction({"from": account_address})
+                                                        deposit_data_root).buildTransaction(
+            {"from": account_address, "maxFeePerGas": 10 ** 12})
 
     def get_operator_ids(self):
         """
@@ -117,4 +118,5 @@ class StakingPool:
         :return:
         """
         return self.contract.functions.depositShares(pubkey, operator_ids, sharesPublicKeys, sharesEncrypted,
-                                                     amount).buildTransaction({"from": account_address})
+                                                     amount).buildTransaction(
+            {"from": account_address, "maxFeePerGas": 10 ** 12})

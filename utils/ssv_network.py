@@ -76,4 +76,5 @@ class SSVToken:
         return self.contract.functions.balanceOf(account_address).call()
 
     def transfer_token(self, address, amount, account_address):
-        return self.contract.functions.transfer(address, amount).buildTransaction({"from": account_address})
+        return self.contract.functions.transfer(address, amount).buildTransaction(
+            {"from": account_address, "maxFeePerGas": 10 ** 12})
