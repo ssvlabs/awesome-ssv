@@ -8,7 +8,6 @@ cached-property==1.5.2
 certifi==2022.9.24
 charset-normalizer==2.1.1
 click==7.1.2
-cytoolz==0.11.2
 eth-abi==2.2.0
 eth-account==0.5.9
 eth-hash==0.3.2
@@ -22,7 +21,6 @@ hexbytes==0.3.0
 idna==3.4
 ipfshttpclient==0.8.0a2
 jsonschema==4.16.0
-lru-dict==1.1.7
 multiaddr==0.0.9
 multidict==6.0.2
 mypy-extensions==0.4.3
