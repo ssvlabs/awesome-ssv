@@ -81,7 +81,7 @@ class StakingPool:
                 "type": "uint256"
             }
         ],
-        "name": "submitValidatorShares",
+        "name": "depositShares",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
