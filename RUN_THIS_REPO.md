@@ -9,18 +9,18 @@ minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distribute
 Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service)
 is this minimalistic staking pool based on!
 
-### Dependencies
+## Dependencies
 
 - [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here
 
-### External Libraries used
+## External Libraries used
 
 - [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
 
 - [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators
   keys
 
-### Demo Contracts on Goerli
+## Demo Contracts on Goerli
 
 - Staking Pool
   Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
@@ -34,30 +34,33 @@ is this minimalistic staking pool based on!
 - Common
   Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
 
-## How it works?
+# How it works?
 
-### User Actions
+## User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
 - That's it!! User can just relax and wait for their ssvETH to autocompound over time and till then use the same tokens
   in other DeFi protocols
 
-### Protocol
+## Backend
 
-- The backend keeps a close eye on stakingpool contract.
+- The backend script `main.py` keeps a close eye on stakingpool contract.
 
-- As soon as the balance reaches 32 eth, it triggers few actions:
+- As soon as the staking pool balance reaches 32 eth, it triggers few actions:
 
-- Creates a ethereum validator key and gives it to staking pool for depositing for activation
+  - Creates an Ethereum **validator_key** and **deposit_data** and actives it
+    - calls `stakingPool.depositValidator(deposit_data)` and passes `deposit_data` into this function. This will deposit the validator to Beacon Deposit Contract together with 32 eth. This is how Validator gets activated on the Beacon chain.
+  - Splits the validator key into `keyshares` and register it with SSV network contract
 
-- Generates keyshares from the validator keystore and stakes them the SSV nodes
+    - calls `stakingPool.depositShares(keyshares)`. This will trigger `registerValidator()` on the SSV network contract <br>
+      **NOTE** before registering, the deployer must have SSV tokens, the script will approve the token function, also there must be more than 32 ETH in the pool to trigger Validator registration.
 
-- Saves the keystore and keyshares for verification at a later stage
+  - Saves the keystore and keyshares for verification at a later stage
 
 ## How to deploy the system?
 
-### deploying smart contracts
+### Prerequisites
 
 - make the script executable
 
@@ -84,19 +87,26 @@ cd demo-contract/
 **Brownie Environment setup**
 
 1. You will need to setup your RPC
-   you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura
-   or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one
-   from [infura here](https://app.infura.io/)
+   you can do so by writing into your console:
+   ```
+   export WEB3_INFURA_PROJECT_ID=<your id>
+   ```
+   if you use infura or:
+   ```
+   export WEB3_ALCHEMY_PROJECT_ID=<your id>
+   ```
+
+if you use alchemy. You can obtain one from [infura here](https://app.infura.io/).
 
 2. You need to set up your deployer private key
-   you can do so by writing into your console `brownie accounts new deployer` more on brownie account
-   management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+   you can do so by writing into your console
+   ```
+   brownie accounts new deployer
+   ```
+   more on brownie account
+   management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts).
 
 ### Changes
-
-Now go to demo-contract/scripts/utils/helpers.py and change the following:
-
-line 16: `account_name = "deployer"` to your account name you have setup in the previous step
 
 Now go to demo-contract/scripts/b_deploy.py and change the following:
 
@@ -106,32 +116,49 @@ Now go to demo-contract/scripts/b_deploy.py and change the following:
 
 - `operator_ids` (Optional, you can keep the default operators)
 
+## Deploying smart contracts
+
+Go to:
+
+```
+cd demo-contracts
+```
+
+### Goerli
+
 now run:
 
 ```
 brownie run ./scripts/b_deploy.py --network goerli
 ```
 
-The contract addresses will be logged on console. You need them to save them for running the backend
-
-**NOTE:** If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator
-activation, SSV token and SSV contract to interact with. You can still deploy and test the contracts locally.
+The contract addresses will be logged on console. they are also saved in `demo-contract/contrat_addresses.json`
 
 ### Forking Goerli
 
 This repo works best with local forked Goerli network as the network contains the SSV contract
+
 - Add the network:
   - `brownie networks add development goerli-fork cmd=ganache-cli host=http://127.0.0.1 fork=<ENDPOINT> accounts=10 mnemonic=brownie port=8545`
   - ENDPOINT = goerli endpoint from alchemy or infura
 - Start the network:
   - `brownie console --network goerli-fork`
 - Now you can use this network to deploy your contracts and interact with SSV contracts
-- Change the values in b_deploy.py file for the goerli testnet 
+- Change the values in b_deploy.py file for the goerli testnet
 - In the brownie console run:
   - `run('b_deploy')`
   - To get staking pool address run the following in brownie console: `StakingPool`
   - To stake some eth run: `StakingPool[0].stake({'value':64*10**18})`
 - Now you can start the backend scripts
+
+### Local Deployment
+
+If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator
+activation, SSV token and SSV contract to interact with.
+
+```
+brownie run ./scripts/local_deploy.py --network goerli
+```
 
 ### Staking ETH & funding the pool
 
@@ -154,9 +181,9 @@ from [SSV faucet here](https://faucet.ssv.network/).
 
 ---
 
-#### Using the backend scripts
+## Using the backend scripts
 
-##### Requirements
+### Requirements
 
 You need python to run following scripts.
 
@@ -222,6 +249,7 @@ EXAMPLE
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
 
 ```
+
 ### LICENSE
 
 MIT License
