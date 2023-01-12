@@ -53,6 +53,12 @@ contract StakingPool is ReentrancyGuard {
         emit UserStaked(msg.sender, msg.value);
     }
 
+    function unStake(uint256 amount) public {
+        ssvETH.transferFrom(msg.sender, address(this), amount); 
+        uint256 amount_to_transfer = amount / ssvETH.sharePrice() * 1e18;
+        payable(msg.sender).transfer(amount_to_transfer);
+    }
+
     function depositValidator(bytes calldata pubkey,
         bytes calldata withdrawal_credentials,
         bytes calldata signature,
