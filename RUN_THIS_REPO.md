@@ -1,230 +1,265 @@
 # LSD staking pool powered by SSV
 
 This repo showcases minimalistic backend for an LSD staking pool. It is for learning purposes ONLY and should NOT be a
+
 base for any solution used in production. It contains backend scripts and smart contracts to manage and stake Ether,
+
 minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
 
 ## Credits
 
 Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service)
+
 is this minimalistic staking pool based on!
 
-## Dependencies
+<!--
 
-- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here
+### Demo Contracts on Goerli
 
-## External Libraries used
 
-- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
-
-- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators
-  keys
-
-## Demo Contracts on Goerli
 
 - Staking Pool
-  Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
+
+  Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
+
+
 
 - Keys-manager
-  Contract: [0x2b54244C61346DcD14CB77f8642CeA941Aa82664](https://goerli.etherscan.io/address/0x2b54244C61346DcD14CB77f8642CeA941Aa82664#code)
+
+  Contract: [0x2b54244C61346DcD14CB77f8642CeA941Aa82664](https://goerli.etherscan.io/address/0x2b54244C61346DcD14CB77f8642CeA941Aa82664#code)
+
+
 
 - RoETH
-  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
+
+  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
+
+
 
 - Common
-  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
 
-# How it works?
+  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code) -->
 
-## User Actions
+## How it works?
+
+### User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- That's it!! User can just relax and wait for their ssvETH to autocompound over time and till then use the same tokens
-  in other DeFi protocols
+- Creates a ethereum validator key and gives it to staking pool for depositing for activation
 
-## Backend
+- Generates keyshares from the validator keystore and stakes them the SSV nodes
 
-- The backend script `main.py` keeps a close eye on stakingpool contract.
+- Saves the keystore and keyshares for verification at a later stage
 
-- As soon as the staking pool balance reaches 32 eth, it triggers few actions:
+## How to deploy?
 
-  - Creates an Ethereum **validator_key** and **deposit_data** and actives it
-    - calls `stakingPool.depositValidator(deposit_data)` and passes `deposit_data` into this function. This will deposit the validator to Beacon Deposit Contract together with 32 eth. This is how Validator gets activated on the Beacon chain.
-  - Splits the validator key into `keyshares` and register it with SSV network contract
+### External Libraries used
 
-    - calls `stakingPool.depositShares(keyshares)`. This will trigger `registerValidator()` on the SSV network contract <br>
-      **NOTE** before registering, the deployer must have SSV tokens, the script will approve the token function, also there must be more than 32 ETH in the pool to trigger Validator registration.
+- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
 
-  - Saves the keystore and keyshares for verification at a later stage
+- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators keys
 
-## How to deploy the system?
+### Install Dependencies
 
-### Prerequisites
+- [python](https://www.python.org/downloads/), you can install it here.
 
-- make the script executable
+- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here.
+
+### Initial setup
+
+- make the script executable and run it
 
 ```
 
 chmod +x setup.sh
 
-```
-
-- run the script, it'll install all dependencies.
-
-```
-
 ./setup.sh
 
-```
-
-- Go to demo contract folder and make copy of the `env.example` file
 
 ```
+
+## Deploying contracts
+
+```
+
 cd demo-contract/
+
 ```
 
-**Brownie Environment setup**
+### Brownie Environment setup
 
 1. You will need to setup your RPC
-   you can do so by writing into your console:
-   ```
-   export WEB3_INFURA_PROJECT_ID=<your id>
-   ```
-   if you use infura or:
-   ```
-   export WEB3_ALCHEMY_PROJECT_ID=<your id>
-   ```
 
-if you use alchemy. You can obtain one from [infura here](https://app.infura.io/).
+you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura
+
+or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one
+
+from [infura here](https://app.infura.io/)
 
 2. You need to set up your deployer private key
-   you can do so by writing into your console
-   ```
-   brownie accounts new deployer
-   ```
-   more on brownie account
-   management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts).
 
-### Changes
+you can do so by writing into your console `brownie accounts new deployer` more on brownie account
 
-Now go to demo-contract/scripts/b_deploy.py and change the following:
+management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
 
-- `whitelist` to make tx to staking pool and keysmanager, recomended to use your deployer address for ease of use
+### Contract Changes
 
-- `withdrawal_creds` where you want for your validators (Optional, this is testnet deployment)
+Now go to `demo-contract/scripts/deploy.py` and change the following:
+
+- `whitelist, withdrawal_creds` update these values use deployer address, that will you use to run the backend script
+
+Optional
 
 - `operator_ids` (Optional, you can keep the default operators)
 
-## Deploying smart contracts
+### Deployments
 
-Go to:
+#### Goerli-fork
 
-```
-cd demo-contracts
-```
+This repo works best with locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-### Goerli
+- Add Goerli-fork to brownie:
 
-now run:
+ENDPOINT = goerli endpoint from alchemy or infura
 
-```
-brownie run ./scripts/b_deploy.py --network goerli
-```
+- `brownie networks add development goerli-fork cmd=ganache-cli host=http://127.0.0.1 fork=<ENDPOINT> accounts=10 mnemonic=brownie port=8545`
 
-The contract addresses will be logged on console. they are also saved in `demo-contract/contrat_addresses.json`
-
-### Forking Goerli
-
-This repo works best with local forked Goerli network as the network contains the SSV contract
-
-- Add the network:
-  - `brownie networks add development goerli-fork cmd=ganache-cli host=http://127.0.0.1 fork=<ENDPOINT> accounts=10 mnemonic=brownie port=8545`
-  - ENDPOINT = goerli endpoint from alchemy or infura
 - Start the network:
-  - `brownie console --network goerli-fork`
+
+- `brownie console --network goerli-fork`
+
 - Now you can use this network to deploy your contracts and interact with SSV contracts
-- Change the values in b_deploy.py file for the goerli testnet
+
+- Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
+
 - In the brownie console run:
-  - `run('b_deploy')`
-  - To get staking pool address run the following in brownie console: `StakingPool`
-  - To stake some eth run: `StakingPool[0].stake({'value':64*10**18})`
+
+- `run('deploy')`
+
+- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
+
+- To stake some eth run:
+    - `StakingPool[0].stake({'value':64*10**18})`
+
 - Now you can start the backend scripts
 
-### Local Deployment
+#### Goerli
 
-If you want to deploy your system locally you'll need to deploy Ethereum Deposit Contract for validator
-activation, SSV token and SSV contract to interact with.
+This repo works well with Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-```
-brownie run ./scripts/local_deploy.py --network goerli
-```
+- Start the network:
+
+- `brownie console --network goerli
+
+- Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
+
+- In the brownie console run:
+
+- `run('deploy')`
+
+- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
+
+- To stake some eth run:
+    - `StakingPool[0].stake({'value':64*10**18})`
+
+Now you can start the staking pool manager backend scripts
+
+#### Local deployment
+
+If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
 ### Staking ETH & funding the pool
 
-Now you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with
-getting your hands on 32 goerliETH to test validator deployment, we should be able to help you
-on [our discord](https://discord.com/invite/AbYHBfjkDY).
+Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
 
-When you have enough (32) goerliETH for to test depositing a validator change the value in the `b_stake.py` script and
+When you have enough (32) goerliETH for to test depositing a validator change the value in the `stake.py` script and
+
 run it:
 
 ```
-brownie run ./scripts/b_stake.py --network goerli
+
+brownie run ./scripts/stake.py --network goerli-fork
+
+```
+
+if you are running the brownie console:
+
+```
+
+run('deploy')
+
 ```
 
 Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly
+
 to the pool.
 
 It will use it to pay operators for running your distributed validator. You can get some
+
 from [SSV faucet here](https://faucet.ssv.network/).
 
 ---
 
-## Using the backend scripts
+#### Running staking pool manager backend script
 
-### Requirements
-
-You need python to run following scripts.
-
-go to the main project folder first
-
-```
-cd ..
-```
+- Open new terminal in the main project folder
 
 To deploy the backend for your staking pool you need to install requirements:
 
 ```
 
+
+
 pip install -r requirements.txt
+
+
 
 ```
 
 - Following arguments are needed to run the script
-  - PRIVATE_KEY(-priv): private key for the whitelisted address in the contracts to do the transaction
-  - STAKING_POOL(-st): staking pool contract address
-  - SSV_CONTRACT(-ssv): ssv network contract address
-  - SSV_TOKEN(-token): ssv token contract address
-  - ETH_RPC(-eth): rpc endpoint for ethereum node
+
+- PRIVATE_KEY(-priv): private key, needs to be the **whitelisted address** that you changed in the `StakingPool` contract
+
+- STAKING_POOL(-st): staking pool contract address, copy it from console or `contrat_addresses.json`
+
+- SSV_CONTRACT(-ssv): ssv network contract address, copy it from `deploy.py`
+
+- SSV_TOKEN(-token): ssv token contract address, copy it from `deploy.py`
+
+- ETH_RPC(-eth): rpc endpoint for ethereum node, `http://localhost:8545` in case of goerli-fork
 
 ```
-python main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT>
+
+python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT>
+
+```
+
+example:
+
+```
+
+python3 main.py stake -eth https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad -priv 05bc1aed7c2cefc51286304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
+
 ```
 
 - For options use
 
 ```
 
+
+
 python main.py -h
+
+
 
 ```
 
 - There are two options
 
-  - stake: use this to start the backend service for the staking pool
+- stake: use this to start the backend service for the staking pool
 
-  - create-keys: use this to create validator keys and key-shares for operators separately
+- create-keys: use this to create validator keys and key-shares for operators separately
 
 - To create keys
 
@@ -238,7 +273,11 @@ python main.py -h
 
 ```
 
+
+
 python3 main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
+
+
 
 ```
 
@@ -246,7 +285,11 @@ EXAMPLE
 
 ```
 
+
+
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
+
+
 
 ```
 
