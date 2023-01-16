@@ -66,6 +66,9 @@ is this minimalistic staking pool based on!
 
 - [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here.
 
+- [ganache](https://www.npmjs.com/package/ganache) read more here
+  - `npm install ganache --global`
+
 ### Initial setup
 
 - make the script executable and run it
@@ -119,17 +122,19 @@ Optional
 
 This repo works best with locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-- Add Goerli-fork to brownie:
+Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
+
+- Start the goerli fork network:
+
+- `ganache --chain.vmErrorsOnRPCResponse true --wallet.totalAccounts 10 --fork.url https://goerli.infura.io/v3/<ENDPOINT> --wallet.mnemonic brownie --server.port 8545`
 
 ENDPOINT = goerli endpoint from alchemy or infura
 
-- `brownie networks add development goerli-fork cmd=ganache-cli host=http://127.0.0.1 fork=<ENDPOINT> accounts=10 mnemonic=brownie port=8545`
-
-- Start the network:
-
-- `brownie console --network goerli-fork`
-
 - Now you can use this network to deploy your contracts and interact with SSV contracts
+
+- `brownie console`
+
+  - this will open automatically detect local blockchain running and connect to it.
 
 - Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
 
@@ -140,7 +145,7 @@ ENDPOINT = goerli endpoint from alchemy or infura
 - you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
 
 - To stake some eth run:
-    - `StakingPool[0].stake({'value':64*10**18})`
+- `StakingPool[0].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 8750000000})`
 
 - Now you can start the backend scripts
 
@@ -160,8 +165,11 @@ This repo works well with Goerli network as the network contains both the Beacon
 
 - you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
 
-- To stake some eth run:
-    - `StakingPool[0].stake({'value':64*10**18})`
+Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
+
+When you have enough (32) goerliETH for to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
+
+- `StakingPool[0].stake({'value':64*10**18})`
 
 Now you can start the staking pool manager backend scripts
 
@@ -170,10 +178,6 @@ Now you can start the staking pool manager backend scripts
 If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
 ### Staking ETH & funding the pool
-
-Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
-
-When you have enough (32) goerliETH for to test depositing a validator change the value in the `stake.py` script and
 
 run it:
 
@@ -191,17 +195,13 @@ run('deploy')
 
 ```
 
-Your staking pool needs to be funded with some SSV. Keep at least 50 SSV at your deployer address, or send it directly
-
-to the pool.
-
-It will use it to pay operators for running your distributed validator. You can get some
-
-from [SSV faucet here](https://faucet.ssv.network/).
-
 ---
 
 #### Running staking pool manager backend script
+
+Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
+
+It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
 
 - Open new terminal in the main project folder
 
@@ -235,11 +235,19 @@ python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -tok
 
 ```
 
-example:
+example goerli-fork:
 
 ```
 
-python3 main.py stake -eth https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad -priv 05bc1aed7c2cefc51286304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
+python3 main.py stake -eth http://localhost:8545 -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
+
+```
+
+example goerli:
+
+```
+
+python3 main.py stake -eth https://goerli.infura.io/v3/fddsfc4a4f4b3fffb032dad -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
 
 ```
 

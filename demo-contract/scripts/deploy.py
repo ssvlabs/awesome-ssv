@@ -10,13 +10,16 @@ def main():
     deployer = get_deployer()
 
     # TODO OPTIONAL update these values
-    whitelist = "0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"
-    withdrawal_creds = "0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"
+    whitelist = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04"
+    withdrawal_creds = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04"
     operator_ids = [1, 2, 9, 42]
 
     deposit_contract = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b"
     ssv_network_contract = "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04"
     ssv_token_address = "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
+
+    # ssvETH = "0xfcE8F661AbBf1417E6f73593B9cf779aF83501a9"
+    # stakingPool = "0xFc6f35B3D7e7d6c5789bC2c3566d8b1E9E11752a"
 
     print("deploying ssvETH...")
     # ssvETH = SSVETH.deploy({'from': deployer, 'gas_price': 8750000000})
