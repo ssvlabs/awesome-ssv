@@ -24,21 +24,21 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
   // ** 📟 Listen for broadcast events
   const stakeEvents = useEventListener(readContracts, "STAKINGPOOL", "UserStaked", localProvider, 5);
-  const pubKeyEvents = useEventListener(readContracts, "STAKINGPOOL", "PubKeyDeposited", localProvider, 5);
+
 
   // The transactor wraps transactions and provides notificiations
   const tx = Transactor(userSigner, gasPrice);
 
-  const handleOnStake = value => {
+  const handleOnStake = async value => {
     setStakeLoading(true);
-    tx(writeContracts.STAKINGPOOL.stake({ value: ethers.utils.parseEther(value) }));
+    await tx(writeContracts.STAKINGPOOL.stake({ value: ethers.utils.parseEther(value) }));
     setStakeLoading(false);
   };
 
   const handleOnUnstake = async value => {
     setUnStakeLoading(true);
     if (Number(ssvEthAllowance) > 0) {
-      tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+      await tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
     } else {
       //approving max before calling the unstake method
       await tx(writeContracts.SSVETHCONTRACT.approve(stakingPoolAddress, "10000000000000000000000000000000000000000"));
@@ -100,20 +100,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           }}
         />
       </div>
-      <div style={{ width: 500, margin: "auto", marginTop: 8 }}>
-        <div>Public Key Deposited Events:</div>
-        <List
-          dataSource={pubKeyEvents}
-          renderItem={item => {
-            return (
-              <List.Item key={item.blockNumber}>
-                <Address value={item.args[0]} fontSize={16} /> =>
-                <Balance balance={item.args[1]} />
-              </List.Item>
-            );
-          }}
-        />
-      </div>
+
     </div>
   );
 }
