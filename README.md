@@ -28,6 +28,9 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
   - Casimir is a cross chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
 
+- [Blockscape Network](https://github.com/BlockscapeNetwork/ssv-institutional-staking) — KYC-compliant Ethereum staking powered by SSV
+  - Don't let compliance and regulatory requirements get in your way. We allow any institution to securely store and stake ETH assets in an insured, audited and reward-generating way.
+
 ### Operator services
 
 - [Stereum](https://github.com/stereum-dev/ethereum-node/) - a Node Setup GUI that build an easy SSV Network Operator Setup.

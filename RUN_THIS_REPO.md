@@ -155,7 +155,7 @@ This repo works well with Goerli network as the network contains both the Beacon
 
 - Start the network:
 
-- `brownie console --network goerli
+- `brownie console --network goerli`
 
 - Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
 
@@ -163,7 +163,7 @@ This repo works well with Goerli network as the network contains both the Beacon
 
 - `run('deploy')`
 
-- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
+- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed on the console.
 
 Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
 
@@ -177,27 +177,7 @@ Now you can start the staking pool manager backend scripts
 
 If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
-### Staking ETH & funding the pool
-
-run it:
-
-```
-
-brownie run ./scripts/stake.py --network goerli-fork
-
-```
-
-if you are running the brownie console:
-
-```
-
-run('deploy')
-
-```
-
----
-
-#### Running staking pool manager backend script
+### Running staking pool manager backend script
 
 Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
 
