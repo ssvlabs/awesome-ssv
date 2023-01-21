@@ -31,6 +31,7 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { getRPCPollTime, Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC, useGasPrice } from "./hooks";
+import Manager from "./views/Manager";
 
 const { ethers } = require("ethers");
 /*
@@ -98,9 +99,6 @@ function App(props) {
   const mainnetProviderPollingTime = getRPCPollTime(mainnetProvider);
 
   if (DEBUG) console.log(`Using ${selectedNetwork} network`);
-
-  // 🛰 providers
-  if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
 
   const logoutOfWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -200,15 +198,11 @@ function App(props) {
       mainnetContracts
     ) {
       console.log("_____________________________________ 🏗 scaffold-eth _____________________________________");
-      console.log("🌎 mainnetProvider", mainnetProvider);
       console.log("🏠 localChainId", localChainId);
       console.log("👩‍💼 selected address:", address);
       console.log("🕵🏻‍♂️ selectedChainId:", selectedChainId);
       console.log("💵 yourLocalBalance", yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : "...");
-      console.log("💵 yourMainnetBalance", yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : "...");
       console.log("📝 readContracts", readContracts);
-      console.log("🌍 DAI contract on mainnet:", mainnetContracts);
-      console.log("💵 yourMainnetDAIBalance", myMainnetDAIBalance);
       console.log("🔐 writeContracts", writeContracts);
     }
   }, [
@@ -308,8 +302,8 @@ function App(props) {
         <Menu.Item key="/">
           <Link to="/">App Home</Link>
         </Menu.Item>
-        <Menu.Item key="/Manager">
-          <Link to="/">Manager</Link>
+        <Menu.Item key="/manager">
+          <Link to="/manager">Manager</Link>
         </Menu.Item>
         {/* <Menu.Item key="/hints">
           <Link to="/hints">Hints</Link>
@@ -335,6 +329,14 @@ function App(props) {
             userSigner={userSigner}
             gasPrice={gasPrice}
             address={address}
+          />
+        </Route>
+        <Route exact path="/manager">
+          <Manager
+            localProvider={localProvider}
+            tx={tx}
+            writeContracts={writeContracts}
+            readContracts={readContracts}
           />
         </Route>
         <Route exact path="/debug">

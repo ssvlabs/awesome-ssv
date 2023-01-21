@@ -31,7 +31,7 @@ const { Text } = Typography;
   - Provide fontSize={fontSize} to change the size of address text
 **/
 
-const blockExplorerLink = (address, blockExplorer) => `${blockExplorer || "https://etherscan.io/"}address/${address}`;
+const blockExplorerLink = (address, blockExplorer) => `${blockExplorer || "https:///goerli.etherscan.io/"}address/${address}`;
 
 export default function Address(props) {
   const { currentTheme } = useThemeSwitcher();
