@@ -38,6 +38,12 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
   - Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
+### Distributed key generation (DKG)
+
+- [Rockx DKG](https://github.com/RockX-SG/frost-dkg-demo/) — frost based DKG
+
+  - This repository provides a collection of services that demonstrate s frost based DKG functionality which generates a validator public key and splits shares among operators. The services included are an API service, a messenger service, and a Node service for keygen initiation, results viewing, and deposit data retrieval for Ethereum 2.0 deposit contract
+
 ### Notification services
 
 - [HAL](https://app.hal.xyz/) - The Crypto Notification System
@@ -48,10 +54,20 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garud
 
   - HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/users with 7\*24 hours monitoring of account balance, operation performance & status.
 
+### Guides
+
+- [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
+
+  - Community Guide | @cryptomanufaktur8842 - How To Setup a Node On SSV. From the SSV community, made by the one and only Yorick @cryptomanufaktur8842.
+
 ### Tools
 
 - [SSV Keys's Go implementation](https://github.com/duktig666/ssv-keys-go)
+
   - This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
+
+- [SSV Network contractor(built by Ankr)](https://github.com/Ankr-network/ssv-network-contractor) — GRPC service for registering validators in SSV Network contract.
+  - Using the official Key Distributer SDK service can calculate initial funding and register a validator from received JSON keystorage.
 
 ### Other
 

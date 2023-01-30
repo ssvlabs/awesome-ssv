@@ -41,9 +41,20 @@ contract StakingPool is ReentrancyGuard {
         SSV_TOKEN_ADDR = ssv_token;
         OperatorIDs = ids;
     }
-
+    // getting operator ids, check operators here https://explorer.ssv.network/ 
     function getOperators() public view returns( uint32[4] memory){
         return OperatorIDs;
+    }
+
+    // TODO finish functions,  fn that sets operators
+    function setOperators( uint32[4] memory) public onlyOwner {
+        OperatorIDs = 
+        emit OperatorIDsChanged()
+    }
+    // TODO expose + comment function 
+    function updateSharePrice(uint256 _newPrice) public onlyOwner {
+        ssvETH.changeSharePrice(_newPrice);
+        emit OperatorIDsChanged();
     }
 
     function stake() public payable {
@@ -59,6 +70,7 @@ contract StakingPool is ReentrancyGuard {
         payable(msg.sender).transfer(amount_to_transfer);
     }
 
+    // TODO comment what it does
     function depositValidator(bytes calldata pubkey,
         bytes calldata withdrawal_credentials,
         bytes calldata signature,
@@ -67,6 +79,15 @@ contract StakingPool is ReentrancyGuard {
         emit PubKeyDeposited(pubkey);
     }
 
+    // TODO comment what it does 
+    /* Detailed explanation on key splitting, and interaction with SSVContract 
+
+
+
+
+
+
+    */ 
     function depositShares(bytes calldata pubkey,
         uint32[] calldata operatorIds,
         bytes[] calldata sharesPublicKeys,
@@ -76,6 +97,7 @@ contract StakingPool is ReentrancyGuard {
         IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, amount);
         ISSVNetwork(SSV_CONTRACT_ADDR).registerValidator(pubkey, operatorIds, sharesPublicKeys, sharesEncrypted, amount);
         Validators.push(pubkey);
+        emit KeySharesDeposited();
     }
 
 }

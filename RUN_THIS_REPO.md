@@ -42,6 +42,9 @@ is this minimalistic staking pool based on!
 
 ## How it works?
 
+TODO@tom
+add broad explanation how it works
+
 ### User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
