@@ -37,13 +37,14 @@ export default function Balance(props) {
 
   const balance = useBalance(props.provider, props.address, localProviderPollingTime);
   let floatBalance = parseFloat("0.00");
-  let usingBalance = balance;
+  let usingBalance = balance.toString();
 
   if (typeof props.balance !== "undefined") usingBalance = props.balance;
   if (typeof props.value !== "undefined") usingBalance = props.value;
 
   if (usingBalance) {
-    const etherBalance = utils.formatEther(usingBalance);
+    console.log("balance", usingBalance.toString());
+    const etherBalance = utils.formatEther(usingBalance.toString());
     parseFloat(etherBalance).toFixed(2);
     floatBalance = parseFloat(etherBalance);
   }

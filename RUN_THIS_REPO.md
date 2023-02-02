@@ -42,6 +42,8 @@ is this minimalistic staking pool based on!
 
 ## How it works?
 
+- Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator ! 🤑
+
 ### User Actions
 
 - User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
