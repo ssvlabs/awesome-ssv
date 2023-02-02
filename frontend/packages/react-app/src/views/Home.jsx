@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Input, List } from "antd";
 import { Address, Balance, TokenBalance } from "../components";
 import externalContracts from "../contracts/external_contracts";
-import Paragraph from "antd/lib/skeleton/Paragraph";
 const { Search } = Input;
 
 function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address }) {
@@ -23,7 +22,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
     stakingPoolAddress,
   ]);
   const totalSupply = useContractReader(readContracts, "SSVETHCONTRACT", "totalSupply");
-  console.log("total supply", totalSupply);
   // ** 📟 Listen for broadcast events
   const stakeEvents = useEventListener(readContracts, "STAKINGPOOL", "UserStaked", localProvider, 5);
 
@@ -54,8 +52,16 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
       <div style={{ padding: 8, marginTop: 32 }}>
         <div>Staking Pool Contract:</div>
         <Address value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address} />
-        <div style={{ padding: 8, marginTop: 12 }}>ssvETH Total supply: </div>
-        <TokenBalance balance={Number(totalSupply)} fontSize={64} />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
+        <div style={{ padding: 8 }}>
+          <div>ssvETH Total Supply: </div>
+          <TokenBalance balance={Number(totalSupply)} fontSize={64} />
+        </div>
+        <div style={{ padding: 8 }}>
+          <div>ssvETH Price: </div>
+          <TokenBalance balance={Number(0)}  price={0} fontSize={64} />
+        </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
         <div style={{ padding: 8 }}>
