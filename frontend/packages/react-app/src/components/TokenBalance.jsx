@@ -19,7 +19,7 @@ export default function TokenBalance(props) {
   }
 
   if (usingBalance) {
-    const etherBalance = utils.formatEther(usingBalance);
+    const etherBalance = utils.formatEther(usingBalance.toString());
     parseFloat(etherBalance).toFixed(2);
     floatBalance = parseFloat(etherBalance);
   }

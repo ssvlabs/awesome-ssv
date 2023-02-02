@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { Transactor } from "../helpers";
 import { useState } from "react";
 import { Input, List } from "antd";
-import { Address, Balance } from "../components";
+import { Address, Balance, TokenBalance } from "../components";
 import externalContracts from "../contracts/external_contracts";
 import Paragraph from "antd/lib/skeleton/Paragraph";
 const { Search } = Input;
@@ -14,17 +14,18 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [stakeLoading, setStakeLoading] = useState(false);
 
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
+  const parsedSharePrice = Number(sharePrice / 10 ** 18);
+  console.log("aaa", parsedSharePrice);
   const balanceStaked = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   const stakingPoolAddress = externalContracts[5].contracts.STAKINGPOOL.address;
-
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
     address,
     stakingPoolAddress,
   ]);
-
+  const totalSupply = useContractReader(readContracts, "SSVETHCONTRACT", "totalSupply");
+  console.log("total supply", totalSupply);
   // ** 📟 Listen for broadcast events
   const stakeEvents = useEventListener(readContracts, "STAKINGPOOL", "UserStaked", localProvider, 5);
-
 
   // The transactor wraps transactions and provides notificiations
   const tx = Transactor(userSigner, gasPrice);
@@ -53,13 +54,25 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
       <div style={{ padding: 8, marginTop: 32 }}>
         <div>Staking Pool Contract:</div>
         <Address value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address} />
+        <div style={{ padding: 8, marginTop: 12 }}>ssvETH Total supply: </div>
+        <TokenBalance balance={Number(totalSupply)} fontSize={64} />
       </div>
+      <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
+        <div style={{ padding: 8 }}>
+          <div>You staked: </div>
+          <TokenBalance balance={Number(balanceStaked)} fontSize={64} />
+        </div>
 
-      <div style={{ padding: 8 }}>
-        <div>You staked:</div>
-        <Balance balance={Number(balanceStaked)} fontSize={64} />
+        <div style={{ padding: 8 }}>
+          <div>ssvETH Rewards:</div>
+          <TokenBalance balance={Number(balanceStaked * parsedSharePrice)} fontSize={64} />
+        </div>
+
+        <div style={{ padding: 8 }}>
+          <div>Share price:</div>
+          <Balance balance={sharePrice} fontSize={64} />
+        </div>
       </div>
-
       <div style={{ margin: 16 }}>
         <Search
           style={{ margin: "auto", width: "30%" }}
@@ -82,10 +95,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
         />
       </div>
 
-      <div style={{ padding: 8 }}>
-        <div>Share Price</div>
-        <Balance balance={sharePrice} fontSize={64} /> <Paragraph fontSize={32}> ETH</Paragraph>
-      </div>
       <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
         <div>Stake Events:</div>
         <List
@@ -100,7 +109,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           }}
         />
       </div>
-
     </div>
   );
 }
