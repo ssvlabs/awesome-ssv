@@ -21,6 +21,7 @@ git clone https://github.com/bloxapp/awesome-ssv
 > 3️⃣ install and start the frontend:
 
 ```bash
+cd frontend
 yarn install
 yarn react-app:start
 ```
@@ -28,7 +29,6 @@ yarn react-app:start
 🚨 if you want to deploy the contracts locally, you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`.
 
 ```bash
-cd frontend
 yarn deploy
 ```
 
