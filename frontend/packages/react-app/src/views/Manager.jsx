@@ -1,14 +1,20 @@
-import { List, Typography } from "antd";
+import { List, Typography, Input } from "antd";
 import { useContractReader } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { Address, Balance } from "../components";
-
+const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
   const operators = useContractReader(readContracts, "STAKINGPOOL", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "STAKINGPOOL", "PubKeyDeposited", localProvider, 5);
   console.log("operators", operators);
   const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
+  const handleOnSetNewOperators = async value => {
+    await tx(writeContracts.STAKINGPOOL.setOperators({ value: value }));
+  };
 
+  const handleUpdateNewSharePrice = async value => {
+    await tx(writeContracts.STAKINGPOOL.updateSharePrice({ value: value }));
+  };
   return (
     <div>
       <div style={{ padding: 16, width: 400, margin: "auto", marginTop: 32 }}>
@@ -26,6 +32,34 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             </List.Item>
           )}
         />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", margin: "auto", marginTop: 32 }}>
+        <List
+          size="small"
+          header={<div>All Operators</div>}
+          bordered
+          dataSource={operators}
+          renderItem={item => <List.Item>{item}</List.Item>}
+        />
+        <div style={{ marginInline: "50px" }}>
+          <div style={{ padding: 8 }}>Set new operators:</div>
+          <Search
+            style={{ margin: "auto" }}
+            placeholder="new operators Ids array e.g: [1,2,3,4]"
+            enterButton="Submit"
+            size="medium"
+            onSearch={value => handleOnSetNewOperators(value)}
+          />
+
+          <div style={{ padding: 8, marginTop: 12 }}>Update share price:</div>
+          <Search
+            style={{ margin: "auto" }}
+            placeholder="new share price value"
+            enterButton="Submit"
+            size="medium"
+            onSearch={value => handleUpdateNewSharePrice(value)}
+          />
+        </div>
       </div>
       <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
         <div>Public Key Deposited Events:</div>

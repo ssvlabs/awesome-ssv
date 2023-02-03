@@ -7,16 +7,13 @@ import "../interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
 contract StakingPool is ReentrancyGuard {
-    // uint256 public ssvETHMinted = 0;
     address public WhitelistKeyGenerator;
-
     address public WITHDRAWAL_ADDRESS;
     IDepositContract immutable DepositContract;
     SSVETH public ssvETH;
-    // ICommon immutable CommonContract;
     uint256 public immutable VALIDATOR_AMOUNT = 32 * 1e18;
     address public SSV_TOKEN_ADDR;
-    address public SSV_CONTRACT_ADDR; // SSV_ADDRESS
+    address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
 
