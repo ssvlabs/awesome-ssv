@@ -37,8 +37,8 @@ yarn deploy
 🚨 if you are not deploying to localhost, you will need to run `yarn generate` (using node v16.x) first and then fund the deployer account. To view account balances, run `yarn account`. You will aslo need to update `hardhat-config.js` with the correct default network.
 
 ```bash
-cd frontend
-yarn deploy
+yarn generate
+yarn account
 ```
 
 🔏 Edit the smart contracts in `packages/hardhat/contracts`
