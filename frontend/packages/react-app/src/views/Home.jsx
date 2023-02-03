@@ -14,7 +14,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
   const parsedSharePrice = Number(sharePrice / 10 ** 18);
-  console.log("aaa", parsedSharePrice);
   const balanceStaked = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   const stakingPoolAddress = externalContracts[5].contracts.STAKINGPOOL.address;
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
@@ -49,9 +48,29 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   console.log("💸 balanceStaked:", balanceStaked);
   return (
     <div>
-      <div style={{ padding: 8, marginTop: 32 }}>
-        <div>Staking Pool Contract:</div>
-        <Address value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address} />
+      <div style={{ display: "flex", justifyContent: "center", pmarginTop: 32 }}>
+        <div style={{ padding: 8 }}>
+          <div>Staking Pool Contract:</div>
+          <Address value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address} />
+        </div>
+        <div style={{ padding: 8 }}>
+          <div>SSVETH Contract:</div>
+          <Address value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address} />
+        </div>
+        <div style={{ padding: 8 }}>
+          <div>Deposit Contract:</div>
+          <Address value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address} />
+        </div>
+        <div style={{ padding: 8 }}>
+          <div>SSV Network Contract:</div>
+          <Address
+            value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
+          />
+        </div>
+        <div style={{ padding: 8 }}>
+          <div>SSV Token Contract:</div>
+          <Address value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address} />
+        </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
         <div style={{ padding: 8 }}>
@@ -60,7 +79,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
         </div>
         <div style={{ padding: 8 }}>
           <div>ssvETH Price: </div>
-          <TokenBalance balance={Number(0)}  price={0} fontSize={64} />
+          <TokenBalance balance={Number(0)} price={0} fontSize={64} />
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
