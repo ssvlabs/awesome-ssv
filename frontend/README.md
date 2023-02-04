@@ -32,6 +32,12 @@ yarn react-app:start
 yarn deploy
 ```
 
+🚨 same thing if you want to deploy on the Goerli testnet, just use this instead `.
+
+```bash
+yarn deploy-goerli
+```
+
 > 4️⃣ in a third terminal window, 🛰 deploy your contract:
 
 🚨 if you are not deploying to localhost, you will need to run `yarn generate` (using node v16.x) first and then fund the deployer account. To view account balances, run `yarn account`. You will aslo need to update `hardhat-config.js` with the correct default network.
