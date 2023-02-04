@@ -77,10 +77,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           <div>ssvETH Total Supply: </div>
           <TokenBalance balance={Number(totalSupply)} fontSize={64} />
         </div>
-        <div style={{ padding: 8 }}>
-          <div>ssvETH Price: </div>
-          <TokenBalance balance={Number(0)} price={0} fontSize={64} />
-        </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", padding: 12 }}>
         <div style={{ padding: 8 }}>

@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { useThemeSwitcher } from "react-css-theme-switcher";
-
+import { useTokenPrice } from "../hooks";
 import Address from "./Address";
 import Balance from "./Balance";
 import Wallet from "./Wallet";
@@ -56,6 +56,9 @@ export default function Account({
 }) {
   const { currentTheme } = useThemeSwitcher();
 
+  const ssvTokenPrice = useTokenPrice("0x9D65fF81a3c488d585bBfb0Bfe3c7707c7917f54");
+  console.log(ssvTokenPrice);
+
   let accountButtonInfo;
   if (web3Modal?.cachedProvider) {
     accountButtonInfo = { name: "Logout", action: logoutOfWeb3Modal };
@@ -65,6 +68,7 @@ export default function Account({
 
   const display = !minimized && (
     <span>
+      <span style={{ fontSize: 20, padding: 20 }}>SSV Price: {ssvTokenPrice} </span>
       {address && (
         <Address address={address} ensProvider={mainnetProvider} blockExplorer={blockExplorer} fontSize={20} />
       )}
