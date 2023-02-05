@@ -45,10 +45,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
     setUnStakeLoading(false);
   };
 
-  console.log("💸 balanceStaked:", balanceStaked);
+  console.log("💸 balanceStaked:", balanceStaked?.toString());
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center", pmarginTop: 32 }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 12 }}>
         <div style={{ padding: 8 }}>
           <div>Staking Pool Contract:</div>
           <Address value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address} />
@@ -85,7 +85,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
         </div>
 
         <div style={{ padding: 8 }}>
-          <div>ssvETH Rewards:</div>
+          <div>Your ssvETH Rewards:</div>
           <TokenBalance balance={Number(balanceStaked * parsedSharePrice)} fontSize={64} />
         </div>
 

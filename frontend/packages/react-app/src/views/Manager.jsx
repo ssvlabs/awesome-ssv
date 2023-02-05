@@ -9,11 +9,11 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   console.log("operators", operators);
   const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
   const handleOnSetNewOperators = async value => {
-    await tx(writeContracts.STAKINGPOOL.setOperators({ value: value }));
+    await tx(writeContracts.STAKINGPOOL.setOperators(JSON.parse(value)));
   };
 
   const handleUpdateNewSharePrice = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateSharePrice({ value: value }));
+    await tx(writeContracts.STAKINGPOOL.updateSharePrice(value));
   };
   return (
     <div>
