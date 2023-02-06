@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -7,7 +8,7 @@ import "./interfaces/IDepositContract.sol";
 import "./interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
-contract StakingPool is ReentrancyGuard, Ownable {
+contract StakingPool is Ownable, ReentrancyGuard {
     address public WhitelistKeyGenerator;
     address public WITHDRAWAL_ADDRESS;
     IDepositContract immutable DepositContract;
@@ -21,17 +22,15 @@ contract StakingPool is ReentrancyGuard, Ownable {
     address public ssvETH_address;
     address public Oracle_address;
 
+    mapping(address => uint256) private userStake;
+
     event UserStaked(address user_address, uint256 amount);
     event PubKeyDeposited(bytes pubkey);
     event OperatorIDsChanged(uint32[4] newOperators);
     event SharePriceUpdated(uint256 newPrice);
-    event KeySharesDeposited(
-        bytes pubkey,
-        uint32[] operatorIds,
-        bytes[] sharesPublicKeys,
-        bytes[] sharesEncrypted,
-        uint256 amount
-    );
+    event KeySharesDeposited(bytes pubkey,
+        bytes[]  sharesPublicKeys,
+        uint256 amount);
 
     constructor(
         address keyGenerator,
@@ -51,9 +50,18 @@ contract StakingPool is ReentrancyGuard, Ownable {
         OperatorIDs = ids;
     }
 
-    // getting operator ids, check operators here https://explorer.ssv.network/
+    /**
+     * @notice Get operator ids, check operators here https://explorer.ssv.network/
+     */
     function getOperators() public view returns (uint32[4] memory) {
         return OperatorIDs;
+    }
+
+    /**
+     * @notice Get user's staked amount
+     */
+    function getUserStake(address _userAddress) public view returns (uint256) {
+        return userStake[_userAddress];
     }
 
     /**
@@ -82,6 +90,7 @@ contract StakingPool is ReentrancyGuard, Ownable {
         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
+        userStake[msg.sender] = msg.value;
     }
 
     /**
@@ -92,30 +101,31 @@ contract StakingPool is ReentrancyGuard, Ownable {
         ssvETH.transferFrom(msg.sender, address(this), _amount);
         uint256 _amount_to_transfer = (_amount / ssvETH.sharePrice()) * 1e18;
         payable(msg.sender).transfer(_amount_to_transfer);
+        delete userStake[msg.sender];
     }
 
     /**
      * @notice Deposit a validator to the deposit contract
-     * @param pubkey: Public key of the validator
-     * @param withdrawal_credentials: Withdrawal credentials of the validator
-     * @param signature: Signature of the deposit data
-     * @param deposit_data_root: Root of the deposit data
+     * @param _pubkey: Public key of the validator
+     * @param _withdrawal_credentials: Withdrawal credentials of the validator
+     * @param _signature: Signature of the deposit data
+     * @param _deposit_data_root: Root of the deposit data
      */
     function depositValidator(
-        bytes calldata pubkey,
-        bytes calldata withdrawal_credentials,
-        bytes calldata signature,
-        bytes32 deposit_data_root
+        bytes calldata _pubkey,
+        bytes calldata _withdrawal_credentials,
+        bytes calldata _signature,
+        bytes32 _deposit_data_root
     ) external {
         // Deposit the validator to the deposit contract
         DepositContract.deposit{value: VALIDATOR_AMOUNT}(
-            pubkey,
-            withdrawal_credentials,
-            signature,
-            deposit_data_root
+            _pubkey,
+            _withdrawal_credentials,
+            _signature,
+            _deposit_data_root
         );
         // Emit an event to log the deposit of the public key
-        emit PubKeyDeposited(pubkey);
+        emit PubKeyDeposited(_pubkey);
     }
 
     /**
@@ -152,12 +162,8 @@ contract StakingPool is ReentrancyGuard, Ownable {
         // Add the public key to the list of validators
         Validators.push(_pubkey);
         // Emit an event to log the deposit of shares
-        emit KeySharesDeposited(
-            _pubkey,
-            _operatorIds,
+        emit KeySharesDeposited( _pubkey,
             _sharesPublicKeys,
-            _sharesEncrypted,
-            _amount
-        );
+            _amount);
     }
 }

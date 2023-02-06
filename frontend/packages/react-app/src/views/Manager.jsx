@@ -2,6 +2,7 @@ import { List, Typography, Input } from "antd";
 import { useContractReader } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { Address, Balance } from "../components";
+import { ethers } from "ethers";
 const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
   const operators = useContractReader(readContracts, "STAKINGPOOL", "getOperators");
@@ -13,7 +14,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   };
 
   const handleUpdateNewSharePrice = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateSharePrice(value));
+    await tx(writeContracts.STAKINGPOOL.updateSharePrice(ethers.utils.parseEther(value.toString()).toString()));
   };
   return (
     <div>

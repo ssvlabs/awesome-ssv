@@ -43,8 +43,8 @@ export default function Balance(props) {
   if (typeof props.value !== "undefined") usingBalance = props.value;
 
   if (usingBalance) {
-    console.log("balance", usingBalance.toString());
     const etherBalance = utils.formatEther(usingBalance.toString());
+    console.log("etherBalance", etherBalance.toString());
     parseFloat(etherBalance).toFixed(2);
     floatBalance = parseFloat(etherBalance);
   }

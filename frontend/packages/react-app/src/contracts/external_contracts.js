@@ -801,9 +801,7 @@ const STAKINGPOOLABI = [
     anonymous: false,
     inputs: [
       { indexed: false, internalType: "bytes", name: "pubkey", type: "bytes" },
-      { indexed: false, internalType: "uint32[]", name: "operatorIds", type: "uint32[]" },
       { indexed: false, internalType: "bytes[]", name: "sharesPublicKeys", type: "bytes[]" },
-      { indexed: false, internalType: "bytes[]", name: "sharesEncrypted", type: "bytes[]" },
       { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
     ],
     name: "KeySharesDeposited",
@@ -909,10 +907,10 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [
-      { internalType: "bytes", name: "pubkey", type: "bytes" },
-      { internalType: "bytes", name: "withdrawal_credentials", type: "bytes" },
-      { internalType: "bytes", name: "signature", type: "bytes" },
-      { internalType: "bytes32", name: "deposit_data_root", type: "bytes32" },
+      { internalType: "bytes", name: "_pubkey", type: "bytes" },
+      { internalType: "bytes", name: "_withdrawal_credentials", type: "bytes" },
+      { internalType: "bytes", name: "_signature", type: "bytes" },
+      { internalType: "bytes32", name: "_deposit_data_root", type: "bytes32" },
     ],
     name: "depositValidator",
     outputs: [],
@@ -923,6 +921,13 @@ const STAKINGPOOLABI = [
     inputs: [],
     name: "getOperators",
     outputs: [{ internalType: "uint32[4]", name: "", type: "uint32[4]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_userAddress", type: "address" }],
+    name: "getUserStake",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -1791,9 +1796,9 @@ module.exports = {
         address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
         abi: ERC20ABI,
       },
-      
+
       STAKINGPOOL: {
-        address: "0xB20d3C49186ebF541919F114085724bEFF182964",
+        address: "0x67B730335b750df636edE4Bb26457d7fD8d40D8D",
         abi: STAKINGPOOLABI,
       },
       DEPOSITCONTRACT: {

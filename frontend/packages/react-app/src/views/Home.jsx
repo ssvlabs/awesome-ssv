@@ -13,8 +13,11 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [stakeLoading, setStakeLoading] = useState(false);
 
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
-  const parsedSharePrice = Number(sharePrice / 10 ** 18);
-  const balanceStaked = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
+  console.log("sharePrice", sharePrice?.toString());
+  //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
+  const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
+  console.log("userEarnings", userEarnings?.toString());
+  const balanceStaked = useContractReader(readContracts, "STAKINGPOOL", "getUserStake", [address]);
   const stakingPoolAddress = externalContracts[5].contracts.STAKINGPOOL.address;
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
     address,
@@ -86,7 +89,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
         <div style={{ padding: 8 }}>
           <div>Your ssvETH Rewards:</div>
-          <TokenBalance balance={Number(balanceStaked * parsedSharePrice)} fontSize={64} />
+          <Balance balance={Number(userEarnings)} fontSize={64} />
         </div>
 
         <div style={{ padding: 8 }}>
