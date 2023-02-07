@@ -14,6 +14,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     IDepositContract immutable DepositContract;
     SSVETH public ssvETH;
     uint256 public immutable VALIDATOR_AMOUNT = 32 * 1e18;
+    uint256 public sharePrice = 1e18;
     address public SSV_TOKEN_ADDR;
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
@@ -78,7 +79,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
      * @param _newPrice: New share price amount
      */
     function updateSharePrice(uint256 _newPrice) public onlyOwner {
-        ssvETH.changeSharePrice(_newPrice);
+        sharePrice = _newPrice;
         emit SharePriceUpdated(_newPrice);
     }
 
@@ -87,7 +88,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
     function stake() public payable {
         require(msg.value > 0, "Can't stake zero amount");
-        uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
+        uint256 amount_minted = (msg.value * sharePrice) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
         userStake[msg.sender] = msg.value;
@@ -99,7 +100,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
     function unStake(uint256 _amount) public {
         ssvETH.transferFrom(msg.sender, address(this), _amount);
-        uint256 _amount_to_transfer = (_amount / ssvETH.sharePrice()) * 1e18;
+        uint256 _amount_to_transfer = (_amount / sharePrice) * 1e18;
         payable(msg.sender).transfer(_amount_to_transfer);
         delete userStake[msg.sender];
     }

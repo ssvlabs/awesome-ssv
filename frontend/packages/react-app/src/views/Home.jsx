@@ -12,7 +12,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
 
-  const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
+  const sharePrice = useContractReader(readContracts, "STAKINGPOOL", "sharePrice");
   console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
