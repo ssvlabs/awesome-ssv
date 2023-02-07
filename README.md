@@ -51,15 +51,15 @@ You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.n
 
 To use the SSV network a validator key needs to be split into keyshares, which than need to be encrypted for chosen operators. You can use these tools for it, to know more read the [documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
 
-- [SSV Keys - validator key splitting tool](https://github.com/bloxapp/ssv-keys) `MIT ` `JS`
+- [SSV Keys - validator key splitting tool by Blox](https://github.com/bloxapp/ssv-keys) `MIT | JS`
 
 This is validator key splitting tool library implemented in JS/TS. It can be used to split the validator key and generate keyshares. It is easily implemented as npm package. You can also [download executable cli](https://github.com/bloxapp/ssv-keys) of this tool.
 
-- [SSV Keys's Go implementation](https://github.com/duktig666/ssv-keys-go) `Apache-2.0` `Go`
+- [SSV Keys Go implementation by ChainUp](https://github.com/duktig666/ssv-keys-go) `Apache-2.0 | Go`
 
 This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
 
-- [StarKeys](https://github.com/stakestar/starkeys) — SSV Key Splitting & Distrubution GUI `MIT` `Electron/React`
+- [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys)  `MIT | Electron/React`
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. The StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
@@ -83,11 +83,11 @@ HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/use
 
 ### Staking pools
 
-- [GARUDA](https://github.com/RohitAudit/ssv-service) - Garuda ssv-service
+- [GARUDA](https://github.com/RohitAudit/ssv-service) - `MIT | PY, SOL` Staking pool, with backend bot handling validator creation, splitting, registration.
 
 User stakes their eth to a staking contract through which he is given a liquid staked derivative token called roETH. That's it!! User can just relax and wait for their roETH to compound over time and till then use the same tokens in other DeFi protocols
 
-- [FRENS](github.com/frens-pool) - stake with friends
+- [FRENS](github.com/frens-pool) - community staking app, stake represented by NFTs
 
 Staking pools for peer-to-peer staking on trusted node operators (friends)
 
