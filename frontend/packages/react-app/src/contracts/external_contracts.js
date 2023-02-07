@@ -948,13 +948,6 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [],
-    name: "sharePrice",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "ssvETH",
     outputs: [{ internalType: "contract SSVETH", name: "", type: "address" }],
     stateMutability: "view",
@@ -1805,7 +1798,7 @@ module.exports = {
       },
 
       STAKINGPOOL: {
-        address: "0x9DD76Bbbf16a9866EC0D9f93cc0bb93d6c09B757",
+        address: "0xAc7F79e89e78D10AEe543B0114293D95737F8DfC",
         abi: STAKINGPOOLABI,
       },
       DEPOSITCONTRACT: {
@@ -1824,7 +1817,7 @@ module.exports = {
       },
 
       SSVETHCONTRACT: {
-        address: "0x0dC1De2774dB3e9A625365967091FF1c985E48c9",
+        address: "0xc7B9e1FEE2eC1ae73cDE454D0320A4B3435a6421",
         abi: SSVETHADDRESSABI,
       },
     },

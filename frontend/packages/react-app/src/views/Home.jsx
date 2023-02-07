@@ -12,7 +12,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
 
-  const sharePrice = useContractReader(readContracts, "STAKINGPOOL", "sharePrice");
+  const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
   console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
@@ -37,13 +37,20 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   };
 
   const handleOnUnstake = async value => {
-    setUnStakeLoading(true);
-    if (Number(ssvEthAllowance) > 0) {
-      await tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+    if (ethers.utils.parseEther(value) > balanceStaked) {
+      alert("You can't unstake more than you have !");
+      return;
     } else {
-      //approving max before calling the unstake method
-      await tx(writeContracts.SSVETHCONTRACT.approve(stakingPoolAddress, "10000000000000000000000000000000000000000"));
-      tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+      setUnStakeLoading(true);
+      if (Number(ssvEthAllowance) > 0) {
+        await tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+      } else {
+        //approving max before calling the unstake method
+        await tx(
+          writeContracts.SSVETHCONTRACT.approve(stakingPoolAddress, "10000000000000000000000000000000000000000"),
+        );
+        tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+      }
     }
     setUnStakeLoading(false);
   };
