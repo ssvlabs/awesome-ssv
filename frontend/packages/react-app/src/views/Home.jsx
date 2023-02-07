@@ -96,7 +96,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
         <div style={{ padding: 8 }}>
           <div>Your ssvETH Rewards:</div>
-          <Balance balance={Number(userEarnings)} fontSize={64} />
+          <Balance balance={Number(balanceStaked * (sharePrice / 10 ** 18))} fontSize={64} />
         </div>
 
         <div style={{ padding: 8 }}>
