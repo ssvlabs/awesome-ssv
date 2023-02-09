@@ -33,16 +33,14 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const onDepositSharesFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
-
   const onDepositValidatorSubmit = async values => {
     console.log("Success:", values);
     await tx(
       writeContracts.STAKINGPOOL.updateSharePrice(
         values.pubkey.toString(),
-        JSON.parse(values.operatorIds),
-        JSON.parse(values.sharesPublicKeys),
-        JSON.parse(values.sharesEncrypted),
-        ethers.utils.parseEther(values.amount.toString()).toString(),
+        values.withdrawalCredentials.toString(),
+        values.signature.toString(),
+        values.depositDataRoot.toString(),
       ),
     );
   };
