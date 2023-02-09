@@ -18,7 +18,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   };
 
   const onDepositSharesSubmit = async values => {
-    console.log("Success:", values);
+    console.log("values:", values);
     await tx(
       writeContracts.STAKINGPOOL.updateSharePrice(
         values.pubkey.toString(),
@@ -34,7 +34,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log("Failed:", errorInfo);
   };
   const onDepositValidatorSubmit = async values => {
-    console.log("Success:", values);
+    console.log("values:", values);
     await tx(
       writeContracts.STAKINGPOOL.updateSharePrice(
         values.pubkey.toString(),
@@ -110,6 +110,24 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           <Divider />
           <div>
             <h4 style={{ padding: 8, marginTop: 12 }}>Deposit shares:</h4>
+            <div style={{ padding: 8, marginBottom: 12 }}>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/main.py"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖥️ Generating input in backend (Line: 103)
+              </a>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/main/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📜 Deposit contract source
+              </a>
+            </div>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -154,6 +172,32 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           <Divider />
           <div>
             <h4 style={{ padding: 8, marginTop: 12 }}>Deposit validator:</h4>
+            <div style={{ padding: 8, marginBottom: 12 }}>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/main.py"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖥️ Key distribution / splitting in Awesome SSV repo (Line: 22)
+              </a>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/demo-contract/contracts/environment/SSVNetwork.sol"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖥️ Register validator function (Line: 199)
+              </a>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/ssv/ssv_cli.py"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖥️ Generating input in backend (Line: 69)
+              </a>
+            </div>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
