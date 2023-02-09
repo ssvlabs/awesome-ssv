@@ -68,7 +68,7 @@ export default function Account({
 
   const display = !minimized && (
     <span>
-      <span style={{ fontSize: 20, padding: 16 }}>SSV Price: {ssvTokenPrice} </span>
+      <span style={{ fontSize: 20, verticalAlign: "middle", padding: 8 }}>SSV Price: {ssvTokenPrice} </span>
       {address && (
         <Address address={address} ensProvider={mainnetProvider} blockExplorer={blockExplorer} fontSize={20} />
       )}

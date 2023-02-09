@@ -17,6 +17,9 @@ export default function Header({ link, title, subTitle, ...props }) {
         <Text type="secondary" style={{ textAlign: "left" }}>
           {subTitle}
         </Text>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          Docs 📘
+        </a>
       </div>
       {props.children}
     </div>
@@ -24,7 +27,7 @@ export default function Header({ link, title, subTitle, ...props }) {
 }
 
 Header.defaultProps = {
-  link: "#",
+  link: "https://github.com/bloxapp/awesome-ssv/",
   title: "🥩 SSV Staking",
   subTitle: "SSV Staking Frontend Solution",
 };
