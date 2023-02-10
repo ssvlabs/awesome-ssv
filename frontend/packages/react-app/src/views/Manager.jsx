@@ -78,6 +78,15 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           renderItem={item => <List.Item>{item}</List.Item>}
         />
       </div>
+
+      {/* <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
+        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
+        <h4 style={{ padding: 8 }}>Active validators:</h4>
+        <div style={{ fontSize: 32 }}>{data.length}</div>
+        <Divider />
+        <h4 style={{ padding: 8 }}>Active stake:</h4>
+        <div style={{ fontSize: 32 }}>{data.length}</div>
+      </div> */}
       <div
         style={{
           border: "1px solid #cccccc",
@@ -179,7 +188,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Key distribution / splitting in Awesome SSV repo (Line: 22)
+                🔑 Key distribution / splitting in Awesome SSV repo (Line: 22)
               </a>
               <a
                 style={{ padding: 8 }}
@@ -187,7 +196,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Register validator function (Line: 199)
+                💽 Register validator function (Line: 199)
               </a>
               <a
                 style={{ padding: 8 }}

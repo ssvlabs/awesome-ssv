@@ -17,9 +17,12 @@ export default function Header({ link, title, subTitle, ...props }) {
         <Text type="secondary" style={{ textAlign: "left" }}>
           {subTitle}
         </Text>
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          Docs 📘
-        </a>
+        <span>
+          You can spin up your own pool too ! for more info check our 
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            📘 git
+          </a>
+        </span>
       </div>
       {props.children}
     </div>

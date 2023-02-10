@@ -70,6 +70,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
           fontSize={16}
         />
+        <p style={{ textAlign: "center", padding: "8px" }}>
+          The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can also
+          launch and manage validators using it.
+        </p>
         <Divider />
         <h4>ssvETH Total Supply: </h4>
         <TokenBalance balance={Number(totalSupply)} fontSize={64} />
@@ -79,7 +83,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           border: "1px solid #cccccc",
           margin: "auto",
           justifyContent: "center",
-          width: 650,
+          width: 750,
           marginTop: 32,
           textAlign: "center",
         }}
@@ -92,6 +96,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address}
               fontSize={16}
             />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The SSV decentralized staking system uses The "ssvETH" token to reward the stakers. Its contract also
+              allows the manager change the share price.
+            </p>
           </div>
           <div style={{ padding: 14 }}>
             <h4>Deposit Contract:</h4>
@@ -99,6 +107,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address}
               fontSize={16}
             />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              This deposit contract is used to create and store deposits. It also allows for checking the deposit root
+              and count.
+            </p>
           </div>
           <div style={{ padding: 14 }}>
             <h4>SSV Network Contract:</h4>
@@ -106,6 +118,9 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
               fontSize={16}
             />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The CORE SSV Network environment contract, including the SSV Network token and the SSV Network registry.
+            </p>
           </div>
           <div style={{ padding: 14 }}>
             <h4>SSV Token Contract:</h4>
@@ -113,6 +128,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address}
               fontSize={16}
             />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The native token of ssv.network, Secret Shared Validator ($SSV). Its main use cases are payments and
+              governance.
+            </p>
           </div>
         </div>
       </div>
