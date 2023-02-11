@@ -75,7 +75,7 @@ class SSV:
         operator_ids = [str(operator.id) for operator in operator_data]
         operator_pubkeys = [operator.pubkey for operator in operator_data]
         total_ssv_fee = (sum([operator.fee for operator in operator_data]) + network_fees) * 2628000
-        output_folder = os.getcwd() + "/keyshares"
+        output_folder = os.getcwd() + "/keyshares/"
         cli_path = self.CLI_PATH_LINUX_MAC if 'Linux' in platform.system() or 'Darwin' in platform.system() else self.CLI_PATH_WIN
         # output2=check_output(["ls","-la"])
         # print(output2)
@@ -86,7 +86,7 @@ class SSV:
         print(output)
         return output_folder + output.decode("utf-8").partition("keyshares")[2].partition(".json")[0] + ".json"
 
-    def stake_shares(self, share_file_path):
+    def get_keyshare(self, share_file_path):
         """
 
         :return:
@@ -106,4 +106,4 @@ if __name__ == '__main__':
     op = OperatorData("https://api.ssv.network")
     operators = op.get_operator_data([1, 2, 192, 42])
     share_file = str(ssv.generate_shares(operators, 1200084048))
-    ssv.stake_shares(share_file)
+    ssv.get_keyshare(share_file)
