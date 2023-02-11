@@ -20,7 +20,7 @@ export default function Header({ link, title, subTitle, ...props }) {
         <span>
           You can spin up your own pool too ! for more info check our 
           <a href={link} target="_blank" rel="noopener noreferrer">
-            📘 git
+            📘 github
           </a>
         </span>
       </div>

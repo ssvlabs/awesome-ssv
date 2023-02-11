@@ -1,17 +1,20 @@
-import { useContractReader } from "eth-hooks";
+import { useContractReader, useBalance } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { ethers } from "ethers";
 import { Transactor } from "../helpers";
 import { useState } from "react";
 import { Input, List, Divider } from "antd";
 import { Address, Balance, TokenBalance } from "../components";
+import { getRPCPollTime } from "../helpers";
 import externalContracts from "../contracts/external_contracts";
 const { Search } = Input;
 
 function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address }) {
+  const localProviderPollingTime = getRPCPollTime(localProvider);
+
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
-
+  const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
   console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
@@ -19,6 +22,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   console.log("userEarnings", userEarnings?.toString());
   const balanceStaked = useContractReader(readContracts, "STAKINGPOOL", "getUserStake", [address]);
   const stakingPoolAddress = externalContracts[5].contracts.STAKINGPOOL.address;
+  const stakingPoolBalance = useBalance(localProvider, stakingPoolAddress, localProviderPollingTime);
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
     address,
     stakingPoolAddress,
@@ -57,7 +61,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
   return (
     <div>
-      <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 32 }}>
+      <div style={{ border: "1px solid #cccccc", padding: 16, width: 600, margin: "auto", marginTop: 32 }}>
         <h1>Pool overview:</h1>
         <h4>Stake your ETH to earn ssvETH !</h4>
         You can find more details{" "}
@@ -70,13 +74,40 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
           fontSize={16}
         />
-        <p style={{ textAlign: "center", padding: "8px" }}>
+        <p style={{ textAlign: "center", padding: "12px 25px" }}>
           The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can also
           launch and manage validators using it.
         </p>
         <Divider />
         <h4>ssvETH Total Supply: </h4>
         <TokenBalance balance={Number(totalSupply)} fontSize={64} />
+      </div>
+      <div style={{ border: "1px solid #cccccc", width: 400, margin: "auto", marginTop: 32 }}>
+        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
+        <div>
+          <h4 style={{ padding: 8 }}>Active validators:</h4>
+          <div style={{ fontSize: 20 }}>{data.length}</div>
+        </div>
+        <Divider />
+        <div>
+          <h4 style={{ padding: 8 }}>Active stake:</h4>
+          <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+          <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+        </div>
+        <Divider />
+        <div style={{ padding: 8, paddingBottom: 16 }}>
+          <h4 style={{ padding: 8 }}>Rewards:</h4>
+          Execution layer rewards :{" "}
+          <div style={{ padding: 8, fontSize: 20 }}>
+            {" "}
+            <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+            <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+          </div>
+          Beacon chain rewards :
+          <div style={{ padding: 8, fontSize: 20 }}>
+            <TokenBalance balance={sharePrice} fontSize={64} /> 
+          </div>
+        </div>
       </div>
       <div
         style={{
@@ -119,7 +150,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               fontSize={16}
             />
             <p style={{ textAlign: "left", padding: "8px" }}>
-              The CORE SSV Network environment contract, including the SSV Network token and the SSV Network registry.
+              The core SSV Network environment contract, including the SSV Network token and the SSV Network registry.
             </p>
           </div>
           <div style={{ padding: 14 }}>
@@ -142,7 +173,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           margin: "auto",
           justifyContent: "center",
           marginTop: 32,
-          padding: 16,
+          padding: 32,
         }}
       >
         <h2>Your Stake:</h2>
@@ -164,7 +195,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           </div>
 
           <div style={{ padding: 8 }}>
-            <h4>Share price:</h4>
+            <h4>ETH/ssvETH ratio:</h4>
             <TokenBalance balance={sharePrice} fontSize={64} />
           </div>
         </div>
@@ -189,7 +220,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           />
         </div>
       </div>
-      <div style={{ border: "1px solid #cccccc", width: 500, margin: "auto", marginTop: 32 }}>
+      <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Stake Events:</h2>
         <List
           dataSource={stakeEvents}

@@ -57,36 +57,29 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
       <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Pool managed overview:</h2>
-        <List
-          style={{ width: "70%", margin: "auto", marginTop: 16 }}
-          header={<h4>All Pool managed validators</h4>}
-          bordered
-          dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              <Typography.Text mark>[Validator 1]</Typography.Text> {item}
-            </List.Item>
-          )}
-        />
-        <Divider />
-        <List
-          style={{ width: "50%", margin: "auto", marginBottom: 16 }}
-          size="small"
-          header={<h4>All Operators</h4>}
-          bordered
-          dataSource={operators}
-          renderItem={item => <List.Item>{item}</List.Item>}
-        />
-      </div>
 
-      {/* <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
-        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
-        <h4 style={{ padding: 8 }}>Active validators:</h4>
-        <div style={{ fontSize: 32 }}>{data.length}</div>
-        <Divider />
-        <h4 style={{ padding: 8 }}>Active stake:</h4>
-        <div style={{ fontSize: 32 }}>{data.length}</div>
-      </div> */}
+        <div style={{ display: "flex" }}>
+          <List
+            style={{ width: "65%", margin: "auto", marginBlock: 32 }}
+            header={<h4>All Pool managed validators</h4>}
+            bordered
+            dataSource={data}
+            renderItem={item => (
+              <List.Item>
+                <Typography.Text mark>[Validator 1]</Typography.Text> {item}
+              </List.Item>
+            )}
+          />
+          <List
+            style={{ width: "25%", margin: "auto", marginBlock: 32 }}
+            size="small"
+            header={<h4>All Operators</h4>}
+            bordered
+            dataSource={operators}
+            renderItem={item => <List.Item>{item}</List.Item>}
+          />
+        </div>
+      </div>
       <div
         style={{
           border: "1px solid #cccccc",
@@ -122,15 +115,15 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/main.py"
+                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/utils/stakepool.py"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend (Line: 103)
+                🖥️ Generating input in backend (Line: 115)
               </a>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/main/README.md"
+                href="https://github.com/bloxapp/awesome-ssv/blob/main/demo-contract/contracts/environment/DepositContract.sol"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -250,7 +243,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           </div>
         </div>
       </div>
-      <div style={{ border: "1px solid #cccccc", width: 500, margin: "auto", marginTop: 32 }}>
+      <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Public Key Deposited Events:</h2>
         <List
           dataSource={pubKeyEvents}
