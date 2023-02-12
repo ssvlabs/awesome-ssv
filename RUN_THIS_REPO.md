@@ -188,13 +188,7 @@ It will use it to pay operators for running your distributed validator. You can 
 To deploy the backend for your staking pool you need to install requirements:
 
 ```
-
-
-
 pip install -r requirements.txt
-
-
-
 ```
 
 - Following arguments are needed to run the script
@@ -210,25 +204,19 @@ pip install -r requirements.txt
 - ETH_RPC(-eth): rpc endpoint for ethereum node, `http://localhost:8545` in case of goerli-fork
 
 ```
-
 python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT>
-
 ```
 
 example goerli-fork:
 
 ```
-
 python3 main.py stake -eth http://localhost:8545 -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
-
 ```
 
 example goerli:
 
 ```
-
 python3 main.py stake -eth https://goerli.infura.io/v3/fddsfc4a4f4b3fffb032dad -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
-
 ```
 
 - For options use
@@ -260,25 +248,11 @@ python main.py -h
 - KEYSTORE_PASSWORD: keystore password for validator keys
 
 ```
-
-
-
 python3 main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
-
-
-
 ```
-
 EXAMPLE
-
 ```
-
-
-
 python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
-
-
-
 ```
 
 ### LICENSE
