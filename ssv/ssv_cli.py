@@ -75,7 +75,7 @@ class SSV:
         operator_ids = [str(operator.id) for operator in operator_data]
         operator_pubkeys = [operator.pubkey for operator in operator_data]
         total_ssv_fee = (sum([operator.fee for operator in operator_data]) + network_fees) * 2628000
-        output_folder = os.getcwd() + "/keyshares/"
+        output_folder = os.getcwd() + "/keyshares"
         cli_path = self.CLI_PATH_LINUX_MAC if 'Linux' in platform.system() or 'Darwin' in platform.system() else self.CLI_PATH_WIN
         # output2=check_output(["ls","-la"])
         # print(output2)

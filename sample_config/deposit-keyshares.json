@@ -1,0 +1,9 @@
+{
+  "eth": {
+    "rpc": "",
+    "priv_key": ""
+  },
+  "keyshares": [],
+  "stakepool_contract": "",
+  "ssv_token": ""
+}
