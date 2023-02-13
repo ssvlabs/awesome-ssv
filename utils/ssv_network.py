@@ -14,6 +14,34 @@ class SSVNetwork:
         ],
         "stateMutability": "view",
         "type": "function"
+    }, {
+        "inputs": [
+            {
+                "internalType": "uint64",
+                "name": "operatorId",
+                "type": "uint64"
+            }
+        ],
+        "name": "getOperatorById",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint32",
+                "name": "",
+                "type": "uint32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     }]
     contract = None
 
@@ -22,6 +50,9 @@ class SSVNetwork:
 
     def get_network_fee(self):
         return self.contract.functions.getNetworkFee().call()
+
+    def get_operator(self, id):
+        return self.contract.functions.getOperatorById(id).call()
 
 
 class SSVToken:

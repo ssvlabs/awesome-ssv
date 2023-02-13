@@ -1,0 +1,19 @@
+{
+  "keystore_files": [],
+  "keystore_password": "",
+  "operators": [
+    {
+      "id": 0,
+      "pubkey": "",
+      "name": "",
+      "fee": 0
+    },
+    {
+      "id": 0,
+      "pubkey": "",
+      "name": "",
+      "fee": 0
+    }
+  ],
+  "ssv_fee": 0
+}
