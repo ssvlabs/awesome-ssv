@@ -92,7 +92,7 @@ def deposit_keyshare(config_file):
                 print("Added SSV tokens to stakepool account")
             elif ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > int(
                     shares.payload.readable.ssvAmount):
-                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.staking_pool),
+                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool),
                                               int(shares.payload.readable.ssvAmount), web3_eth.account.address)
                 web3_eth.make_tx(tx)
                 print(
@@ -157,10 +157,10 @@ def start_staking(config_file):
         while True:
             mnemonic = get_mnemonic(language="english", words_path=WORD_LISTS_PATH)  # mnemonic
             web3_eth = EthNode(config.eth.rpc, config.eth.priv_key)
-            if web3_eth.get_balance(config.staking_pool) >= 32 or len(fallback) > 0:
+            if web3_eth.get_balance(config.contract_address.stakepool) >= 32 or len(fallback) > 0:
                 stake_pool = StakingPool(config.contract_address.stakepool, web3_eth.eth_node)
-                print("balance of staking pool:" + str(web3_eth.get_balance(config.staking_pool)))
-                num_validators = int(web3_eth.get_balance(config.staking_pool) / 32)
+                print("balance of staking pool:" + str(web3_eth.get_balance(config.contract_address.stakepool)))
+                num_validators = int(web3_eth.get_balance(config.contract_address.stakepool) / 32)
                 print("creating validators")
                 validators = ValidatorKey()
                 keystores, deposit_file = validators.generate_keys(mnemonic=mnemonic, validator_start_index=1,
@@ -172,14 +172,14 @@ def start_staking(config_file):
                 print("keys created are:\n")
                 print(keystores)
                 print("submitting validators")
-                for index, cred in enumerate(validators.get_deposit_data(file)):
+                for index, cred in enumerate(validators.get_deposit_data(deposit_file)):
                     tx = stake_pool.deposit_validator(cred.pubkey,
                                                       cred.withdrawal_credentials,
                                                       cred.signature,
                                                       cred.deposit_data_root,
                                                       web3_eth.account.address)
                     web3_eth.make_tx(tx)
-                    fallback[cred.pubkey.hex()] = {"keystore": keystores[index], "ssv_share": ""}
+                    fallback[cred.pubkey] = {"keystore": keystores[index], "ssv_share": ""}
                     print("deposit the key" + str(cred.pubkey))
                 print("submitted validators\n")
                 operator_id = stake_pool.get_operator_ids()
@@ -200,19 +200,19 @@ def start_staking(config_file):
                         shares = ssv.get_keyshare(file)
                     else:
                         shares = ssv.get_keyshare(fallback[pubkey]["ssv_share"])
-                    if ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(config.staking_pool)) < int(
+                    if ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool)) < int(
                             shares["ssvAmount"]):
                         print("ssv token balance of stakepool is less than the required amount. Sending some tokens")
                         if ssv_token.get_balance(
                                 web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > 2 * int(
                             shares["ssvAmount"]):
-                            tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.staking_pool),
+                            tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool),
                                                           2 * int(shares["ssvAmount"]), web3_eth.account.address)
                             web3_eth.make_tx(tx)
                             print("Added SSV tokens to stakepool account")
                         elif ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > int(
                                 shares["ssvAmount"]):
-                            tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.staking_pool),
+                            tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool),
                                                           int(shares["ssvAmount"]), web3_eth.account.address)
                             web3_eth.make_tx(tx)
                             print(
