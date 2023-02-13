@@ -2,6 +2,9 @@
 
 🚀 By staking their ETH to a staking contract, users receive a liquid staked derivative token called ssvETH. This allows them to earn compound interest on their staked ETH, while also being able to use the ssvETH tokens in other DeFi protocols without having to unstake their original ETH.
 
+# Demo 
+
+You can find our live demo [Here](https://awesome-ssv-staking.surge.sh)
 
 # Quick Start 🎈
 
@@ -18,6 +21,7 @@ git clone https://github.com/bloxapp/awesome-ssv
 > 3️⃣ install and start the frontend:
 
 ```bash
+cd frontend
 yarn install
 yarn react-app:start
 ```
@@ -25,8 +29,13 @@ yarn react-app:start
 🚨 if you want to deploy the contracts locally, you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`.
 
 ```bash
-cd frontend
 yarn deploy
+```
+
+🚨 same thing if you want to deploy on the Goerli testnet, just use this instead `.
+
+```bash
+yarn deploy-goerli
 ```
 
 > 4️⃣ in a third terminal window, 🛰 deploy your contract:
@@ -34,8 +43,8 @@ yarn deploy
 🚨 if you are not deploying to localhost, you will need to run `yarn generate` (using node v16.x) first and then fund the deployer account. To view account balances, run `yarn account`. You will aslo need to update `hardhat-config.js` with the correct default network.
 
 ```bash
-cd frontend
-yarn deploy
+yarn generate
+yarn account
 ```
 
 🔏 Edit the smart contracts in `packages/hardhat/contracts`
