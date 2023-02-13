@@ -177,7 +177,7 @@ Now you can start the staking pool manager backend scripts
 
 If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
-### Running staking pool manager backend script
+### Running the scripts
 
 Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
 
@@ -185,75 +185,52 @@ It will use it to pay operators for running your distributed validator. You can 
 
 - Open new terminal in the main project folder
 
-To deploy the backend for your staking pool you need to install requirements:
+To run script you first need to install the requirements :
 
 ```
 pip install -r requirements.txt
 ```
 
-- Following arguments are needed to run the script
-
-- PRIVATE_KEY(-priv): private key, needs to be the **whitelisted address** that you changed in the `StakingPool` contract
-
-- STAKING_POOL(-st): staking pool contract address, copy it from console or `contrat_addresses.json`
-
-- SSV_CONTRACT(-ssv): ssv network contract address, copy it from `deploy.py`
-
-- SSV_TOKEN(-token): ssv token contract address, copy it from `deploy.py`
-
-- ETH_RPC(-eth): rpc endpoint for ethereum node, `http://localhost:8545` in case of goerli-fork
-
+To see what all command line option the script supports :
 ```
-python3 main.py stake -eth <ETH_RPC> -priv <PRIVATE_KEY> -st <STAKING_POOL> -token <SSV_TOKEN_ADDRESS> -ssv <SSV_CONTRACT>
+python main.py -h/--help
 ```
+Following are the option and their respective config:
 
-example goerli-fork:
 
+- *create-keys* : This option can be used to generate ethereum validator keys and their deposit data
+  - Example config file: sample_config/validator-config.json
+  - Fill in the params in config file and give it as an argument
 ```
-python3 main.py stake -eth http://localhost:8545 -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
+python main.py create-keys -c <CONFIG_FILE>
 ```
-
-example goerli:
-
+- *generate-keyshares* : This option can be used to generate SSV keyshares using ssv cli tool
+  - Example config file: sample_config/keyshare-config.json
+  - Fill in the params in config file and give it as an argument
 ```
-python3 main.py stake -eth https://goerli.infura.io/v3/fddsfc4a4f4b3fffb032dad -priv 05bc1aed7sfdfdv86304ab1eb68f7b5436730628f65740b5436730628f65740 -st 0xbCc2b3661386694e79BE3577a949B0610D9E8545 -ssv 0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04 -token 0x3a9f01091C446bdE031E39ea8354647AFef091E7
+python main.py generate-keyshares -c <CONFIG_FILE>
+```
+- *deposit-validators* : This option can be used to submit validator to stakepool
+  - Example config file: sample_config/deposit-validator.json
+  - Fill in the params in config file and give it as an argument
+```
+python main.py deposit-validators -c <CONFIG_FILE>
 ```
 
-- For options use
-
+- *deposit-keyshares* : This option can be used to submit validator keyshares to stakepool
+  - Example config file: sample_config/deposit-keyshares.json
+  - Fill in the params in config file and give it as an argument
+```
+python main.py deposit-keyshares -c <CONFIG_FILE>
 ```
 
-
-
-python main.py -h
-
-
-
+- *stake* : This is the backend script that monitors the stakepool and regularly generates validator pubkeys and SSV keyshares
+  - Example config file: sample_config/stake-config.json
+  - Fill in the params in config file and give it as an argument
+```
+python main.py stake -c <CONFIG_FILE>
 ```
 
-- There are two options
-
-- stake: use this to start the backend service for the staking pool
-
-- create-keys: use this to create validator keys and key-shares for operators separately
-
-- To create keys
-
-- OPERATOR_IDS: operator ids for keyshares
-
-- KEY_COUNT: no. of validator keys to create
-
-- WITHDRAWAL_CREDENTIALS: withdrawal credentials for validator keys
-
-- KEYSTORE_PASSWORD: keystore password for validator keys
-
-```
-python3 main.py create-keys -id <OPERATOR_IDS> -n <KEY_COUNT> -wc <WITHDRAWAL_CREDENTIALS> -pass <KEYSTORE_PASSWORD>
-```
-EXAMPLE
-```
-python3 main.py create-keys -id 1 2 9 42 -n 1 -wc 0xfabb0ac9d68b0b445fb7357272ff202c5651694a -pass ""
-```
 
 ### LICENSE
 

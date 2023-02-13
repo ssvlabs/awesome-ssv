@@ -2,7 +2,7 @@ import json
 from collections import namedtuple
 from eth_typing import HexAddress, HexStr
 from ssv.ssv_cli import SSV, OperatorData
-from staking_deposit.settings import  GOERLI
+from staking_deposit.settings import GOERLI
 from staking_deposit.key_handling.key_derivation.mnemonic import get_mnemonic
 from staking_deposit.utils.constants import WORD_LISTS_PATH
 import argparse
@@ -11,11 +11,16 @@ from utils.eth_connector import EthNode
 from utils.stakepool import StakingPool
 from utils.ssv_network import SSVNetwork, SSVToken
 import traceback
-from staking_deposit.validator_key import ValidatorKey
+from staking_deposit.validator_key import ValidatorKey, DepositData
 from ssv.ssv_cli import Operator
 
 
 def read_file(file_path):
+    """
+    This is used to read params from json file and convert them to python Namespaces
+    :param file_path: takes the json filepath
+    :returns: it returns data in form of python Namespace
+    """
     with open(file_path, "r") as file:
         data = json.load(file, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
     file.close()
@@ -24,8 +29,11 @@ def read_file(file_path):
 
 def create_keys(config_file):
     """
-    :param config:
-    :return:
+    This is an entry function for command line argument create-keys.
+    It is used to create multiple validator keys and their deposit data.
+
+    :param config_file: Refer sample_config(validator-config.json) folder for config file params
+    :return: Null
     """
     config = read_file(config_file)
     validators = ValidatorKey()
@@ -42,25 +50,108 @@ def create_keys(config_file):
 
 def create_keyshares(config_file):
     """
+    This is an entry function for command line argument generate-keyshares.
+    It is used to create ssv keyshares for given validator keystores.
 
+    :param config_file: Refer sample_config(keyshare-config.json) folder for config file params
+    :return: Null
     """
     config = read_file(config_file)
-    operators = [Operator(operator_data.id, operator_data.pubkey, operator_data.fee, operator_data.name) for
+    operators = [Operator(operator_data.id, operator_data.pubKey, operator_data.fee, operator_data.name) for
                  operator_data in config.operators]
     for keystore in config.keystore_files:
         ssv = SSV(keystore, config.keystore_password)
         keyshare_file = ssv.generate_shares(operators, config.ssv_fee)
-        print("for following keystore file: {} keyshare generated is:{}".format(keystore, keyshare_file))
+        print("for following keystore file: {} \n keyshare generated is:{}".format(keystore, keyshare_file))
+
+
+def deposit_keyshare(config_file):
+    """
+    This is an entry function for command line argument deposit-keyshares.
+    It is used to submit keyshares to stakepool contract.
+
+    :param config_file: Refer sample_config(deposit-keyshare.json) folder for config file params
+    :return: Null
+    """
+    config = read_file(config_file)
+    web3_eth = EthNode(config.eth.rpc, config.eth.priv_key)
+    ssv_token = SSVToken(config.ssv_token, web3_eth.eth_node)
+    stake_pool = StakingPool(config.stakepool_contract, web3_eth.eth_node)
+    print(ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(config.stakepool_contract)))
+    for file in config.keyshares:
+        shares = read_file(file)
+        if ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(config.stakepool_contract)) < int(
+                shares.payload.readable.ssvAmount):
+            print("ssv token balance of stakepool is less than the required amount. Sending some tokens")
+            if ssv_token.get_balance(
+                    web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > 2 * int(
+                shares.payload.readable.ssvAmount):
+                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.stakepool_contract),
+                                              2 * int(shares.payload.readable.ssvAmount), web3_eth.account.address)
+                web3_eth.make_tx(tx)
+                print("Added SSV tokens to stakepool account")
+            elif ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > int(
+                    shares.payload.readable.ssvAmount):
+                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.staking_pool),
+                                              int(shares.payload.readable.ssvAmount), web3_eth.account.address)
+                web3_eth.make_tx(tx)
+                print(
+                    "WARNING!!!! Balance too low for account and stakepool for SSV tokens. Please add some")
+            else:
+                raise Exception(
+                    "ERROR!!!! keys shares not added as your account doesn't have enough SSV tokens")
+        operator_ids = [operator.id for operator in shares.data.operators]
+        tx = stake_pool.send_key_shares(shares.payload.readable.validatorPublicKey, operator_ids,
+                                        shares.payload.readable.sharePublicKeys,
+                                        shares.payload.readable.sharePrivateKey,
+                                        int(shares.payload.readable.ssvAmount),
+                                        web3_eth.account.address)
+        web3_eth.make_tx(tx)
+        print("ssv shares submitted to the contract")
+
+
+def deposit_validator(config_file):
+    """
+    This is an entry function for command line argument deposit-validator.
+    It is used to submit validator to stakepool contract.
+
+    :param config_file: Refer sample_config(deposit-validator.json) folder for config file params
+    :return: Null
+    """
+    config = read_file(config_file)
+    deposit_file = read_file(config.deposit_file)
+    deposit_data = [DepositData(key.pubkey, key.withdrawal_credentials, key.signature, key.deposit_data_root) for key in
+                    deposit_file]
+    web3_eth = EthNode(config.eth.rpc, config.eth.priv_key)
+    stake_pool = StakingPool(config.stakepool_contract, web3_eth.eth_node)
+    for deposit in deposit_data:
+        print(deposit)
+        tx = stake_pool.deposit_validator(deposit.pubkey,
+                                          deposit.withdrawal_credentials,
+                                          deposit.signature,
+                                          deposit.deposit_data_root,
+                                          web3_eth.account.address)
+        if web3_eth.make_tx(tx):
+            print("key deposited for validator: {}".format(deposit.pubkey))
+        else:
+            print("key deposit failed for validator: {}".format(deposit.pubkey))
 
 
 def start_staking(config_file):
     """
-
-    :return:
+    This is an entry function for command line argument stake.
+    Following are the actions performed by it:
+    [1] It is used to run the backend for stakepool contract.
+    [2] It regularly monitors the balances of the stakepool contract and submits keys and keyshares.
+    [3] It also monitors the balance of SSV token in the stakepool contract and sends some SSV token from whitelist address
+    [4] In the case of script failure it creates a fallabck file which stores the state of the system. Upon resuming the
+     service it
+    :param config_file: Refer sample_config(stake-config.json) folder for config file params
+    :return: Null
     """
     config = read_file(config_file)
     with open("fallback.json", "r") as file:
-        fallback = json.load(file)
+        fallback = json.load(file)  # used to store the state of the system
     file.close()
     try:
         while True:
@@ -73,11 +164,11 @@ def start_staking(config_file):
                 print("creating validators")
                 validators = ValidatorKey()
                 keystores, deposit_file = validators.generate_keys(mnemonic=mnemonic, validator_start_index=1,
-                                                                     num_validators=num_validators, folder="",
-                                                                     chain=GOERLI,
-                                                                     keystore_password=config.keystore_pass,
-                                                                     eth1_withdrawal_address=HexAddress(
-                                                                         HexStr(stake_pool.get_withdrawal_address())))
+                                                                   num_validators=num_validators, folder="",
+                                                                   chain=GOERLI,
+                                                                   keystore_password=config.keystore_pass,
+                                                                   eth1_withdrawal_address=HexAddress(
+                                                                       HexStr(stake_pool.get_withdrawal_address())))
                 print("keys created are:\n")
                 print(keystores)
                 print("submitting validators")
@@ -150,21 +241,42 @@ def start_staking(config_file):
 
 
 if __name__ == '__main__':
+    """
+    Command line parser that acts on the command passed to it
+    """
     parser = argparse.ArgumentParser(description="Command line tool for SSV backend")
     subparses = parser.add_subparsers()
     stake = subparses.add_parser("stake",
                                  help="used to start a service that tracks stakinpool contract for keys and key shares")
     stake.set_defaults(which="stake")
 
-    keys = subparses.add_parser("create-keys", help="create n keys and their keyshares")
+    keys = subparses.add_parser("create-keys", help="create n validator keys")
     keys.set_defaults(which="keys")
+
+    validator = subparses.add_parser("deposit-validators", help="submit validator keys to the stakepool contract")
+    validator.add_argument("-c", "--config",
+                           help="pass a config file with required params. Ex: sample_config/validator-config.json",
+                           required=True)
+    validator.set_defaults(which="validator")
 
     keyshares = subparses.add_parser("generate-keyshares", help="generate ssv keyshares from validator keystore files")
     keyshares.set_defaults(which="keyshares")
 
-    stake.add_argument("-c", "--config", help="pass a config file with required params. Refer README", required=True)
-    keys.add_argument("-c", "--config", help="pass a config file with required params. Refer README", required=True)
-    keyshares.add_argument("-c", "--config", help="pass a config file with required params. Refer README",
+    deposit_keyshares = subparses.add_parser("deposit-keyshares", help="deposit ssv keyshare to ssv contract")
+    deposit_keyshares.add_argument("-c", "--config",
+                                   help="pass a config file with required params. Ex: sample_config/deposit-keyshares.json",
+                                   required=True)
+
+    deposit_keyshares.set_defaults(which="deposit")
+
+    stake.add_argument("-c", "--config",
+                       help="pass a config file with required params. Ex: sample_config/stake-config.json",
+                       required=True)
+    keys.add_argument("-c", "--config",
+                      help="pass a config file with required params. Ex: sample_config/validator-config.json",
+                      required=True)
+    keyshares.add_argument("-c", "--config",
+                           help="pass a config file with required params. Ex: sample_config/keyshare-config.json",
                            required=True)
 
     args = parser.parse_args()
@@ -174,3 +286,7 @@ if __name__ == '__main__':
         start_staking(args.config)
     elif args.which == "keyshares":
         create_keyshares(args.config)
+    elif args.which == "deposit":
+        deposit_keyshare(args.config)
+    elif args.which == "validator":
+        deposit_validator(args.config)
