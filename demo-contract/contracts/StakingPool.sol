@@ -50,6 +50,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
         OperatorIDs = ids;
     }
 
+
     /**
      * @notice Get operator ids, check operators here https://explorer.ssv.network/
      */
@@ -85,6 +86,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     /**
      * @notice Stake tokens
      */
+
     function stake() public payable {
         require(msg.value > 0, "Can't stake zero amount");
          uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
@@ -103,6 +105,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
         payable(msg.sender).transfer(_amount_to_transfer);
         delete userStake[msg.sender];
     }
+
 
     /**
      * @notice Deposit a validator to the deposit contract
@@ -165,5 +168,20 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit KeySharesDeposited( _pubkey,
             _sharesPublicKeys,
             _amount);
+
+
+
+
+    */ 
+    function depositShares(bytes calldata pubkey,
+        uint32[] calldata operatorIds,
+        bytes[] calldata sharesPublicKeys,
+        bytes[] calldata sharesEncrypted,
+        uint256 amount) external {
+        require(msg.sender == WhitelistKeyGenerator, "Only whitelisted address can submit the key");
+        IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, amount);
+        ISSVNetwork(SSV_CONTRACT_ADDR).registerValidator(pubkey, operatorIds, sharesPublicKeys, sharesEncrypted, amount);
+        Validators.push(pubkey);
+        emit KeySharesDeposited();
     }
 }

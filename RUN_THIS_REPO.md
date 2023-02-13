@@ -42,7 +42,9 @@ is this minimalistic staking pool based on!
 
 ## How it works?
 
+
 - Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator ! 🤑
+
 
 ### User Actions
 
