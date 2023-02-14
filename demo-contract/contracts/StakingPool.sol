@@ -89,11 +89,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
      * @notice Update share price of the staking pool
      */
     function updateSharePrice() public onlyOwner {
-        _newSharePrice =
+       uint256 _newSharePrice =
             (beaconRewards + executionRewards + (Validators * 32)) /
             (Validators * 32);
         ssvETH.changeSharePrice(_newSharePrice);
-        emit SharePriceUpdated(_newPrice);
+        emit SharePriceUpdated(_newSharePrice);
     }
 
     /**
