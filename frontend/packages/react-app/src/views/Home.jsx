@@ -63,7 +63,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
     <div>
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 600, margin: "auto", marginTop: 32 }}>
         <h1>Pool overview:</h1>
-        <h4>Stake your ETH to earn ssvETH !</h4>
+        <h4>
+          Stake your ETH in the staking pool to earn our liquid staked derivative token called ssvETH, which you can
+          also use in other DeFi protocols{" "}
+        </h4>
         You can find more details{" "}
         <a href="https://github.com/bloxapp/awesome-ssv/blob/main/README.md" target="_blank" rel="noopener noreferrer">
           📕 here
