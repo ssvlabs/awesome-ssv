@@ -82,94 +82,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
         <h4>ssvETH Total Supply: </h4>
         <TokenBalance balance={Number(totalSupply)} fontSize={64} />
       </div>
-      <div style={{ border: "1px solid #cccccc", width: 400, margin: "auto", marginTop: 32 }}>
-        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
-        <div>
-          <h4 style={{ padding: 8 }}>Active validators:</h4>
-          <div style={{ fontSize: 20 }}>{data.length}</div>
-        </div>
-        <Divider />
-        <div>
-          <h4 style={{ padding: 8 }}>Active stake:</h4>
-          <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
-          <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
-        </div>
-        <Divider />
-        <div style={{ padding: 8, paddingBottom: 16 }}>
-          <h4 style={{ padding: 8 }}>Rewards:</h4>
-          Execution layer rewards :{" "}
-          <div style={{ padding: 8, fontSize: 20 }}>
-            {" "}
-            <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
-            <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
-          </div>
-          Beacon chain rewards :
-          <div style={{ padding: 8, fontSize: 20 }}>
-            <TokenBalance balance={sharePrice} fontSize={64} /> 
-          </div>
-        </div>
-      </div>
       <div
         style={{
           border: "1px solid #cccccc",
-          margin: "auto",
-          justifyContent: "center",
-          width: 750,
-          marginTop: 32,
-          textAlign: "center",
-        }}
-      >
-        <h2 style={{ paddingTop: 16 }}>Contracts:</h2>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ padding: 14 }}>
-            <h4>SSVETH Contract:</h4>
-            <Address
-              value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address}
-              fontSize={16}
-            />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The SSV decentralized staking system uses The "ssvETH" token to reward the stakers. Its contract also
-              allows the manager change the share price.
-            </p>
-          </div>
-          <div style={{ padding: 14 }}>
-            <h4>Deposit Contract:</h4>
-            <Address
-              value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address}
-              fontSize={16}
-            />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              This deposit contract is used to create and store deposits. It also allows for checking the deposit root
-              and count.
-            </p>
-          </div>
-          <div style={{ padding: 14 }}>
-            <h4>SSV Network Contract:</h4>
-            <Address
-              value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
-              fontSize={16}
-            />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The core SSV Network environment contract, including the SSV Network token and the SSV Network registry.
-            </p>
-          </div>
-          <div style={{ padding: 14 }}>
-            <h4>SSV Token Contract:</h4>
-            <Address
-              value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address}
-              fontSize={16}
-            />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The native token of ssv.network, Secret Shared Validator ($SSV). Its main use cases are payments and
-              governance.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        style={{
-          border: "1px solid #cccccc",
-          width: 450,
+          width: 600,
           margin: "auto",
           justifyContent: "center",
           marginTop: 32,
@@ -220,6 +136,91 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           />
         </div>
       </div>
+      <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
+        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div>
+            <h4 style={{ padding: 8 }}>Active validators:</h4>
+            <div style={{ fontSize: 20 }}>{data.length}</div>
+          </div>
+          <div>
+            <h4 style={{ padding: 8 }}>Active stake:</h4>
+            <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+            <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+          </div>
+          <div>
+            <h4 style={{ padding: 8 }}>Rewards:</h4>
+            Execution layer rewards :{" "}
+            <div style={{ padding: 8, fontSize: 20 }}>
+              {" "}
+              <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+              <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+            </div>
+            Beacon chain rewards :
+            <div style={{ padding: 8, fontSize: 20 }}>
+              <TokenBalance balance={sharePrice} fontSize={64} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          border: "1px solid #cccccc",
+          margin: "auto",
+          justifyContent: "center",
+          width: 750,
+          marginTop: 32,
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ paddingTop: 16 }}>Contracts:</h2>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ padding: 14 }}>
+            <h4>SSVETH Contract:</h4>
+            <Address
+              value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The SSV decentralized staking system uses The "ssvETH" token to reward the stakers. Its contract also
+              allows the manager change the share price.
+            </p>
+          </div>
+          <div style={{ padding: 14 }}>
+            <h4>Deposit Contract:</h4>
+            <Address
+              value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The deposit contract transfers funds from an Ethereum account to a proof-of-stake validator account,
+              specifying staker, validator, stake amount and withdrawal rights.
+            </p>
+          </div>
+          <div style={{ padding: 14 }}>
+            <h4>SSV Network Contract:</h4>
+            <Address
+              value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The core SSV Network environment contract, including the SSV Network token and the SSV Network registry.
+            </p>
+          </div>
+          <div style={{ padding: 14 }}>
+            <h4>SSV Token Contract:</h4>
+            <Address
+              value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The native token of ssv.network, Secret Shared Validator ($SSV). Its main use cases are payments and
+              governance.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Stake Events:</h2>
         <List
