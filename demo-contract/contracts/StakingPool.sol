@@ -65,7 +65,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     /**
      * @notice Get validators array
      */
-    function getValidators() public view returns (bytes[]) {
+    function getValidators() public view returns (bytes[] memory) {
         return Validators;
     }
 
@@ -85,15 +85,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit OperatorIDsChanged(_newOperators);
     }
 
-    /**
-     * @notice Update share price of the staking pool
-     */
-    function updateSharePrice() public onlyOwner {
-       uint256 _newSharePrice =
-            (beaconRewards + executionRewards + (Validators * 32)) /
-            (Validators * 32);
-        ssvETH.changeSharePrice(_newSharePrice);
-        emit SharePriceUpdated(_newSharePrice);
+    // Beacon chain rewards:
+    // Manager updates this variable
+    function updateBeaconRewards(uint256 _newBeaconRewards) external onlyOwner {
+        beaconRewards = _newBeaconRewards;
+        updateSharePrice();
     }
 
     /**
@@ -180,22 +176,25 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit KeySharesDeposited(_pubkey, _sharesPublicKeys, _amount);
     }
 
-    // called when the contract receives eth 
-    // should just update (execution rewards variable )
-
-    fallback() external payable {
-        updateExecutionRewards(msg.value);
+    /**
+     * @notice Update share price of the staking pool
+     */
+    function updateSharePrice() internal {
+        uint256 _newSharePrice = (beaconRewards +
+            executionRewards +
+            (Validators.length * 32)) / (Validators.length * 32);
+        ssvETH.changeSharePrice(_newSharePrice);
+        emit SharePriceUpdated(_newSharePrice);
     }
 
     // Execution rewards
     function updateExecutionRewards(uint256 _newExecutionRewards) internal {
-        executionRewards = _newExecutionRewards;
+        executionRewards += _newExecutionRewards;
     }
 
-    // Beacon chain rewards:
-    // Manager updates this variable
-    function updateBeaconRewards(uint256 _newBeaconRewards) external onlyOwner {
-        beaconRewards = _newBeaconRewards;
+    // called when the contract receives eth
+    // should just update (execution rewards variable )
+    receive() external payable {
+        updateExecutionRewards(msg.value);
     }
-
 }

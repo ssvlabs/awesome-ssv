@@ -933,6 +933,13 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [],
+    name: "getValidators",
+    outputs: [{ internalType: "bytes[]", name: "", type: "bytes[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "owner",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
@@ -976,12 +983,13 @@ const STAKINGPOOLABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_newPrice", type: "uint256" }],
-    name: "updateSharePrice",
+    inputs: [{ internalType: "uint256", name: "_newBeaconRewards", type: "uint256" }],
+    name: "updateBeaconRewards",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
+  { stateMutability: "payable", type: "receive" },
 ];
 
 const DEPOSITCONTRACTABI = [
@@ -1798,7 +1806,7 @@ module.exports = {
       },
 
       STAKINGPOOL: {
-        address: "0xAc7F79e89e78D10AEe543B0114293D95737F8DfC",
+        address: "0xE4cD3565aB688a40B9A062e328bC46AC7edCFbc0",
         abi: STAKINGPOOLABI,
       },
       DEPOSITCONTRACT: {

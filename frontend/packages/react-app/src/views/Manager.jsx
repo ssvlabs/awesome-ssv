@@ -13,8 +13,8 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     await tx(writeContracts.STAKINGPOOL.setOperators(JSON.parse(value)));
   };
 
-  const handleUpdateNewSharePrice = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateSharePrice(ethers.utils.parseEther(value.toString()).toString()));
+  const handleUpdateBeaconRewards = async value => {
+    await tx(writeContracts.STAKINGPOOL.updateBeaconRewards(ethers.utils.parseEther(value.toString()).toString()));
   };
 
   const onDepositSharesSubmit = async values => {
@@ -107,7 +107,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             placeholder="new Beacon chain rewards value"
             enterButton="Submit"
             size="medium"
-            onSearch={value => handleUpdateNewSharePrice(value)}
+            onSearch={value => handleUpdateBeaconRewards(value)}
           />
           <Divider />
           <div>

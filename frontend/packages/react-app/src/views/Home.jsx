@@ -16,6 +16,8 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [stakeLoading, setStakeLoading] = useState(false);
   const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
+  const beaconRewards = useContractReader(readContracts, "STAKINGPOOL", "beaconRewards");
+  const executionRewards = useContractReader(readContracts, "STAKINGPOOL", "executionRewards");
   console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
@@ -156,12 +158,12 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
             Execution layer rewards :{" "}
             <div style={{ padding: 8, fontSize: 20 }}>
               {" "}
-              <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+              <TokenBalance balance={Number(beaconRewards)} fontSize={64} />{" "}
               <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
             </div>
             Beacon chain rewards :
             <div style={{ padding: 8, fontSize: 20 }}>
-              <TokenBalance balance={sharePrice} fontSize={64} />
+              <TokenBalance balance={executionRewards} fontSize={64} />
             </div>
           </div>
         </div>
