@@ -7,10 +7,10 @@ const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
   const operators = useContractReader(readContracts, "STAKINGPOOL", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "STAKINGPOOL", "PubKeyDeposited", localProvider, 5);
-  console.log("operators", operators);
-  const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
+  const validators = useContractReader(readContracts, "STAKINGPOOL", "getValidators");
+
   const handleOnSetNewOperators = async value => {
-    await tx(writeContracts.STAKINGPOOL.setOperators(JSON.parse(value)));
+    await tx(writeContracts.STAKINGPOOL.updateOperators(JSON.parse(value)));
   };
 
   const handleUpdateBeaconRewards = async value => {
@@ -51,9 +51,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
   return (
     <div>
-      <div style={{ width: 640, margin: "auto", marginTop: 16 }}>
-        <h1>Manager View</h1>
-      </div>
 
       <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Pool managed overview:</h2>
@@ -63,10 +60,10 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             style={{ width: "65%", margin: "auto", marginBlock: 32 }}
             header={<h4>All Pool managed validators</h4>}
             bordered
-            dataSource={data}
+            dataSource={validators}
             renderItem={item => (
               <List.Item>
-                <Typography.Text mark>[Validator 1]</Typography.Text> {item}
+                <Typography.Text mark>[Validator]</Typography.Text> {item}
               </List.Item>
             )}
           />
@@ -83,7 +80,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
       <div
         style={{
           border: "1px solid #cccccc",
-          width: 650,
+          width: 600,
           justifyContent: "center",
           margin: "auto",
           marginTop: 32,

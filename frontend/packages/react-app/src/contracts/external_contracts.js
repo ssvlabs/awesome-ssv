@@ -893,6 +893,13 @@ const STAKINGPOOLABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "beaconRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       { internalType: "bytes", name: "_pubkey", type: "bytes" },
       { internalType: "uint32[]", name: "_operatorIds", type: "uint32[]" },
@@ -919,8 +926,22 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [],
+    name: "executionRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "getOperators",
     outputs: [{ internalType: "uint32[4]", name: "", type: "uint32[4]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getShareprice",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -947,23 +968,9 @@ const STAKINGPOOLABI = [
   },
   { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "nonpayable", type: "function" },
   {
-    inputs: [{ internalType: "uint32[4]", name: "_newOperators", type: "uint32[4]" }],
-    name: "setOperators",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "ssvETH",
     outputs: [{ internalType: "contract SSVETH", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ssvETH_address",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
@@ -985,6 +992,13 @@ const STAKINGPOOLABI = [
   {
     inputs: [{ internalType: "uint256", name: "_newBeaconRewards", type: "uint256" }],
     name: "updateBeaconRewards",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint32[4]", name: "_newOperators", type: "uint32[4]" }],
+    name: "updateOperators",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -1806,7 +1820,7 @@ module.exports = {
       },
 
       STAKINGPOOL: {
-        address: "0xE4cD3565aB688a40B9A062e328bC46AC7edCFbc0",
+        address: "0xCD5A484Af2C6ECf9fD6dE2d65C2002Cbdb1C1794",
         abi: STAKINGPOOLABI,
       },
       DEPOSITCONTRACT: {
@@ -1825,7 +1839,7 @@ module.exports = {
       },
 
       SSVETHCONTRACT: {
-        address: "0xc7B9e1FEE2eC1ae73cDE454D0320A4B3435a6421",
+        address: "0x3de07814A138720124E659c2Bb6e69cB6f3802Ae",
         abi: SSVETHADDRESSABI,
       },
     },

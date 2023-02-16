@@ -3,7 +3,7 @@ import { useEventListener } from "eth-hooks/events/useEventListener";
 import { ethers } from "ethers";
 import { Transactor } from "../helpers";
 import { useState } from "react";
-import { Input, List, Divider } from "antd";
+import { Input, List, Divider, Card } from "antd";
 import { Address, Balance, TokenBalance } from "../components";
 import { getRPCPollTime } from "../helpers";
 import externalContracts from "../contracts/external_contracts";
@@ -63,30 +63,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
   return (
     <div>
-      <div style={{ border: "1px solid #cccccc", padding: 16, width: 600, margin: "auto", marginTop: 32 }}>
-        <h1>Pool overview:</h1>
-        <h4>
-          Stake your ETH in the staking pool to earn our liquid staked derivative token called ssvETH, which you can
-          also use in other DeFi protocols{" "}
-        </h4>
-        You can find more details{" "}
-        <a href="https://github.com/bloxapp/awesome-ssv/blob/main/README.md" target="_blank" rel="noopener noreferrer">
-          📕 here
-        </a>
-        <Divider />
-        <h4>Staking Pool Contract: </h4>
-        <Address
-          value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
-          fontSize={16}
-        />
-        <p style={{ textAlign: "center", padding: "12px 25px" }}>
-          The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can also
-          launch and manage validators using it.
-        </p>
-        <Divider />
-        <h4>ssvETH Total Supply: </h4>
-        <TokenBalance balance={Number(totalSupply)} fontSize={64} />
-      </div>
       <div
         style={{
           border: "1px solid #cccccc",
@@ -141,33 +117,65 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           />
         </div>
       </div>
-      <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
-        <h2 style={{ paddingTop: 16 }}>ETH under management:</h2>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+
+      <div style={{ border: "1px solid #cccccc", padding: 16, width: 600, margin: "auto", marginTop: 32 }}>
+        <h2>Pool overview:</h2>
+        <h4>
+          Stake your ETH in the staking pool to earn our liquid staked derivative token called ssvETH, which you can
+          also use in other DeFi protocols{" "}
+        </h4>
+        You can find more details{" "}
+        <a href="https://github.com/bloxapp/awesome-ssv/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+          📕 here
+        </a>
+        <Divider />
+        <div style={{ display: "flex" }}>
           <div>
-            <h4 style={{ padding: 8 }}>Active validators:</h4>
-            <div style={{ fontSize: 20 }}>{data.length}</div>
+            <h4>Staking Pool Contract: </h4>
+            <Address
+              value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "center", padding: "12px 12px 0px 12px" }}>
+              The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can
+              also launch and manage validators using it.
+            </p>
           </div>
-          <div>
-            <h4 style={{ padding: 8 }}>Active stake:</h4>
-            <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
-            <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
-          </div>
-          <div>
-            <h4 style={{ padding: 8 }}>Rewards:</h4>
-            Execution layer rewards :{" "}
-            <div style={{ padding: 8, fontSize: 20 }}>
-              {" "}
-              <TokenBalance balance={Number(beaconRewards)} fontSize={64} />{" "}
-              <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
-            </div>
-            Beacon chain rewards :
-            <div style={{ padding: 8, fontSize: 20 }}>
-              <TokenBalance balance={executionRewards} fontSize={64} />
-            </div>
+          <div style={{ width: "65%" }}>
+            <h4>ssvETH Total Supply: </h4>
+            <TokenBalance balance={Number(totalSupply)} fontSize={64} />
           </div>
         </div>
+        <Divider />
+        <Card style={{ marginTop: 32 }}>
+          <h3 style={{ paddingTop: 16 }}>ETH under management:</h3>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div>
+              <h4 style={{ padding: 8 }}>Active validators:</h4>
+              <div style={{ fontSize: 20 }}>{data.length}</div>
+            </div>
+            <div>
+              <h4 style={{ padding: 8 }}>Active stake:</h4>
+              <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
+              <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+            </div>
+            <div>
+              <h4 style={{ padding: 8 }}>Rewards:</h4>
+              Execution layer rewards :{" "}
+              <div style={{ padding: 8, fontSize: 20 }}>
+                {" "}
+                <TokenBalance balance={Number(beaconRewards)} fontSize={64} />{" "}
+                <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
+              </div>
+              Beacon chain rewards :
+              <div style={{ padding: 8, fontSize: 20 }}>
+                <TokenBalance balance={executionRewards} fontSize={64} />
+              </div>
+            </div>
+          </div>
+        </Card>
       </div>
+
       <div
         style={{
           border: "1px solid #cccccc",

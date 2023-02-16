@@ -18,12 +18,10 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-
-    address public ssvETH_address;
     address public Oracle_address;
-
-    uint256 beaconRewards;
-    uint256 executionRewards;
+    
+    uint256 public beaconRewards;
+    uint256 public executionRewards;
 
     mapping(address => uint256) private userStake;
 
@@ -77,19 +75,32 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
-     * @notice Set operators
+     * @notice Get share price
+     */
+    function getShareprice() public view returns (uint256) {
+        uint256 _sharePrice = ssvETH.sharePrice();
+        return _sharePrice;
+    }
+
+    /**
+     * @dev Update operators
      * @param _newOperators: Array of the the new operators Ids
      */
-    function setOperators(uint32[4] memory _newOperators) public onlyOwner {
+    function updateOperators(uint32[4] memory _newOperators) public onlyOwner {
         OperatorIDs = _newOperators;
         emit OperatorIDsChanged(_newOperators);
     }
 
-    // Beacon chain rewards:
-    // Manager updates this variable
+    /**
+     * @dev Update share price of the staking pool
+     * @param _newBeaconRewards: The new beacon rewards amount
+     */
     function updateBeaconRewards(uint256 _newBeaconRewards) external onlyOwner {
         beaconRewards = _newBeaconRewards;
-        updateSharePrice();
+        uint256 _newSharePrice = (beaconRewards +
+            executionRewards +
+            (Validators.length * 32)) / (Validators.length * 32);
+        updateSharePrice(_newSharePrice);
     }
 
     /**
@@ -177,23 +188,23 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
-     * @notice Update share price of the staking pool
+     * @notice update execution rewards
+     * @param _newExecutionRewards:  Execution rewards amount added
      */
-    function updateSharePrice() internal {
-        uint256 _newSharePrice = (beaconRewards +
-            executionRewards +
-            (Validators.length * 32)) / (Validators.length * 32);
-        ssvETH.changeSharePrice(_newSharePrice);
-        emit SharePriceUpdated(_newSharePrice);
-    }
-
-    // Execution rewards
     function updateExecutionRewards(uint256 _newExecutionRewards) internal {
         executionRewards += _newExecutionRewards;
     }
 
+    /**
+     * @dev Update share price of the staking pool
+     * @param _newSharePrice: The new share price amount
+     */
+    function updateSharePrice(uint256 _newSharePrice) internal {
+        ssvETH.changeSharePrice(_newSharePrice);
+        emit SharePriceUpdated(_newSharePrice);
+    }
+
     // called when the contract receives eth
-    // should just update (execution rewards variable )
     receive() external payable {
         updateExecutionRewards(msg.value);
     }
