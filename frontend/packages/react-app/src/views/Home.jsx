@@ -129,25 +129,12 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           📕 here
         </a>
         <Divider />
-        <div style={{ display: "flex" }}>
-          <div>
-            <h4>Staking Pool Contract: </h4>
-            <Address
-              value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
-              fontSize={16}
-            />
-            <p style={{ textAlign: "center", padding: "12px 12px 0px 12px" }}>
-              The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can
-              also launch and manage validators using it.
-            </p>
-          </div>
-          <div style={{ width: "65%" }}>
-            <h4>ssvETH Total Supply: </h4>
-            <TokenBalance balance={Number(totalSupply)} fontSize={64} />
-          </div>
+        <div>
+          <h4>ssvETH Total Supply: </h4>
+          <TokenBalance balance={Number(totalSupply)} fontSize={64} />
         </div>
         <Divider />
-        <Card style={{ marginTop: 32 }}>
+        <Card>
           <h3 style={{ paddingTop: 16 }}>ETH under management:</h3>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div>
@@ -185,7 +172,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           border: "1px solid #cccccc",
           margin: "auto",
           justifyContent: "center",
-          width: 750,
+          width: 950,
           marginTop: 32,
           textAlign: "center",
         }}
@@ -193,7 +180,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
         <h2 style={{ paddingTop: 16 }}>Contracts:</h2>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ padding: 14 }}>
-            <h4>SSVETH Contract:</h4>
+            <h4 style={{ whiteSpace: "nowrap" }}>SSVETH Contract:</h4>
             <Address
               value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address}
               fontSize={16}
@@ -204,7 +191,18 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
             </p>
           </div>
           <div style={{ padding: 14 }}>
-            <h4>Deposit Contract:</h4>
+            <h4 style={{ whiteSpace: "nowrap" }}>Staking Pool Contract: </h4>
+            <Address
+              value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
+              fontSize={16}
+            />
+            <p style={{ textAlign: "left", padding: "8px" }}>
+              The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can
+              also launch and manage validators using it.
+            </p>
+          </div>
+          <div style={{ padding: 14 }}>
+            <h4 style={{ whiteSpace: "nowrap" }}>Deposit Contract:</h4>
             <Address
               value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address}
               fontSize={16}
@@ -215,7 +213,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
             </p>
           </div>
           <div style={{ padding: 14 }}>
-            <h4>SSV Network Contract:</h4>
+            <h4 style={{ whiteSpace: "nowrap" }}>SSV Network Contract:</h4>
             <Address
               value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
               fontSize={16}
@@ -225,7 +223,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
             </p>
           </div>
           <div style={{ padding: 14 }}>
-            <h4>SSV Token Contract:</h4>
+            <h4 style={{ whiteSpace: "nowrap" }}>SSV Token Contract:</h4>
             <Address
               value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address}
               fontSize={16}
