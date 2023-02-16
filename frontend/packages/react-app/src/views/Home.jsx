@@ -152,7 +152,11 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div>
               <h4 style={{ padding: 8 }}>Active validators:</h4>
-              <div style={{ fontSize: 20 }}>{validators.length}</div>
+              {validators !== undefined ? (
+                <div style={{ fontSize: 20 }}>{validators?.length}</div>
+              ) : (
+                <div style={{ fontSize: 20 }}>0</div>
+              )}
             </div>
             <div>
               <h4 style={{ padding: 8 }}>Active stake:</h4>
