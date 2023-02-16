@@ -14,7 +14,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
 
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
-  const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
+  const validators = useContractReader(readContracts, "STAKINGPOOL", "getValidators");
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
   const beaconRewards = useContractReader(readContracts, "STAKINGPOOL", "beaconRewards");
   const executionRewards = useContractReader(readContracts, "STAKINGPOOL", "executionRewards");
@@ -152,7 +152,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div>
               <h4 style={{ padding: 8 }}>Active validators:</h4>
-              <div style={{ fontSize: 20 }}>{data.length}</div>
+              <div style={{ fontSize: 20 }}>{validators.length}</div>
             </div>
             <div>
               <h4 style={{ padding: 8 }}>Active stake:</h4>
