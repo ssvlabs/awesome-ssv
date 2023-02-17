@@ -112,7 +112,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/utils/stakepool.py"
+                href="https://github.com/TIM88-DOT/awesome-ssv/blob/main/RUN_THIS_REPO.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -194,7 +194,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend (Line: 69)
+                🖥️ Generating input in backend (Line: 290)
               </a>
             </div>
             <Form
