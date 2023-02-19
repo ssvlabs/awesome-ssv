@@ -18,9 +18,10 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-
-    address public ssvETH_address;
     address public Oracle_address;
+    
+    uint256 beaconRewards;
+    uint256 executionRewards;
 
     mapping(address => uint256) private userStake;
 
@@ -28,9 +29,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
     event PubKeyDeposited(bytes pubkey);
     event OperatorIDsChanged(uint32[4] newOperators);
     event SharePriceUpdated(uint256 newPrice);
-    event KeySharesDeposited(bytes pubkey,
-        bytes[]  sharesPublicKeys,
-        uint256 amount);
+    event KeySharesDeposited(
+        bytes pubkey,
+        bytes[] sharesPublicKeys,
+        uint256 amount
+    );
 
     constructor(
         address keyGenerator,
@@ -50,12 +53,18 @@ contract StakingPool is Ownable, ReentrancyGuard {
         OperatorIDs = ids;
     }
 
-
     /**
      * @notice Get operator ids, check operators here https://explorer.ssv.network/
      */
     function getOperators() public view returns (uint32[4] memory) {
         return OperatorIDs;
+    }
+
+    /**
+     * @notice Get validators array
+     */
+    function getValidators() public view returns (bytes[] memory) {
+        return Validators;
     }
 
     /**
@@ -66,21 +75,32 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
-     * @notice Set operators
+     * @notice Get share price
+     */
+    function getShareprice() public view returns (uint256) {
+        uint256 _sharePrice = ssvETH.sharePrice();
+        return _sharePrice;
+    }
+
+    /**
+     * @dev Update operators
      * @param _newOperators: Array of the the new operators Ids
      */
-    function setOperators(uint32[4] memory _newOperators) public onlyOwner {
+    function updateOperators(uint32[4] memory _newOperators) public onlyOwner {
         OperatorIDs = _newOperators;
         emit OperatorIDsChanged(_newOperators);
     }
 
     /**
-     * @notice Update share price of the staking pool
-     * @param _newPrice: New share price amount
+     * @dev Update share price of the staking pool
+     * @param _newBeaconRewards: The new beacon rewards amount
      */
-    function updateSharePrice(uint256 _newPrice) public onlyOwner {
-        ssvETH.changeSharePrice(_newPrice);
-        emit SharePriceUpdated(_newPrice);
+    function updateBeaconRewards(uint256 _newBeaconRewards) external onlyOwner {
+        beaconRewards = _newBeaconRewards;
+        uint256 _newSharePrice = (beaconRewards +
+            executionRewards +
+            (Validators.length * 32)) / (Validators.length * 32);
+        updateSharePrice(_newSharePrice);
     }
 
     /**
@@ -89,7 +109,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
 
     function stake() public payable {
         require(msg.value > 0, "Can't stake zero amount");
-         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
+        uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
         userStake[msg.sender] = msg.value;
@@ -105,7 +125,6 @@ contract StakingPool is Ownable, ReentrancyGuard {
         payable(msg.sender).transfer(_amount_to_transfer);
         delete userStake[msg.sender];
     }
-
 
     /**
      * @notice Deposit a validator to the deposit contract
@@ -165,23 +184,28 @@ contract StakingPool is Ownable, ReentrancyGuard {
         // Add the public key to the list of validators
         Validators.push(_pubkey);
         // Emit an event to log the deposit of shares
-        emit KeySharesDeposited( _pubkey,
-            _sharesPublicKeys,
-            _amount);
+        emit KeySharesDeposited(_pubkey, _sharesPublicKeys, _amount);
+    }
 
+    /**
+     * @notice update execution rewards
+     * @param _newExecutionRewards:  Execution rewards amount added
+     */
+    function updateExecutionRewards(uint256 _newExecutionRewards) internal {
+        executionRewards += _newExecutionRewards;
+    }
 
+    /**
+     * @dev Update share price of the staking pool
+     * @param _newSharePrice: The new share price amount
+     */
+    function updateSharePrice(uint256 _newSharePrice) internal {
+        ssvETH.changeSharePrice(_newSharePrice);
+        emit SharePriceUpdated(_newSharePrice);
+    }
 
-
-    */ 
-    function depositShares(bytes calldata pubkey,
-        uint32[] calldata operatorIds,
-        bytes[] calldata sharesPublicKeys,
-        bytes[] calldata sharesEncrypted,
-        uint256 amount) external {
-        require(msg.sender == WhitelistKeyGenerator, "Only whitelisted address can submit the key");
-        IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, amount);
-        ISSVNetwork(SSV_CONTRACT_ADDR).registerValidator(pubkey, operatorIds, sharesPublicKeys, sharesEncrypted, amount);
-        Validators.push(pubkey);
-        emit KeySharesDeposited();
+    // called when the contract receives eth
+    receive() external payable {
+        updateExecutionRewards(msg.value);
     }
 }

@@ -7,14 +7,14 @@ const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
   const operators = useContractReader(readContracts, "STAKINGPOOL", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "STAKINGPOOL", "PubKeyDeposited", localProvider, 5);
-  console.log("operators", operators);
-  const data = ["0x0000536dbD99d918092249Ef4eDe4a69A35CccCa"];
+  const validators = useContractReader(readContracts, "STAKINGPOOL", "getValidators");
+
   const handleOnSetNewOperators = async value => {
-    await tx(writeContracts.STAKINGPOOL.setOperators(JSON.parse(value)));
+    await tx(writeContracts.STAKINGPOOL.updateOperators(JSON.parse(value)));
   };
 
-  const handleUpdateNewSharePrice = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateSharePrice(ethers.utils.parseEther(value.toString()).toString()));
+  const handleUpdateBeaconRewards = async value => {
+    await tx(writeContracts.STAKINGPOOL.updateBeaconRewards(ethers.utils.parseEther(value.toString()).toString()));
   };
 
   const onDepositSharesSubmit = async values => {
@@ -51,9 +51,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
   return (
     <div>
-      <div style={{ width: 640, margin: "auto", marginTop: 16 }}>
-        <h1>Manager View</h1>
-      </div>
 
       <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Pool managed overview:</h2>
@@ -63,10 +60,10 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             style={{ width: "65%", margin: "auto", marginBlock: 32 }}
             header={<h4>All Pool managed validators</h4>}
             bordered
-            dataSource={data}
+            dataSource={validators}
             renderItem={item => (
               <List.Item>
-                <Typography.Text mark>[Validator 1]</Typography.Text> {item}
+                <Typography.Text mark>[Validator]</Typography.Text> {item}
               </List.Item>
             )}
           />
@@ -83,7 +80,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
       <div
         style={{
           border: "1px solid #cccccc",
-          width: 650,
+          width: 600,
           justifyContent: "center",
           margin: "auto",
           marginTop: 32,
@@ -107,7 +104,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             placeholder="new Beacon chain rewards value"
             enterButton="Submit"
             size="medium"
-            onSearch={value => handleUpdateNewSharePrice(value)}
+            onSearch={value => handleUpdateBeaconRewards(value)}
           />
           <Divider />
           <div>
@@ -115,11 +112,11 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/utils/stakepool.py"
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend (Line: 115)
+                🖥️ Generating input in backend
               </a>
               <a
                 style={{ padding: 8 }}
@@ -193,11 +190,11 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
               </a>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/ssv/ssv_cli.py"
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend (Line: 69)
+                🖥️ Generating input in backend
               </a>
             </div>
             <Form

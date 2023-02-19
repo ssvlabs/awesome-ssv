@@ -18,9 +18,10 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-
-    address public ssvETH_address;
     address public Oracle_address;
+    
+    uint256 public beaconRewards;
+    uint256 public executionRewards;
 
     mapping(address => uint256) private userStake;
 
@@ -28,9 +29,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
     event PubKeyDeposited(bytes pubkey);
     event OperatorIDsChanged(uint32[4] newOperators);
     event SharePriceUpdated(uint256 newPrice);
-    event KeySharesDeposited(bytes pubkey,
-        bytes[]  sharesPublicKeys,
-        uint256 amount);
+    event KeySharesDeposited(
+        bytes pubkey,
+        bytes[] sharesPublicKeys,
+        uint256 amount
+    );
 
     constructor(
         address keyGenerator,
@@ -58,6 +61,13 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
+     * @notice Get validators array
+     */
+    function getValidators() public view returns (bytes[] memory) {
+        return Validators;
+    }
+
+    /**
      * @notice Get user's staked amount
      */
     function getUserStake(address _userAddress) public view returns (uint256) {
@@ -65,29 +75,41 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
-     * @notice Set operators
+     * @notice Get share price
+     */
+    function getShareprice() public view returns (uint256) {
+        uint256 _sharePrice = ssvETH.sharePrice();
+        return _sharePrice;
+    }
+
+    /**
+     * @dev Update operators
      * @param _newOperators: Array of the the new operators Ids
      */
-    function setOperators(uint32[4] memory _newOperators) public onlyOwner {
+    function updateOperators(uint32[4] memory _newOperators) public onlyOwner {
         OperatorIDs = _newOperators;
         emit OperatorIDsChanged(_newOperators);
     }
 
     /**
-     * @notice Update share price of the staking pool
-     * @param _newPrice: New share price amount
+     * @dev Update share price of the staking pool
+     * @param _newBeaconRewards: The new beacon rewards amount
      */
-    function updateSharePrice(uint256 _newPrice) public onlyOwner {
-        ssvETH.changeSharePrice(_newPrice);
-        emit SharePriceUpdated(_newPrice);
+    function updateBeaconRewards(uint256 _newBeaconRewards) external onlyOwner {
+        beaconRewards = _newBeaconRewards;
+        uint256 _newSharePrice = (beaconRewards +
+            executionRewards +
+            (Validators.length * 32)) / (Validators.length * 32);
+        updateSharePrice(_newSharePrice);
     }
 
     /**
      * @notice Stake tokens
      */
+
     function stake() public payable {
         require(msg.value > 0, "Can't stake zero amount");
-         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
+        uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
         userStake[msg.sender] = msg.value;
@@ -162,8 +184,28 @@ contract StakingPool is Ownable, ReentrancyGuard {
         // Add the public key to the list of validators
         Validators.push(_pubkey);
         // Emit an event to log the deposit of shares
-        emit KeySharesDeposited( _pubkey,
-            _sharesPublicKeys,
-            _amount);
+        emit KeySharesDeposited(_pubkey, _sharesPublicKeys, _amount);
+    }
+
+    /**
+     * @notice update execution rewards
+     * @param _newExecutionRewards:  Execution rewards amount added
+     */
+    function updateExecutionRewards(uint256 _newExecutionRewards) internal {
+        executionRewards += _newExecutionRewards;
+    }
+
+    /**
+     * @dev Update share price of the staking pool
+     * @param _newSharePrice: The new share price amount
+     */
+    function updateSharePrice(uint256 _newSharePrice) internal {
+        ssvETH.changeSharePrice(_newSharePrice);
+        emit SharePriceUpdated(_newSharePrice);
+    }
+
+    // called when the contract receives eth
+    receive() external payable {
+        updateExecutionRewards(msg.value);
     }
 }

@@ -37,6 +37,7 @@ yarn deploy
 ```bash
 yarn deploy-goerli
 ```
+📜 then update your Goerli contracts addresses and ABIs ` in `packages/react-app/src/contracts/external_contracts`
 
 > 4️⃣ in a third terminal window, 🛰 deploy your contract:
 
