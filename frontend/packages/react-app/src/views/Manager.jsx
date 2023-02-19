@@ -20,7 +20,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const onDepositSharesSubmit = async values => {
     console.log("values:", values);
     await tx(
-      writeContracts.STAKINGPOOL.updateSharePrice(
+      writeContracts.STAKINGPOOL.depositShares(
         values.pubkey.toString(),
         JSON.parse(values.operatorIds),
         JSON.parse(values.sharesPublicKeys),
@@ -35,12 +35,13 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   };
   const onDepositValidatorSubmit = async values => {
     console.log("values:", values);
+    console.log(values.pubkey);
     await tx(
-      writeContracts.STAKINGPOOL.updateSharePrice(
-        values.pubkey.toString(),
-        values.withdrawalCredentials.toString(),
-        values.signature.toString(),
-        values.depositDataRoot.toString(),
+      writeContracts.STAKINGPOOL.depositValidator(
+        values.pubkey,
+        values.withdrawalCredentials,
+        values.signature,
+        values.depositDataRoot,
       ),
     );
   };
@@ -51,7 +52,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
   return (
     <div>
-
       <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Pool managed overview:</h2>
 
@@ -120,7 +120,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
               </a>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/main/demo-contract/contracts/environment/DepositContract.sol"
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/demo-contract/contracts/environment/DepositContract.sol"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -174,7 +174,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/main.py"
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/main.py"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -182,7 +182,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
               </a>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/d51768cb3b47f32632fe025e36cf86f84b45258e/demo-contract/contracts/environment/SSVNetwork.sol"
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/demo-contract/contracts/environment/SSVNetwork.sol"
                 target="_blank"
                 rel="noopener noreferrer"
               >
