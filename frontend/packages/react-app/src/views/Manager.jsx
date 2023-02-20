@@ -108,68 +108,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           />
           <Divider />
           <div>
-            <h4 style={{ padding: 8, marginTop: 12 }}>Deposit shares:</h4>
-            <div style={{ padding: 8, marginBottom: 12 }}>
-              <a
-                style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🖥️ Generating input in backend
-              </a>
-              <a
-                style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/backend/demo-contract/contracts/environment/DepositContract.sol"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                📜 Deposit contract source
-              </a>
-            </div>
-            <Form
-              name="basic"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 16 }}
-              style={{ maxWidth: 500, margin: "auto" }}
-              initialValues={{ remember: true }}
-              onFinish={onDepositSharesSubmit}
-              onFinishFailed={onDepositSharesFailed}
-              autoComplete="off"
-            >
-              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Public key" name="pubkey">
-                <Input placeholder="Please input the public key of the validator" />
-              </Form.Item>
-
-              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Operator Ids " name="operatorIds">
-                <Input placeholder="Please input Operator Ids array!" />
-              </Form.Item>
-
-              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Shares keys" name="sharesPublicKeys">
-                <Input placeholder="Please input the array of the public keys of the shares!" />
-              </Form.Item>
-
-              <Form.Item
-                style={{ width: "100%", marginInline: "auto" }}
-                label="Encrypted shares"
-                name="sharesEncrypted"
-              >
-                <Input placeholder="Please input the array of the encrypted shares!" />
-              </Form.Item>
-
-              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Amount" name="amount">
-                <Input placeholder="Please input the amount!" />
-              </Form.Item>
-
-              <Form.Item wrapperCol={{ span: 16 }} style={{ marginInline: "auto", width: "50px" }}>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-          <Divider />
-          <div>
             <h4 style={{ padding: 8, marginTop: 12 }}>Deposit validator:</h4>
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
@@ -229,6 +167,69 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 name="depositDataRoot"
               >
                 <Input placeholder="Please input the deposit data root!" />
+              </Form.Item>
+
+              <Form.Item wrapperCol={{ span: 16 }} style={{ marginInline: "auto", width: "50px" }}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+
+          <Divider />
+          <div>
+            <h4 style={{ padding: 8, marginTop: 12 }}>Deposit shares:</h4>
+            <div style={{ padding: 8, marginBottom: 12 }}>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖥️ Generating input in backend
+              </a>
+              <a
+                style={{ padding: 8 }}
+                href="https://github.com/bloxapp/awesome-ssv/blob/backend/demo-contract/contracts/environment/DepositContract.sol"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📜 Deposit contract source
+              </a>
+            </div>
+            <Form
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              style={{ maxWidth: 500, margin: "auto" }}
+              initialValues={{ remember: true }}
+              onFinish={onDepositSharesSubmit}
+              onFinishFailed={onDepositSharesFailed}
+              autoComplete="off"
+            >
+              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Public key" name="pubkey">
+                <Input placeholder="Please input the public key of the validator" />
+              </Form.Item>
+
+              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Operator Ids " name="operatorIds">
+                <Input placeholder="Please input Operator Ids array!" />
+              </Form.Item>
+
+              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Shares keys" name="sharesPublicKeys">
+                <Input placeholder="Please input the array of the public keys of the shares!" />
+              </Form.Item>
+
+              <Form.Item
+                style={{ width: "100%", marginInline: "auto" }}
+                label="Encrypted shares"
+                name="sharesEncrypted"
+              >
+                <Input placeholder="Please input the array of the encrypted shares!" />
+              </Form.Item>
+
+              <Form.Item style={{ width: "100%", marginInline: "auto" }} label="Amount" name="amount">
+                <Input placeholder="Please input the amount!" />
               </Form.Item>
 
               <Form.Item wrapperCol={{ span: 16 }} style={{ marginInline: "auto", width: "50px" }}>

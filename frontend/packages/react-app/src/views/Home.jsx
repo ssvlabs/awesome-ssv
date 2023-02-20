@@ -172,22 +172,22 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           border: "1px solid #cccccc",
           margin: "auto",
           justifyContent: "center",
-          width: 950,
+          width: 800,
           marginTop: 32,
           textAlign: "center",
         }}
       >
         <h2 style={{ paddingTop: 16 }}>Contracts:</h2>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ padding: 14 }}>
             <h4 style={{ whiteSpace: "nowrap" }}>SSVETH Contract:</h4>
             <Address
               value={readContracts && readContracts.SSVETHCONTRACT && readContracts.SSVETHCONTRACT.address}
               fontSize={16}
             />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The SSV decentralized staking system uses The "ssvETH" token to reward the stakers. Its contract also
-              allows the manager change the share price.
+            <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>
+              The SSV decentralized staking system uses The "ssvETH" LSD (liquid staking derivate) token which
+              represents user’s stake plus rewards. It is minted upon deposit and burned upon withdrawal.
             </p>
           </div>
           <div style={{ padding: 14 }}>
@@ -196,9 +196,12 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
               fontSize={16}
             />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The staking pool contract that allows users to deposit ETH and receive rewards in ssvETH. The manager can
-              also launch and manage validators using it.
+            <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>
+              The staking pool contract manages deposited funds. It has two main functions, running a validator and
+              keeping track of users' rewards. 1. It deposits new validators to the Beacon chain deposit contract (for
+              validator activation), and registers validator key shares to SSV Network Contract in order to perform
+              validator duties. 2. It keep track of the received rewards by updating ssvETH value and let’s anyone exit
+              staking by simply depositing ssvETH to the pool.
             </p>
           </div>
           <div style={{ padding: 14 }}>
@@ -207,19 +210,25 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.DEPOSITCONTRACT && readContracts.DEPOSITCONTRACT.address}
               fontSize={16}
             />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The deposit contract transfers funds from an Ethereum account to a proof-of-stake validator account,
-              specifying staker, validator, stake amount and withdrawal rights.
+            <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>
+              This is the “official” Ethereum Beacon Chain Deposit Contract(see documentation) through which validators
+              are registered to the Beacon chain. To join Etherum validator network stakingPool needs to interact with
+              this contract, Depositing 32 ETH, specifying staker, validator, stake amount and withdrawal credentials.
             </p>
           </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ padding: 14 }}>
             <h4 style={{ whiteSpace: "nowrap" }}>SSV Network Contract:</h4>
             <Address
               value={readContracts && readContracts.SSVNETWORKCONTRACT && readContracts.SSVNETWORKCONTRACT.address}
               fontSize={16}
             />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The core SSV Network environment contract, including the SSV Network token and the SSV Network registry.
+            <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>
+              The core SSV Network contract for performing validator duties (running validator).(see documentation) This
+              contract let's anyone register their validator with the SSV network. Operators specified in the
+              registerValidator() function, will then observe the contract, see the new validator shares and start
+              operating (attesting, proposing) on stakingPool's behalf.
             </p>
           </div>
           <div style={{ padding: 14 }}>
@@ -228,9 +237,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               value={readContracts && readContracts.SSVTOKENADDRESS && readContracts.SSVTOKENADDRESS.address}
               fontSize={16}
             />
-            <p style={{ textAlign: "left", padding: "8px" }}>
-              The native token of ssv.network, Secret Shared Validator ($SSV). Its main use cases are payments and
-              governance.
+            <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>
+              The native token of ssv.network used for payments. Staker (Staking Pool) needs to keep balance of this
+              token in SSV network contract to be able to pay for the validating services performed by the network
+              operators.
             </p>
           </div>
         </div>
