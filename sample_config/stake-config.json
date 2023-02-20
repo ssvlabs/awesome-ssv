@@ -1,0 +1,12 @@
+{
+  "eth": {
+    "rpc": "",
+    "priv_key": ""
+  },
+  "contract_address": {
+    "ssv_network": "",
+    "stakepool": "",
+    "ssv_token": ""
+  },
+  "keystore_pass": ""
+}
