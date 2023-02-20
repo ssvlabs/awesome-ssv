@@ -82,7 +82,23 @@ chmod +x setup.sh
 
 ```
 
-## Deploying contracts
+## Deployments
+
+### 1. Front End & Smart contracts - Scaffold-eth framework
+
+Continue to readme in `frontend` folder [FE_README.md](/frontend/README.md)
+
+It will navigate you through all the remaining process. You do **NOT** need to come back to this readme.
+
+If you want to deploy smart contracts only using brownie framwerk continue to next step
+
+### 2. Smart Contracts only - Brownie framework
+
+#### Dependencies
+
+- [python](https://www.python.org/downloads/), you can install it here.
+
+- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here.
 
 ```
 
@@ -178,61 +194,5 @@ Now you can start the staking pool manager backend scripts
 If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
 ## Backend manager
-### Running the scripts
 
-Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
-
-It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
-
-- Open new terminal in the main project folder
-
-To run script you first need to install the requirements :
-
-```
-pip install -r requirements.txt
-```
-
-To see what all command line option the script supports :
-```
-python main.py -h/--help
-```
-Following are the option and their respective config:
-
-
-- *create-keys* : This option can be used to generate ethereum validator keys and their deposit data
-  - Example config file: sample_config/validator-config.json
-  - Fill in the params in config file and give it as an argument
-```
-python main.py create-keys -c <CONFIG_FILE>
-```
-- *generate-keyshares* : This option can be used to generate SSV keyshares using ssv cli tool
-  - Example config file: sample_config/keyshare-config.json
-  - Fill in the params in config file and give it as an argument
-```
-python main.py generate-keyshares -c <CONFIG_FILE>
-```
-- *deposit-validators* : This option can be used to submit validator to stakepool
-  - Example config file: sample_config/deposit-validator.json
-  - Fill in the params in config file and give it as an argument
-```
-python main.py deposit-validators -c <CONFIG_FILE>
-```
-
-- *deposit-keyshares* : This option can be used to submit validator keyshares to stakepool
-  - Example config file: sample_config/deposit-keyshares.json
-  - Fill in the params in config file and give it as an argument
-```
-python main.py deposit-keyshares -c <CONFIG_FILE>
-```
-
-- *stake* : This is the backend script that monitors the stakepool and regularly generates validator pubkeys and SSV keyshares
-  - Example config file: sample_config/stake-config.json
-  - Fill in the params in config file and give it as an argument
-```
-python main.py stake -c <CONFIG_FILE>
-```
-
-
-### LICENSE
-
-MIT License
+Once your smart contract are deployed you are ready to [RUN_RUNBACKED.md](RUN_RUNBACKED.md)
