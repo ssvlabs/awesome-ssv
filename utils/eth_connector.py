@@ -39,8 +39,10 @@ class EthNode:
         print(tx_receipt)
         if tx_receipt.status == 1:
             print('TX successful')
+            return True
         else:
             print('TX reverted')
+            return False
 
     def get_balance(self, address):
         return self.eth_node.eth.get_balance(address) / 10 ** 18
