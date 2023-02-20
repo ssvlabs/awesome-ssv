@@ -177,6 +177,7 @@ Now you can start the staking pool manager backend scripts
 
 If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
+## Backend manager
 ### Running the scripts
 
 Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
