@@ -6,17 +6,16 @@
 
 You can find our live demo [Here](https://awesome-ssv-staking.surge.sh)
 
-# Quick Start 🎈
+# Run the frontend app locally
 
 Prerequisites: [Node (v18 LTS)](https://nodejs.org/en/download/) plus [Yarn (v1.x)](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
-
 
 > 1️⃣ clone/fork  awesome SSV Staking repo:
 
 ```bash
 git clone https://github.com/bloxapp/awesome-ssv
 ```
-> 2️⃣ make sure you're connected to the Goerli network (5)
+> 2️⃣ make sure your wallet connected to the Goerli network (5) (the default network)
 
 > 3️⃣ install and start the frontend:
 
@@ -25,36 +24,47 @@ cd frontend
 yarn install
 yarn react-app:start
 ```
+📱 Open http://localhost:3000 to see the app
 
-🎉 you can run your own instance and get the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) once done, you need to update your new contract addresses and ABIs ` in `packages/react-app/src/contracts/external_contracts`.
+# Contracts
 
-> 4️⃣ in a third terminal window, 🛰 deploy your contract:
+🎉 you can run your own instance and get the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) once done, you just need to update your new contract addresses and ABIs ` in `packages/react-app/src/contracts/external_contracts`.
 
-🚨 if you want to deploy the contracts locally using hardhat, you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`.
+
+🚨 if you want to deploy the contracts locally using the Goerli fork using hardhat, you need to fork the Goerli network locally with :
 
 ```bash
-yarn chain
+yarn fork
+```
+After setting up your default network in `hardhat-config.js` you can run 
+
+```bash
 yarn deploy
 ```
-🚨 if you are not deploying to localhost, you will need to run `yarn generate` (using node v16.x) first and then fund the deployer account. To view account balances, run `yarn account`. You will aslo need to update `hardhat-config.js` with the correct default network.
 
-```bash
-yarn generate
-yarn account
-```
-🚨 same thing if you want to deploy on the Goerli testnet, just use this instead `:
+🚨 If you want to deploy on the live Goerli testnet, you'll only need to run this :
 
 ```bash
 yarn deploy-goerli
 ```
+
 ✅ you can verify your staking pool contract on Goerli by using this : 
 
 ```bash
 yarn verify --constructor-args arguments.js --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 ```
+and your ssvETH token contract with 
 
-❗❗ don't forget update your Goerli contracts addresses and ABIs ` in `packages/react-app/src/contracts/external_contracts` .
+✅ you can verify your ssvETH contract on Goerli by using this : 
 
+```bash
+yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
+```
+
+❗❗ Important : 
+💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`. And your new contracts addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+
+# Extra
 
 🔏 Edit the smart contracts in `packages/hardhat/contracts`
 
@@ -62,12 +72,7 @@ yarn verify --constructor-args arguments.js --network goerli NEW_DEPLOYED_CONTRA
 
 💼 Add/Edit your deployment scripts in `packages/hardhat/deploy`
 
-📱 Open http://localhost:3000 to see the app
-
 🚨📡 To deploy to a public domain, use `yarn surge`. You will need to have a surge account and have the surge CLI installed. There is also the option to deploy to IPFS using `yarn ipfs` and `yarn s3` to deploy to an AWS bucket 🪣 There are scripts in the `packages/react-app/src/scripts` folder to help with this.`
-
-📣 Make sure you update the `InfuraID` before you go to production. Huge thanks to [Infura](https://infura.io/) for our special account that fields 7m req/day!
-
 
 ---
 
