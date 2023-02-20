@@ -26,10 +26,13 @@ yarn react-app:start
 ```
 📱 Open http://localhost:3000 to see the app
 
+🎉 If you already have the contracts deployed from the [Backend](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) once done, you just need to update your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+
+# Backend   
+
+🚀 You can run your own instance of the solution using our Backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) 
+
 # Contracts
-
-🎉 you can run your own instance and get the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) once done, you just need to update your new contract addresses and ABIs ` in `packages/react-app/src/contracts/external_contracts`.
-
 
 🚨 if you want to deploy the contracts locally using the Goerli fork using hardhat, you need to fork the Goerli network locally with :
 
