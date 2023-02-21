@@ -57,7 +57,7 @@ def create_keyshares(config_file):
     :return: Null
     """
     config = read_file(config_file)
-    operators = [Operator(operator_data.id, operator_data.pubKey, operator_data.fee, operator_data.name) for
+    operators = [Operator(operator_data.id, operator_data.pubkey, operator_data.fee, operator_data.name) for
                  operator_data in config.operators]
     for keystore in config.keystore_files:
         ssv = SSV(keystore, config.keystore_password)
