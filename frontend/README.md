@@ -26,15 +26,17 @@ yarn react-app:start
 ```
 📱 Open http://localhost:3000 to see the app
 
-🎉 If you already have the contracts deployed from the [Backend](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) once done, you just need to update your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
 
 # Backend   
 
-🚀 You can run your own instance of the solution using our Backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md) 
+🚀 You can run your own instance of the solution using our backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md) 
 
 # Contracts
 
-🚨 if you want to deploy the contracts locally using the Goerli fork using hardhat, you need to fork the Goerli network locally with :
+🚨 Local deployment (Goerli fork) :
+
+if you want to deploy the contracts locally using the Goerli fork using hardhat, you need to fork the Goerli network locally with :
 
 ```bash
 yarn fork
@@ -45,7 +47,9 @@ After setting up your default network in `hardhat-config.js` you can run
 yarn deploy
 ```
 
-🚨 If you want to deploy on the live Goerli testnet, you'll only need to run this :
+🚨 Goerli live deployment :
+
+If you want to deploy on the live Goerli testnet, you'll only need to run this :
 
 ```bash
 yarn deploy-goerli
