@@ -5,6 +5,10 @@ if [-d "ssv-keys"]; then
 else
   echo "cloning ssv-keys"
   git clone https://github.com/bloxapp/ssv-keys.git
+  cd ssv-keys
+  git fetch -a
+  git checkout v2
+  cd ..
   rm ssv-keys/package.json
   cp ssv/package.json ssv-keys/package.json
   npm install --prefix ssv-keys
@@ -18,6 +22,6 @@ fi
 
 echo "setup for ssv keys cli done"
 
-echo "downloading dependencies for python"
-
-pip install -r requirements.txt
+#echo "downloading dependencies for python"
+#
+#pip install -r requirements.txt

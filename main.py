@@ -61,8 +61,9 @@ def create_keyshares(config_file):
                  operator_data in config.operators]
     for keystore in config.keystore_files:
         ssv = SSV(keystore, config.keystore_password)
-        keyshare_file = ssv.generate_shares(operators, config.ssv_fee)
+        keyshare_file, fees = ssv.generate_shares(operators, config.ssv_fee)
         print("for following keystore file: {} \n keyshare generated is:{}".format(keystore, keyshare_file))
+        print("You have to pay the following fees: {}".format(fees))
 
 
 def deposit_keyshare(config_file):
@@ -192,10 +193,12 @@ def start_staking(config_file):
                 print(network_fees)
                 pubkeys = list(fallback.keys())
                 for pubkey in pubkeys:
-                    ssv = SSV(fallback[pubkey]["keystore"], "test1234")
+                    ssv = SSV(fallback[pubkey]["keystore"], config.keystore_pass)
                     if fallback[pubkey]["ssv_share"] == "":
-                        op = OperatorData("https://api.ssv.network")
-                        file = ssv.generate_shares(op.get_operator_data(operator_id), network_fees)
+                        # op = OperatorData("https://api.ssv.network") # todo: depreciated
+                        operators = [ssv_contract.get_operator(id) for id in operator_id]
+                        op = [Operator(operator[3], operator[0], operator[1], operator[2]) for operator in operators]
+                        file = ssv.generate_shares(op, network_fees)
                         fallback[pubkey]["ssv_share"] = file
                         shares = ssv.get_keyshare(file)
                     else:
