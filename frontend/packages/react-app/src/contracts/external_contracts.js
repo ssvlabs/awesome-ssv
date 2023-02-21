@@ -787,36 +787,12 @@ const DAIABI = [
 const STAKINGPOOLABI = [
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "keyGenerator",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "depositAddress",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "withdrawal",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "ssv_contract",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "ssv_token",
-        type: "address",
-      },
-      {
-        internalType: "uint32[4]",
-        name: "ids",
-        type: "uint32[4]",
-      },
+      { internalType: "address", name: "keyGenerator", type: "address" },
+      { internalType: "address", name: "depositAddress", type: "address" },
+      { internalType: "address", name: "withdrawal", type: "address" },
+      { internalType: "address", name: "ssv_contract", type: "address" },
+      { internalType: "address", name: "ssv_token", type: "address" },
+      { internalType: "uint32[4]", name: "ids", type: "uint32[4]" },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
@@ -824,31 +800,45 @@ const STAKINGPOOLABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: false,
-        internalType: "bytes",
-        name: "pubkey",
-        type: "bytes",
-      },
+      { indexed: false, internalType: "bytes", name: "pubkey", type: "bytes" },
+      { indexed: false, internalType: "bytes[]", name: "sharesPublicKeys", type: "bytes[]" },
+      { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
     ],
-    name: "PubKeyDeposited",
+    name: "KeySharesDeposited",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "uint32[4]", name: "newOperators", type: "uint32[4]" }],
+    name: "OperatorIDsChanged",
     type: "event",
   },
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "user_address",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
+      { indexed: true, internalType: "address", name: "previousOwner", type: "address" },
+      { indexed: true, internalType: "address", name: "newOwner", type: "address" },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "bytes", name: "pubkey", type: "bytes" }],
+    name: "PubKeyDeposited",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "uint256", name: "newPrice", type: "uint256" }],
+    name: "SharePriceUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "user_address", type: "address" },
+      { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
     ],
     name: "UserStaked",
     type: "event",
@@ -856,127 +846,66 @@ const STAKINGPOOLABI = [
   {
     inputs: [],
     name: "Oracle_address",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "SSV_CONTRACT_ADDR",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "SSV_TOKEN_ADDR",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "VALIDATOR_AMOUNT",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     name: "Validators",
-    outputs: [
-      {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
-      },
-    ],
+    outputs: [{ internalType: "bytes", name: "", type: "bytes" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "WITHDRAWAL_ADDRESS",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "WhitelistKeyGenerator",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "beaconRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "bytes",
-        name: "pubkey",
-        type: "bytes",
-      },
-      {
-        internalType: "uint32[]",
-        name: "operatorIds",
-        type: "uint32[]",
-      },
-      {
-        internalType: "bytes[]",
-        name: "sharesPublicKeys",
-        type: "bytes[]",
-      },
-      {
-        internalType: "bytes[]",
-        name: "sharesEncrypted",
-        type: "bytes[]",
-      },
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
+      { internalType: "bytes", name: "_pubkey", type: "bytes" },
+      { internalType: "uint32[]", name: "_operatorIds", type: "uint32[]" },
+      { internalType: "bytes[]", name: "_sharesPublicKeys", type: "bytes[]" },
+      { internalType: "bytes[]", name: "_sharesEncrypted", type: "bytes[]" },
+      { internalType: "uint256", name: "_amount", type: "uint256" },
     ],
     name: "depositShares",
     outputs: [],
@@ -985,26 +914,10 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [
-      {
-        internalType: "bytes",
-        name: "pubkey",
-        type: "bytes",
-      },
-      {
-        internalType: "bytes",
-        name: "withdrawal_credentials",
-        type: "bytes",
-      },
-      {
-        internalType: "bytes",
-        name: "signature",
-        type: "bytes",
-      },
-      {
-        internalType: "bytes32",
-        name: "deposit_data_root",
-        type: "bytes32",
-      },
+      { internalType: "bytes", name: "_pubkey", type: "bytes" },
+      { internalType: "bytes", name: "_withdrawal_credentials", type: "bytes" },
+      { internalType: "bytes", name: "_signature", type: "bytes" },
+      { internalType: "bytes32", name: "_deposit_data_root", type: "bytes32" },
     ],
     name: "depositValidator",
     outputs: [],
@@ -1013,63 +926,84 @@ const STAKINGPOOLABI = [
   },
   {
     inputs: [],
-    name: "getOperators",
-    outputs: [
-      {
-        internalType: "uint32[4]",
-        name: "",
-        type: "uint32[4]",
-      },
-    ],
+    name: "executionRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "getOperators",
+    outputs: [{ internalType: "uint32[4]", name: "", type: "uint32[4]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getShareprice",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_userAddress", type: "address" }],
+    name: "getUserStake",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getValidators",
+    outputs: [{ internalType: "bytes[]", name: "", type: "bytes[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "nonpayable", type: "function" },
   {
     inputs: [],
     name: "ssvETH",
-    outputs: [
-      {
-        internalType: "contract SSVETH",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "contract SSVETH", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
+  { inputs: [], name: "stake", outputs: [], stateMutability: "payable", type: "function" },
   {
-    inputs: [],
-    name: "ssvETH_address",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "stake",
+    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
+    name: "transferOwnership",
     outputs: [],
-    stateMutability: "payable",
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
     name: "unStake",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [{ internalType: "uint256", name: "_newBeaconRewards", type: "uint256" }],
+    name: "updateBeaconRewards",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint32[4]", name: "_newOperators", type: "uint32[4]" }],
+    name: "updateOperators",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  { stateMutability: "payable", type: "receive" },
 ];
 
 const DEPOSITCONTRACTABI = [
@@ -1886,7 +1820,7 @@ module.exports = {
       },
 
       STAKINGPOOL: {
-        address: "0xFc6f35B3D7e7d6c5789bC2c3566d8b1E9E11752a",
+        address: "0xCD5A484Af2C6ECf9fD6dE2d65C2002Cbdb1C1794",
         abi: STAKINGPOOLABI,
       },
       DEPOSITCONTRACT: {
@@ -1905,7 +1839,7 @@ module.exports = {
       },
 
       SSVETHCONTRACT: {
-        address: "0xfcE8F661AbBf1417E6f73593B9cf779aF83501a9",
+        address: "0x3de07814A138720124E659c2Bb6e69cB6f3802Ae",
         abi: SSVETHADDRESSABI,
       },
     },

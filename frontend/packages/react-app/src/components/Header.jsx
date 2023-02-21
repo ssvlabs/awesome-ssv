@@ -17,6 +17,12 @@ export default function Header({ link, title, subTitle, ...props }) {
         <Text type="secondary" style={{ textAlign: "left" }}>
           {subTitle}
         </Text>
+        <span>
+          You can spin up your own pool too ! for more info check our 
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            📘 github
+          </a>
+        </span>
       </div>
       {props.children}
     </div>
@@ -24,7 +30,7 @@ export default function Header({ link, title, subTitle, ...props }) {
 }
 
 Header.defaultProps = {
-  link: "https://github.com/scaffold-eth/scaffold-eth",
-  title: "🏗 Scaffold-Eth",
-  subTitle: "Forkable Ethereum dev stack focused on fast product iteration",
+  link: "https://github.com/bloxapp/awesome-ssv/",
+  title: "🥩 SSV Staking",
+  subTitle: "SSV Staking Frontend Solution",
 };

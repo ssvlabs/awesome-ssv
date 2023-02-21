@@ -59,7 +59,7 @@ This is validator key splitting tool library implemented in JS/TS. It can be use
 
 This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
 
-- [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys)  `MIT | Electron/React`
+- [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys) `MIT | Electron/React`
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. The StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
@@ -111,11 +111,22 @@ If you got an Ubuntu server, you can use Stereum's Node tool to connect to it an
 
 Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
-### Guides
+### Notification services
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
-Community Guide | @cryptomanufaktur8842 - How To Setup a Node On SSV. From the SSV community, made by the one and only Yorick @cryptomanufaktur8842.
+  - Hal has built a custom Notify Recipe for SSV that allows SSV users to automatically monitor and get custom notifications for monitoring, operation runway, operator fee change and many more SSV protocol related events. Users will set up their notification using the Hal Notify app and then receive their notifications on the channel or their preference (email, telegram, discord, etc.)
+
+- [Hellman - allerts](https://alert.hellman.team/metrics) / [Hellman - repo](https://github.com/HellmanResearch)
+
+  - HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/users with 7\*24 hours monitoring of account balance, operation performance & status.
+
+### Tools
+
+- [SSV Keys's Go implementation](https://github.com/duktig666/ssv-keys-go)
+  - This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
+
+### Other
 
 ### How to add your project
 
