@@ -68,7 +68,7 @@ is this minimalistic staking pool based on!
 
 - [python](https://www.python.org/downloads/), you can install it here.
 
-- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here.
+- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/install.html), you can install it here.
 
 - [ganache](https://www.npmjs.com/package/ganache) read more here
   - `npm install ganache --global`
@@ -125,6 +125,15 @@ from [infura here](https://app.infura.io/)
 you can do so by writing into your console `brownie accounts new deployer` more on brownie account
 
 management [here](https://eth-brownie.readthedocs.io/en/stable/account-management.html#local-accounts)
+
+3. Installing packages
+
+you may need to install some packages, this is the one you need, if you need more, just copy the package path from browser or smart contract directly 
+
+```
+brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
+```
+
 
 ### Contract Changes
 
