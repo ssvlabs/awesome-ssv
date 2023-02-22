@@ -30,6 +30,7 @@ ssv-keys
 ssv
 awesome-ssv-staking-frontend/package-lock.json
 awesome-ssv-staking-frontend/yarn.lock
+package-lock.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

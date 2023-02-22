@@ -13,8 +13,8 @@ const hre = require("hardhat");
 
 
 async function main() {
-  const whitelist = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
-  const withdrawalCreds = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
+  const whitelist = "0x00704A2E3EAf3992c7C9802DF0088F8BA9e4426d";
+  const withdrawalCreds = "0x00704A2E3EAf3992c7C9802DF0088F8BA9e4426d";
   const operatorIds = [1, 2, 9, 42];
 
   const depositContract = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b";

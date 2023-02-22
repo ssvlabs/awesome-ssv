@@ -105,6 +105,7 @@ e.g.
 
 python main.py stake -c sample_config/stake-config.json
 ```
+**NOTE:** use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli 
 
 ### LICENSE
 

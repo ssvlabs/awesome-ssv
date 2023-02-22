@@ -27,7 +27,7 @@ def main():
 
     print("deploying staking Pool...")
     stakingPool = StakingPool.deploy(whitelist, deposit_contract, withdrawal_creds,
-                                     ssv_network_contract, ssv_token_address, operator_ids, {'from': deployer})
+                                     ssv_network_contract, ssv_token_address, operator_ids, {'from': deployer, 'gas_price': 87500000000})
     # print("staking pool deployed to:", stakingPool.address)
 
     # print("trasferring minting ownership...")
@@ -35,15 +35,15 @@ def main():
     #                          'from': deployer})
 
     print("testing staking...")
-    stakingPool.stake({'value': 0.001 * 10 ** 18,
-                      'from': deployer})
+    stakingPool.stake({'value': 65 * 10 ** 18,
+                      'from': deployer, 'gas_price': 87500000000})
 
     print("testing unStaking...")
     ssvETH = SSVETH.at(stakingPool.ssvETH())
     ssvETH.approve(stakingPool.address, 0.001 * 10 ** 18,
-                   {'from': deployer})
+                   {'from': deployer, 'gas_price': 87500000000})
     stakingPool.unStake(
-        0.001 * 10 ** 18, {'from': deployer})
+        0.001 * 10 ** 18, {'from': deployer, 'gas_price': 87500000000})
 
     with open('contrat_addresses.json', "r") as f:
         data = json.load(f)

@@ -70,8 +70,8 @@ is this minimalistic staking pool based on!
 
 - [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/install.html), you can install it here.
 
-- [ganache](https://www.npmjs.com/package/ganache) read more here
-  - `npm install ganache --global`
+- [hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation) read more here
+  - `npm install -g hardhat`
 
 ### Initial setup
 
@@ -155,7 +155,7 @@ Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send 
 
 - Start the goerli fork network:
 
-- `ganache --chain.vmErrorsOnRPCResponse true --wallet.totalAccounts 10 --fork.url https://goerli.infura.io/v3/<ENDPOINT> --wallet.mnemonic brownie --server.port 8545`
+- `npx hardhat node --network hardhat --fork https://goerli.infura.io/v3/<your id>`
 
 ENDPOINT = goerli endpoint from alchemy or infura
 
