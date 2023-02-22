@@ -26,6 +26,13 @@ yarn react-app:start
 ```
 📱 Open http://localhost:3000 to see the app
 
+In `frontend/packages/react-app/src/App.jsx` change to `NETWORKS.localhost` if running with `yarn fork` or `NETWORKS.goerli` if live Goerli network.
+
+```js
+const initialNetwork = NETWORKS.localhost;
+
+```
+
 🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
 
 # Backend   

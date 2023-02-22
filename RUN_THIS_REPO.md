@@ -176,7 +176,7 @@ ENDPOINT = goerli endpoint from alchemy or infura
 - To stake some eth run:
 - `StakingPool[0].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 8750000000})`
 
-- Now you can start the backend scripts
+- Now you can start the backend scripts here [RUN_BACKED.md](RUN_BACKED.md)
 
 #### Goerli
 
@@ -208,4 +208,4 @@ If you want to deploy your system locally additionally you'll need to deploy Eth
 
 ## Backend manager
 
-Once your smart contract are deployed you are ready to [RUN_RUNBACKED.md](RUN_RUNBACKED.md)
+Once your smart contract are deployed you are ready to [RUN_BACKED.md](RUN_BACKED.md)
