@@ -1,4 +1,5 @@
 from web3 import Web3
+from web3.gas_strategies.rpc import rpc_gas_price_strategy
 import web3
 
 
@@ -9,6 +10,7 @@ class EthNode:
 
     def __init__(self, rpc_url, private_key):
         self.eth_node = Web3(Web3.HTTPProvider(rpc_url))
+        self.eth_node.eth.set_gas_price_strategy(rpc_gas_price_strategy)
         if '127.0.0.1' or 'localhost' in rpc_url:
             # w3.eth.accounts()[0]
             self.local = True
@@ -23,9 +25,6 @@ class EthNode:
         self.eth_node.eth.call(tx)
         tx['nonce'] = self.eth_node.eth.get_transaction_count(
             self.account.address)
-        tx['gas'] = 8000000
-        # tx['chainId'] = self.eth_node.eth.chain_id
-        tx['gasPrice'] = self.eth_node.toWei('2', 'gwei')
         print(self.local)
         if self.local:
             tx.pop('maxPriorityFeePerGas')
