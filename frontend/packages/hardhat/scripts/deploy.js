@@ -5,6 +5,7 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
+const fs = require("fs");
 
 async function main() {
   const whitelist = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
@@ -28,6 +29,36 @@ async function main() {
   await stakingpool.deployed();
 
   console.log(`StakingPool deployed to ${stakingpool.address}`);
+
+  const stakingPoolartifact = await hre.artifacts.readArtifact("StakingPool");
+  const ssvETHArtifact = await hre.artifacts.readArtifact("SSVETH");
+
+  const stakingPoolAbi = stakingPoolartifact.abi;
+  const ssvETHAbi = ssvETHArtifact.abi;
+
+  // Write address and abi to external js file
+  fs.writeFileSync(
+    "../react-app/src/contracts/goerli/stakingPool.js",
+    `module.exports = { address: "${
+      stakingpool.address
+    }", abi: ${JSON.stringify(stakingPoolAbi)} }`
+  );
+
+  const ssvETHAddress = await stakingpool.ssvETH();
+  console.log("ssvETHAddress", ssvETHAddress);
+
+  const ssvETHContract = await hre.ethers.getContractAt(
+    ssvETHAbi,
+    ssvETHAddress
+  );
+
+  // Write address and abi to external js file
+  fs.writeFileSync(
+    "../react-app/src/contracts/goerli/ssvETH.js",
+    `module.exports = { address: "${
+      ssvETHContract.address
+    }", abi: ${JSON.stringify(ssvETHAbi)} }`
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -9,7 +9,7 @@ import { getRPCPollTime } from "../helpers";
 import externalContracts from "../contracts/external_contracts";
 const { Search } = Input;
 
-function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address }) {
+function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address, localChainId }) {
   const localProviderPollingTime = getRPCPollTime(localProvider);
 
   const [unStakeLoading, setUnStakeLoading] = useState(false);
@@ -23,7 +23,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   console.log("userEarnings", userEarnings?.toString());
   const balanceStaked = useContractReader(readContracts, "STAKINGPOOL", "getUserStake", [address]);
-  const stakingPoolAddress = externalContracts[5].contracts.STAKINGPOOL.address;
+  const stakingPoolAddress =
+    localChainId === 31337
+      ? externalContracts[31337].contracts.STAKINGPOOL.address
+      : externalContracts[5].contracts.STAKINGPOOL.address;
   const stakingPoolBalance = useBalance(localProvider, stakingPoolAddress, localProviderPollingTime);
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
     address,

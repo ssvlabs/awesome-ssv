@@ -53,7 +53,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, goerli, xdai, mainnet)
+const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, goerli, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -302,6 +302,7 @@ function App(props) {
             userSigner={userSigner}
             gasPrice={gasPrice}
             address={address}
+            localChainId={localChainId}
           />
         </Route>
         <Route exact path="/manager">
@@ -310,6 +311,7 @@ function App(props) {
             tx={tx}
             writeContracts={writeContracts}
             readContracts={readContracts}
+            localChainId={localChainId}
           />
         </Route>
       </Switch>

@@ -26,7 +26,7 @@ yarn react-app:start
 ```
 📱 Open http://localhost:3000 to see the app
 
-🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update the default network in `packages/react-app/src/App.jsx` and your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
 
 # Backend   
 
@@ -46,6 +46,7 @@ After setting up your default network in `hardhat-config.js` you can run
 ```bash
 yarn deploy
 ```
+🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/`
 
 🚨 Goerli live deployment :
 
@@ -54,15 +55,16 @@ If you want to deploy on the live Goerli testnet, you'll only need to run this :
 ```bash
 yarn deploy-goerli
 ```
+🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/goerli/`
 
-✅ you can verify your staking pool contract on Goerli by using this : 
+✅ to verify your staking pool contract on Goerli  : 
 
 ```bash
 yarn verify --constructor-args arguments.js --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 ```
 and your ssvETH token contract with 
 
-✅ you can verify your ssvETH contract on Goerli by using this : 
+✅ to verify your ssvETH contract on Goerli : 
 
 ```bash
 yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
@@ -77,7 +79,7 @@ yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 
 📝 Edit your frontend `App.jsx` in `packages/react-app/src`
 
-💼 Add/Edit your deployment scripts in `packages/hardhat/deploy`
+💼 Add/Edit your deployment scripts in `packages/hardhat/scripts/deploy` for Goerli and in `packages/hardhat/deploy` for localhost (Goerli fork)
 
 🚨📡 To deploy to a public domain, use `yarn surge`. You will need to have a surge account and have the surge CLI installed. There is also the option to deploy to IPFS using `yarn ipfs` and `yarn s3` to deploy to an AWS bucket 🪣 There are scripts in the `packages/react-app/src/scripts` folder to help with this.`
 
