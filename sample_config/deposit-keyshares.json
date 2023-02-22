@@ -1,7 +1,7 @@
 {
   "eth": {
-    "rpc": "",
-    "priv_key": ""
+    "rpc": "http://localhost:8545", // use localhost for goerli-fork OR https://goerli.infura.io/v3/<ENDPOINT> if you are using Goerli
+    "priv_key": "" // your private key corresponding to the whitelisted address in your stakingPool
   },
   "keyshares": [],
   "stakepool_contract": "",
