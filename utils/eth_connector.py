@@ -22,12 +22,12 @@ class EthNode:
 
     def make_tx(self, tx):
         print(self.account.address)
-        self.eth_node.eth.call(tx)
+        # self.eth_node.eth.call(tx)
         tx['nonce'] = self.eth_node.eth.get_transaction_count(
             self.account.address)
         print(self.local)
         if self.local:
-            tx.pop('maxPriorityFeePerGas')
+            # tx.pop('maxPriorityFeePerGas')
             tx.pop('maxFeePerGas')
         print(tx)
         signed_tx = self.eth_node.eth.account.sign_transaction(
