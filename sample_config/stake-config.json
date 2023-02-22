@@ -1,12 +1,12 @@
 {
   "eth": {
-    "rpc": "",
-    "priv_key": ""
+    "rpc": "http://localhost:8545", // use localhost for goerli-fork OR https://goerli.infura.io/v3/<ENDPOINT> if you are using Goerli
+    "priv_key": "" // your private key corresponding to the whitelisted address in your stakingPool
   },
   "contract_address": {
-    "ssv_network": "",
-    "stakepool": "",
-    "ssv_token": ""
+    "ssv_network": "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04",
+    "stakepool": "0x721Bab0B19203343fFcb1585027DF60B03194679",
+    "ssv_token": "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
   },
   "keystore_pass": ""
 }

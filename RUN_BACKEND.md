@@ -37,6 +37,15 @@ Your staking pool needs to be funded with some SSV to pay for running your valid
 
 It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
 
+### Outputs 
+
+Your created validator keys and deposit data can be found in `"/validator_keys"` folder. 
+
+Validator split shares can be found in `"/keyshares"` folder. 
+
+```
+validator_keys
+
 - Open new terminal in the main project folder
 
 To run script you first need to install the requirements :
@@ -91,6 +100,10 @@ python main.py deposit-keyshares -c <CONFIG_FILE>
 
 ```
 python main.py stake -c <CONFIG_FILE>
+
+e.g. 
+
+python main.py stake -c sample_config/stake-config.json
 ```
 
 ### LICENSE
