@@ -61,9 +61,8 @@ def create_keyshares(config_file):
                  operator_data in config.operators]
     for keystore in config.keystore_files:
         ssv = SSV(keystore, config.keystore_password)
-        keyshare_file, fees = ssv.generate_shares(operators, config.ssv_fee)
+        keyshare_file = ssv.generate_shares(operators, config.ssv_fee)
         print("for following keystore file: {} \n keyshare generated is:{}".format(keystore, keyshare_file))
-        print("You have to pay the following fees: {}".format(fees))
 
 
 def deposit_keyshare(config_file):
