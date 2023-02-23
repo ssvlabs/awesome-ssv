@@ -76,6 +76,11 @@ python main.py create-keys -c <CONFIG_FILE>
 
 ```
 python main.py generate-keyshares -c <CONFIG_FILE>
+
+e.g. 
+
+python3 main.py generate-keyshares -c sample_config/keyshare-config.json
+
 ```
 
 - _deposit-validators_ : This option can be used to submit validator to stakepool
@@ -84,6 +89,12 @@ python main.py generate-keyshares -c <CONFIG_FILE>
 
 ```
 python main.py deposit-validators -c <CONFIG_FILE>
+
+e.g. 
+
+
+python3 main.py deposit-validators -c sample_config/deposit-validator.json
+
 ```
 
 - _deposit-keyshares_ : This option can be used to submit validator keyshares to stakepool

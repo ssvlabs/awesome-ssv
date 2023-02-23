@@ -1,9 +1,9 @@
 {
   "eth": {
     "rpc": "http://localhost:8545",
-    "priv_key": ""
+    "priv_key": "83f5d529c211e95b0e3f0a91e0c44763bb0b1718c9c129fb0bcee9ecf4a964e2"
   },
-  "keyshares": [],
-  "stakepool_contract": "",
-  "ssv_token": ""
+  "keyshares": ["keyshares/keyshares-20230223_022633.json"],
+  "stakepool_contract": "0xFc6f35B3D7e7d6c5789bC2c3566d8b1E9E11752a",
+  "ssv_token": "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
 }
