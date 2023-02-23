@@ -9,8 +9,7 @@
 // const ethers = require("hardhat");
 
 const hre = require("hardhat");
-
-
+const fs = require("fs");
 
 async function main() {
   const whitelist = "0x00704A2E3EAf3992c7C9802DF0088F8BA9e4426d";
@@ -40,6 +39,35 @@ async function main() {
 
   await stakingpool.stake({value: amount});
   console.log(`StakingPool funded`);
+  const stakingPoolartifact = await hre.artifacts.readArtifact("StakingPool");
+  const ssvETHArtifact = await hre.artifacts.readArtifact("SSVETH");
+
+  const stakingPoolAbi = stakingPoolartifact.abi;
+  const ssvETHAbi = ssvETHArtifact.abi;
+
+  // Write address and abi to external js file
+  fs.writeFileSync(
+    "../react-app/src/contracts/goerli/stakingPool.js",
+    `module.exports = { address: "${
+      stakingpool.address
+    }", abi: ${JSON.stringify(stakingPoolAbi)} }`
+  );
+
+  const ssvETHAddress = await stakingpool.ssvETH();
+  console.log("ssvETHAddress", ssvETHAddress);
+
+  const ssvETHContract = await hre.ethers.getContractAt(
+    ssvETHAbi,
+    ssvETHAddress
+  );
+
+  // Write address and abi to external js file
+  fs.writeFileSync(
+    "../react-app/src/contracts/goerli/ssvETH.js",
+    `module.exports = { address: "${
+      ssvETHContract.address
+    }", abi: ${JSON.stringify(ssvETHAbi)} }`
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

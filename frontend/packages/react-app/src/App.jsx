@@ -302,6 +302,7 @@ function App(props) {
             userSigner={userSigner}
             gasPrice={gasPrice}
             address={address}
+            localChainId={localChainId}
           />
         </Route>
         <Route exact path="/manager">
@@ -310,6 +311,7 @@ function App(props) {
             tx={tx}
             writeContracts={writeContracts}
             readContracts={readContracts}
+            localChainId={localChainId}
           />
         </Route>
       </Switch>
