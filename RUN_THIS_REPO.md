@@ -6,6 +6,15 @@ base for any solution used in production. It contains backend scripts and smart 
 
 minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
 
+## Video walkthrough
+
+[![Repo walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4xgCsi_kSVI/0.jpg)](http://www.youtube.com/watch?v=4xgCsi_kSVI "Repo walkthrough & launchig 🌈LSD pool")
+
+**NOTE:**
+
+- **Readmes always take precendece** - Some parts of this video may be outdated.
+- Video goes into **more detail and gives more background**. If you have some experience with this stuff can safely skip it and follow Readmes only.
+
 ## Credits
 
 Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service)
@@ -42,9 +51,7 @@ is this minimalistic staking pool based on!
 
 ## How it works?
 
-
 - Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator ! 🤑
-
 
 ### User Actions
 
@@ -128,12 +135,11 @@ management [here](https://eth-brownie.readthedocs.io/en/stable/account-managemen
 
 3. Installing packages
 
-you may need to install some packages, this is the one you need, if you need more, just copy the package path from browser or smart contract directly 
+you may need to install some packages, this is the one you need, if you need more, just copy the package path from browser or smart contract directly
 
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
 ```
-
 
 ### Contract Changes
 
