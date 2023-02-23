@@ -3,11 +3,8 @@ const { utils } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
 
-// require("@nomicfoundation/hardhat-chai-matchers");
-// require("@tenderly/hardhat-tenderly");
-// require("@nomicfoundation/hardhat-toolbox");
-// require("hardhat-deploy");
-
+require("@nomicfoundation/hardhat-chai-matchers");
+require("hardhat-deploy");
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
@@ -79,6 +76,7 @@ module.exports = {
     },
 
   },
+  dependencies: ["StakingPool", "ssvETH"],
   solidity: {
     compilers: [
       {
@@ -144,7 +142,7 @@ module.exports = {
     runOnCompile: true,
     clear: true,
     flat: true,
-    only: [],
+    only: ["StakingPool", "ssvETH"],
     spacing: 2,
     pretty: false,
   },
