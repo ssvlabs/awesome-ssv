@@ -68,6 +68,11 @@ Following are the option and their respective config:
 
 ```
 python main.py create-keys -c <CONFIG_FILE>
+
+e.g. 
+
+python3 main.py create-keys -c sample_config/validator-config.json
+
 ```
 
 - _generate-keyshares_ : This option can be used to generate SSV keyshares using ssv cli tool

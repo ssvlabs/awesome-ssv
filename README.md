@@ -5,13 +5,24 @@ This repo:
 1. showcases how to [create and run LSD staking pool](/RUN_THIS_REPO.md) leveraging ssv.network,
 2. helps you **start building**, by maintaining is a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
 
-## Create and run LSD staking pool
 
-Open [RUN_THIS_REPO.md](RUN_THIS_REPO.md) for instructions on how to run this repo.
 
+##  Start BUIDLing
+
+This repo is ment to give you a head start in building a cool prototype of the next big staking app. Build sth interesting on top such as transferable NFT validators, Restaking app, or whatever else and **open PR**.
+
+to **Create and run LSD staking pool**
+
+open [RUN_THIS_REPO.md](RUN_THIS_REPO.md) for instructions.
 ### Credits
 
-Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo-Garuda](https://github.com/RohitAudit/ssv-service) is this minimalistic LSD staking pool based on.
+Huge thanks to 
+
+- [@RohitAudit](https://github.com/RohitAudit) who develops & maintains all the **backend** magic on whose [repo-Garuda](https://github.com/RohitAudit/ssv-service) is this minimalistic LSD staking pool based on.
+
+- [@nibthebear](https://github.com/TIM88-DOT) who has developed the **frontend** and js deployment and rewamped of the **smart contracts**.  
+
+
 
 ## SSV projects & resources
 

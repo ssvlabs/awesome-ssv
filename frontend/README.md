@@ -2,6 +2,8 @@
 
 🚀 By staking their ETH to a staking contract, users receive a liquid staked derivative token called ssvETH. This allows them to earn compound interest on their staked ETH, while also being able to use the ssvETH tokens in other DeFi protocols without having to unstake their original ETH.
 
+🙏 For aditional functionality and documentation check the amazing [scaffold-eth](https://github.com/scaffold-eth/scaffold-eth) repo this frontend is based on!
+
 # Live Deployment
 
 You can find our live demo deployment [Here](https://awesome-ssv-staking.surge.sh)
@@ -112,18 +114,44 @@ yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 ❗❗ Important :
 💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`. And your new contracts addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
 
-# Backend
-
-🚀 You can run your own instance of the solution using our backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md)
-
-
-💼 Add/Edit your deployment scripts in `packages/hardhat/scripts/deploy` for Goerli and in `packages/hardhat/deploy` for localhost (Goerli fork)
-
-# Extra
+# Show off to the world
 
 
 🚨📡 To deploy to a public domain, use `yarn surge`. You will need to have a surge account and have the surge CLI installed. There is also the option to deploy to IPFS using `yarn ipfs` and `yarn s3` to deploy to an AWS bucket 🪣 There are scripts in the `packages/react-app/src/scripts` folder to help with this.`
 
 ---
 
-🙏 Built on top of the amazing [scaffold-eth](https://github.com/scaffold-eth/scaffold-eth) !
+
+
+# Backend
+
+Now it's time to activate some validators beacon chain and use ssv network to run it! 
+
+All the backend functionality for this, namely 
+
+1. validator creation
+2. validator activation with beacon chain
+3. splitting your validator (DVT!) into multiple shares
+4. registering validator share with ssv.network 
+
+are done for you out of the box!!!
+
+
+🚀 Just follow the readme and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md)
+
+
+💼 Add/Edit your deployment scripts in `packages/hardhat/scripts/deploy` for Goerli and in `packages/hardhat/deploy` for localhost (Goerli fork)
+
+
+
+# Interested? Get involved 
+
+- build sth interesting on top, transferable NFT validators, Restaking app, or whatever else and **open PR**
+
+## Connect
+
+Best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly and also @MarkoInEther and @Matty. They will help you to get to the right person.
+
+
+
+
