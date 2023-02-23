@@ -86,7 +86,7 @@ class SSV:
         print(output)
         return output_folder + output.decode("utf-8").partition("keyshares")[2].partition(".json")[0] + ".json"
 
-    def stake_shares(self, share_file_path):
+    def get_keyshare(self, share_file_path):
         """
 
         :return:
@@ -106,4 +106,4 @@ if __name__ == '__main__':
     op = OperatorData("https://api.ssv.network")
     operators = op.get_operator_data([1, 2, 192, 42])
     share_file = str(ssv.generate_shares(operators, 1200084048))
-    ssv.stake_shares(share_file)
+    ssv.get_keyshare(share_file)
