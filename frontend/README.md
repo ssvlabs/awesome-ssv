@@ -15,7 +15,7 @@ Prerequisites: [Node (v18 LTS)](https://nodejs.org/en/download/) plus [Yarn (v1.
 ```bash
 git clone https://github.com/bloxapp/awesome-ssv
 ```
-> 2️⃣ make sure your wallet connected to the Goerli network (5) (the default network)
+> 2️⃣ make sure you have the right network set
 
 > 3️⃣ install and start the frontend:
 
@@ -28,9 +28,7 @@ yarn react-app:start
 
 🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update the default network in `packages/react-app/src/App.jsx` and your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
 
-# Backend   
-
-🚀 You can run your own instance of the solution using our backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md) 
+✏ You can edit the home view and the manager view in  `packages/react-app/src/views/Home.jsx` and `packages/react-app/src/views/Manager.jsx`respectively.
 
 # Contracts
 
@@ -72,6 +70,10 @@ yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 
 ❗❗ Important : 
 💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`. And your new contracts addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+
+# Backend   
+
+🚀 You can run your own instance of the solution using our backend repo to deploy contracts and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md) 
 
 # Extra
 
