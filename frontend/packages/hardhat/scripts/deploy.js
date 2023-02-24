@@ -45,6 +45,10 @@ async function main() {
   const stakingPoolAbi = stakingPoolartifact.abi;
   const ssvETHAbi = ssvETHArtifact.abi;
 
+  // Create "goerli" directory if it doesn't exist
+  if (!fs.existsSync("../react-app/src/contracts/goerli")) {
+    fs.mkdirSync("../react-app/src/contracts/goerli");
+  }
   // Write address and abi to external js file
   fs.writeFileSync(
     "../react-app/src/contracts/goerli/stakingPool.js",

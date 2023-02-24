@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
@@ -25,9 +26,21 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
   });
 
+  // Create localhost folder if it doesn't exist
+  const localhostDir = path.join(
+    __dirname,
+    "..",
+    "..",
+    "react-app",
+    "src",
+    "contracts",
+    "localhost"
+  );
+  fs.mkdirSync(localhostDir, { recursive: true });
+
   // Write address and abi to external js file
   fs.writeFileSync(
-    "../react-app/src/contracts/localhost/stakingPool.js",
+    path.join(localhostDir, "stakingPool.js"),
     `module.exports = { address: "${
       stakingPool.address
     }", abi: ${JSON.stringify(stakingPool.abi)} }`
