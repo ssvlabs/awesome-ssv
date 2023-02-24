@@ -17,9 +17,23 @@ module.exports = async ({ deployments }) => {
 
   const ssvETHAbi = (await deployments.getArtifact("SSVETH")).abi;
 
+  // Create localhost folder if it doesn't exist
+  const localhostDir = path.join(
+    __dirname,
+    "..",
+    "..",
+    "react-app",
+    "src",
+    "contracts",
+    "localhost"
+  );
+  fs.mkdirSync(localhostDir, { recursive: true });
+
   // Export the ssvETH object to a JavaScript file
-  const ssvETHObjectPath = path.join("../react-app/src/contracts/localhost/", "ssvETH.js");
-  const ssvETHObjectContent = `module.exports = {\n  address: "${ssvETHAddress}",\n  abi: ${JSON.stringify(ssvETHAbi)},\n};`;
+  const ssvETHObjectPath = path.join(localhostDir, "ssvETH.js");
+  const ssvETHObjectContent = `module.exports = {\n  address: "${ssvETHAddress}",\n  abi: ${JSON.stringify(
+    ssvETHAbi
+  )},\n};`;
   fs.writeFileSync(ssvETHObjectPath, ssvETHObjectContent);
 
   const ssvETHContract = await hre.ethers.getContractAt(
