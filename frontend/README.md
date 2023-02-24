@@ -146,7 +146,7 @@ are done for you out of the box!!!
 
 # Interested? Get involved 
 
-- build sth interesting on top, transferable NFT validators, Restaking app, or whatever else and **open PR**
+- build sth interesting on top, transferable NFT validators, Restaking app, or whatever else and **open PR**.
 
 ## Connect
 
