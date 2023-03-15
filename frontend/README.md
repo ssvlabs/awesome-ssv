@@ -35,14 +35,13 @@ yarn react-app:start
 
 📱 Open http://localhost:3000 to see the app
 
-In `frontend/packages/react-app/src/App.jsx` change to `NETWORKS.localhost` if running with `yarn fork` or `NETWORKS.goerli` if live Goerli network.
+❗❗ Important : Make sure that your front end is connected to the correct chain in `frontend/packages/react-app/src/App.jsx`, either:
 
-```js
-const initialNetwork = NETWORKS.localhost;
+1. `const initialNetwork = NETWORKS.goerli;` for using the live Goerli network.
 
-```
+or
 
-🎉 If you already have the contracts deployed from the [backend](https://github.com/bloxapp/awesome-ssv), you just need to update the default network in `packages/react-app/src/App.jsx` and your new contract addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+2. `const initialNetwork = NETWORKS.localhost;` if running with `yarn fork`.
 
 =======
 # Editing
@@ -51,13 +50,6 @@ const initialNetwork = NETWORKS.localhost;
 
 ✏ Edit the home view and the manager view in  `packages/react-app/src/views/Home.jsx` and `packages/react-app/src/views/Manager.jsx`respectively.  
 
-❗❗ Important : Make sure that your front end is connected to the correct chain, either:
-
-1. `const initialNetwork = NETWORKS.goerli;`
-
-or
-
-2. `const initialNetwork = NETWORKS.localhost;`
 
 # Deploy Contracts
 
