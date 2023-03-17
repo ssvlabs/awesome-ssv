@@ -1,11 +1,11 @@
 {
-  "31337": {
-    "localhost": {
-      "name": "localhost",
-      "chainId": "31337",
+  "5": {
+    "goerli": {
+      "name": "goerli",
+      "chainId": "5",
       "contracts": {
         "StakingPool": {
-          "address": "0x27A62bdF937074e9bEF571de29dffc7325148507",
+          "address": "0x536b2a53594B118c15E6F9c82043d31B2c3ADe11",
           "abi": [
             {
               "inputs": [
@@ -486,13 +486,15 @@
           ]
         }
       }
-    },
-    "hardhat": {
-      "name": "hardhat",
+    }
+  },
+  "31337": {
+    "localhost": {
+      "name": "localhost",
       "chainId": "31337",
       "contracts": {
         "StakingPool": {
-          "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+          "address": "0x0C06c719654D34c9BBaBb0b98c79C3B4e3735A84",
           "abi": [
             {
               "inputs": [

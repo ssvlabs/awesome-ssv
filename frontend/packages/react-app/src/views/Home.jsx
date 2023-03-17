@@ -11,22 +11,19 @@ const { Search } = Input;
 
 function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address, localChainId }) {
   const localProviderPollingTime = getRPCPollTime(localProvider);
-
+  console.log("contracots0", readContracts);
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
-  const validators = useContractReader(readContracts, "STAKINGPOOL", "getValidators");
+  const validators = useContractReader(readContracts, "StakingPool", "getValidators");
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
-  const beaconRewards = useContractReader(readContracts, "STAKINGPOOL", "beaconRewards");
-  const executionRewards = useContractReader(readContracts, "STAKINGPOOL", "executionRewards");
+  const beaconRewards = useContractReader(readContracts, "StakingPool", "beaconRewards");
+  const executionRewards = useContractReader(readContracts, "StakingPool", "executionRewards");
   console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   console.log("userEarnings", userEarnings?.toString());
-  const balanceStaked = useContractReader(readContracts, "STAKINGPOOL", "getUserStake", [address]);
-  const stakingPoolAddress =
-    localChainId === 31337
-      ? externalContracts[31337].contracts.STAKINGPOOL.address
-      : externalContracts[5].contracts.STAKINGPOOL.address;
+  const balanceStaked = useContractReader(readContracts, "StakingPool", "getUserStake", [address]);
+  const stakingPoolAddress = readContracts && readContracts?.StakingPool?.address;
   const stakingPoolBalance = useBalance(localProvider, stakingPoolAddress, localProviderPollingTime);
   const ssvEthAllowance = useContractReader(readContracts, "SSVETHCONTRACT", "allowance", [
     address,
@@ -34,14 +31,14 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   ]);
   const totalSupply = useContractReader(readContracts, "SSVETHCONTRACT", "totalSupply");
   // ** 📟 Listen for broadcast events
-  const stakeEvents = useEventListener(readContracts, "STAKINGPOOL", "UserStaked", localProvider, 5);
+  const stakeEvents = useEventListener(readContracts, "StakingPool", "UserStaked", localProvider, 5);
 
   // The transactor wraps transactions and provides notificiations
   const tx = Transactor(userSigner, gasPrice);
 
   const handleOnStake = async value => {
     setStakeLoading(true);
-    await tx(writeContracts.STAKINGPOOL.stake({ value: ethers.utils.parseEther(value) }));
+    await tx(writeContracts.StakingPool.stake({ value: ethers.utils.parseEther(value) }));
     setStakeLoading(false);
   };
 
@@ -52,13 +49,13 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
     } else {
       setUnStakeLoading(true);
       if (Number(ssvEthAllowance) > 0) {
-        await tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+        await tx(writeContracts.StakingPool.unStake(ethers.utils.parseEther(value)));
       } else {
         //approving max before calling the unstake method
         await tx(
           writeContracts.SSVETHCONTRACT.approve(stakingPoolAddress, "10000000000000000000000000000000000000000"),
         );
-        tx(writeContracts.STAKINGPOOL.unStake(ethers.utils.parseEther(value)));
+        tx(writeContracts.StakingPool.unStake(ethers.utils.parseEther(value)));
       }
     }
     setUnStakeLoading(false);
@@ -196,7 +193,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
           <div style={{ padding: 14 }}>
             <h4 style={{ whiteSpace: "nowrap" }}>Staking Pool Contract: </h4>
             <Address
-              value={readContracts && readContracts.STAKINGPOOL && readContracts.STAKINGPOOL.address}
+              value={readContracts && readContracts.StakingPool && readContracts.StakingPool.address}
               fontSize={16}
             />
             <p style={{ maxWidth: "350px", textAlign: "left", padding: "8px" }}>

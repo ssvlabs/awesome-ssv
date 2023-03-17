@@ -5,22 +5,22 @@ import { Address, Balance } from "../components";
 import { ethers } from "ethers";
 const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
-  const operators = useContractReader(readContracts, "STAKINGPOOL", "getOperators");
-  const pubKeyEvents = useEventListener(readContracts, "STAKINGPOOL", "PubKeyDeposited", localProvider, 5);
-  const validators = useContractReader(readContracts, "STAKINGPOOL", "getValidators");
+  const operators = useContractReader(readContracts, "StakingPool", "getOperators");
+  const pubKeyEvents = useEventListener(readContracts, "StakingPool", "PubKeyDeposited", localProvider, 5);
+  const validators = useContractReader(readContracts, "StakingPool", "getValidators");
 
   const handleOnSetNewOperators = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateOperators(JSON.parse(value)));
+    await tx(writeContracts.StakingPool.updateOperators(JSON.parse(value)));
   };
 
   const handleUpdateBeaconRewards = async value => {
-    await tx(writeContracts.STAKINGPOOL.updateBeaconRewards(ethers.utils.parseEther(value.toString()).toString()));
+    await tx(writeContracts.StakingPool.updateBeaconRewards(ethers.utils.parseEther(value.toString()).toString()));
   };
 
   const onDepositSharesSubmit = async values => {
     console.log("values:", values);
     await tx(
-      writeContracts.STAKINGPOOL.depositShares(
+      writeContracts.StakingPool.depositShares(
         values.pubkey.toString(),
         JSON.parse(values.operatorIds),
         JSON.parse(values.sharesPublicKeys),
@@ -37,7 +37,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log("values:", values);
     console.log(values.pubkey);
     await tx(
-      writeContracts.STAKINGPOOL.depositValidator(
+      writeContracts.StakingPool.depositValidator(
         values.pubkey,
         values.withdrawalCredentials,
         values.signature,

@@ -14,7 +14,7 @@ function FaucetHint({ localProvider, targetNetwork, address }) {
   const yourLocalBalance = useBalance(localProvider, address, localProviderPollingTime);
 
   // get gas Price from network
-  const gasPrice = useGasPrice(targetNetwork, "fast", localProviderPollingTime);
+  const gasPrice = useGasPrice(targetNetwork, "fastest", localProviderPollingTime);
 
   // Faucet Tx can be used to send funds from the faucet
   const faucetTx = Transactor(localProvider, gasPrice);
@@ -36,9 +36,9 @@ function FaucetHint({ localProvider, targetNetwork, address }) {
           onClick={() => {
             faucetTx({
               to: address,
-              value: ethers.utils.parseEther("0.01"),
+              value: ethers.utils.parseEther("100"),
             });
-            setFaucetClicked(true);
+            //setFaucetClicked(true);
           }}
         >
           💰 Grab funds from the faucet ⛽️

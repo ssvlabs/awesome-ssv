@@ -78,42 +78,42 @@ After setting up your `defaultNetwork` to `"localhost"` in `hardhat-config.js` y
 ```bash
 yarn deploy
 ```
-🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/`
+🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/` and in `packages/react-app/src/contracts/hardhat_contracts`
 
 # 🚨 Goerli live deployment:
 
-If you want to deploy on the live Goerli testnet, you'll only need to run this :
+If you want to deploy on the live Goerli testnet, you'll only need :
+
+Set up your `defaultNetwork` to `"goerli"` in `hardhat-config.js`
+
+Then :
 
 ```bash
-yarn deploy-goerli
+yarn deploy
 ```
 🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/goerli/`
 
-
-✅ you can verify your staking pool contract on Goerli by using this :
-
+✅ you can also verify  your staking pool contract on Goerli by using this :
 
 ```bash
 yarn verify --constructor-args arguments.js --network goerli <NEW_DEPLOYED_CONTRACT_ADDRESS>
 ```
 
-
-✅ you can verify your ssvETH contract on Goerli by using this :
-
+✅ and your ssvETH contract by using this :
 
 ```bash
 yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 ```
 
-❗❗ Important :
-💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js`. And your new contracts addresses and ABIs in `packages/react-app/src/contracts/external_contracts`.
+❗❗ Important reminder : ❗❗
+
+💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js` !
 
 # Show off to the world
 
 🚨📡 To deploy to a public domain, use `yarn surge`. You will need to have a surge account and have the surge CLI installed. There is also the option to deploy to IPFS using `yarn ipfs` and `yarn s3` to deploy to an AWS bucket 🪣 There are scripts in the `packages/react-app/src/scripts` folder to help with this.`
 
 ---
-
 
 
 # Backend
