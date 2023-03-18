@@ -78,7 +78,14 @@ After setting up your `defaultNetwork` to `"localhost"` in `hardhat-config.js` y
 ```bash
 yarn deploy
 ```
-🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/` and in `packages/react-app/src/contracts/hardhat_contracts`
+
+Once done you can fund the pool : 
+
+```bash
+yarn fund-pool
+```
+
+🎇 After this, your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/`, `packages/react-app/src/contracts/external_contracts` and in `packages/react-app/src/contracts/hardhat_contracts`.
 
 # 🚨 Goerli live deployment:
 
