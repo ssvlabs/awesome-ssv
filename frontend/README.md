@@ -43,7 +43,7 @@ or
 
 2. `const initialNetwork = NETWORKS.localhost;` if running with `yarn fork`.
 
-=======
+
 # Editing
 
 📝 Edit your frontend `App.jsx` in `packages/react-app/src`
@@ -87,7 +87,7 @@ yarn fund-pool
 
 🎇 After this, your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/localhost/`, `packages/react-app/src/contracts/external_contracts` and in `packages/react-app/src/contracts/hardhat_contracts`.
 
-# 🚨 Goerli live deployment:
+## 🚨 Goerli live deployment:
 
 If you want to deploy on the live Goerli testnet, you'll only need :
 
