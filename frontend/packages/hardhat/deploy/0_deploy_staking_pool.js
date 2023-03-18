@@ -29,25 +29,5 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   console.log(`StakingPool deployed to ${stakingpool.address}`);
   
-  // fund the pool on localhost
-  try {
-    if (chainId === localChainId) {
-      const stakingPoolDep = await deployments.get("StakingPool");
-      const stakingPoolAbi = stakingPoolDep.abi;
-      const stakingPoolAddress = stakingPoolDep.address;
-
-      const stakingPoolContract = await hre.ethers.getContractAt(
-        stakingPoolAbi,
-        stakingPoolAddress
-      );
-
-      const amount = hre.ethers.utils.parseEther("62");
-
-      await stakingPoolContract.stake({ value: amount });
-      console.log(`StakingPool funded`);
-    }
-  } catch (error) {
-    console.error("Funding Error =>", error);
-  }
 };
 module.exports.tags = ["StakingPool"];

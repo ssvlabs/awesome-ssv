@@ -11,7 +11,7 @@ const { Search } = Input;
 
 function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address, localChainId }) {
   const localProviderPollingTime = getRPCPollTime(localProvider);
-  console.log("contracots0", readContracts);
+  console.log("contract", readContracts);
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
