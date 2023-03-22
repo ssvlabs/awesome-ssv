@@ -123,7 +123,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
         ssvETH.transferFrom(msg.sender, address(this), _amount);
         uint256 _amount_to_transfer = (_amount / ssvETH.sharePrice()) * 1e18;
         payable(msg.sender).transfer(_amount_to_transfer);
-        delete userStake[msg.sender];
+        userStake[msg.sender] -= _amount;
     }
 
     /**

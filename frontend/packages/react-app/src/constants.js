@@ -31,6 +31,7 @@ export const NETWORKS = {
     chainId: 31337,
     blockExplorer: "",
     rpcUrl: localRpcUrl,
+    gasPrice: 200000000000
   },
 
   goerli: {
@@ -41,7 +42,7 @@ export const NETWORKS = {
     blockExplorer: "https://goerli.etherscan.io/",
     rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`,
   },
- 
+
 
 };
 
