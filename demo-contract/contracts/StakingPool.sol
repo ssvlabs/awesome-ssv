@@ -18,7 +18,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-    address public Oracle_address;
+    // address public Oracle_address; 
     
     uint256 beaconRewards;
     uint256 executionRewards;
