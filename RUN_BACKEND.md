@@ -9,9 +9,9 @@ This backend allows for easily managing the staking pool.
 
 ### External Libraries used
 
-- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
+- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split Ethereum validator keys.
 
-- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators keys
+- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
 
 ### Install Dependencies
 
@@ -31,7 +31,7 @@ This backend allows for easily managing the staking pool.
 ## Run Backend Manager
 
 **NOTE:**
-make sure that for the backend script you are using a private key corresponding to your `whitelist` address from your `deploy` script.
+make sure that for the backend script, you are using a private key corresponding to your `whitelist` address from your `deploy` script.
 
 Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
 
@@ -80,7 +80,7 @@ python3 main.py create-keys -c sample_config/validator-config.json
 
 ```
 
-- _generate-keyshares_ : This option can be used to generate SSV keyshares using SSV CLI tool
+- _generate-keyshares_ : This option can be used to generate SSV keyshares using the SSV CLI tool
   - Example config file: sample_config/keyshare-config.json
   - Fill in the params in the config file and pass it as an argument
 
@@ -94,7 +94,7 @@ python3 main.py generate-keyshares -c sample_config/keyshare-config.json
 
 ```
 
-- _deposit-validators_ : This option can be used to submit validator keys to staking pool
+- _deposit-validators_ : This option can be used to submit validator keys to the staking pool
   - Example config file: sample_config/deposit-validator.json
   - Fill in the params in the config file and pass it as an argument
 
