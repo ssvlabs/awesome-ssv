@@ -61,7 +61,7 @@ To use the SSV network a validator key needs to be split into keyshares, which t
 
 - [SSV Keys - validator key splitting tool by Blox](https://github.com/bloxapp/ssv-keys) `MIT | JS`
 
-This is validator key splitting tool library implemented in JS/TS. It can be used to split the validator key and generate keyshares. It is easily implemented as npm package. You can also [download executable cli](https://github.com/bloxapp/ssv-keys) of this tool.
+This is a validator key splitting tool library implemented in JS/TS. It can be used to split validator keys and generate keyshares. It is easily implemented as an npm package. You can also [download executable cli](https://github.com/bloxapp/ssv-keys) of this tool.
 
 - [SSV Keys Go implementation by ChainUp](https://github.com/duktig666/ssv-keys-go) `Apache-2.0 | Go`
 
@@ -69,7 +69,7 @@ This is the Go implementation of the [ssv-keys repository](https://github.com/bl
 
 - [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys) `MIT | Electron/React`
 
-StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. The StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
+StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
 #### Distributed (validator) key generation
 
@@ -91,7 +91,7 @@ HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/use
 
 ### Staking pools
 
-- [GARUDA](https://github.com/RohitAudit/ssv-service) - `MIT | PY, SOL` Staking pool, with backend bot handling validator creation, splitting, registration.
+- [GARUDA](https://github.com/RohitAudit/ssv-service) - `MIT | PY, SOL` Staking pool, with backend bot handling validator creation, splitting, and registration.
 
 User stakes their ETH to a staking contract through which he is given a liquid staked derivative token called roETH. That's it! Users can just relax and wait for their roETH to compound over time and till then use the same tokens in other DeFi protocols
 
@@ -103,17 +103,17 @@ Staking pools for peer-to-peer staking on trusted node operators (friends)
 
 - [Casimir](https://github.com/consensusnetworks/casimir) - Decentralized self custody staking and asset management for Ethereum and more
 
-Casimir is a cross chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
+Casimir is a cross-chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
 
 - [Blockscape Network](https://github.com/BlockscapeNetwork/ssv-institutional-staking) — KYC-compliant Ethereum staking powered by SSV
 
-Don't let compliance and regulatory requirements get in your way. We allow any institution to securely store and stake ETH assets in an insured, audited and reward-generating way.
+Don't let compliance and regulatory requirements get in your way. We allow any institution to securely store and stake ETH assets in an insured, audited, and reward-generating way.
 
 ### Operator services
 
 - [Stereum](https://github.com/stereum-dev/ethereum-node/) - a Node Setup GUI that built an easy SSV Network Operator setup
 
-If you got an Ubuntu server, you can use Stereum's Node tool to connect to it and install / maintain a SSV Operator without having to access the CLI. If you have any question about it, let us know 😄.
+If you got an Ubuntu server, you can use Stereum's Node tool to connect to it and install/maintain an SSV Operator without having to access the CLI. If you have any questions about it, let us know 😄.
 
 - [ChainUp Cloud](https://cloud.chainup.com/) — ChainUp Cloud is an all-in-one SSV platform
 
@@ -123,7 +123,7 @@ Our SSV services include operator support and staking options to help you maximi
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
-  - Hal has built a custom Notify Recipe for SSV that allows SSV users to automatically monitor and get custom notifications for monitoring, operation runway, operator fee change, and many more SSV protocol-related events. Users will set up their notification using the Hal Notify app and then receive their notifications on the channel or their preference (email, telegram, discord, etc.)
+  - Hal has built a custom Notify Recipe for SSV that allows SSV users to automatically monitor and get custom notifications for monitoring, operation runway, operator fee change, and many more SSV protocol-related events. Users will set up their notifications using the Hal Notify app and then receive their notifications on the channel or their preference (email, telegram, discord, etc.)
 
 - [Hellman - allerts](https://alert.hellman.team/metrics) / [Hellman - repo](https://github.com/HellmanResearch)
 
@@ -138,13 +138,13 @@ Our SSV services include operator support and staking options to help you maximi
 
 ### How to add your project
 
-Add your project into appropriate category in this readme file and create a pull request.
+Add your project to the appropriate category in this README file and create a pull request.
 
 **Example project**
 
-- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence project description
+- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one-sentence project description
 
-One paragraph description talking what my project is about, how is it special. Please keep your description concise, the limit is 80 words.
+One paragraph description talking what my project is about, and how is it special. Please keep your description concise, the limit is 80 words.
 
 ### LICENSE
 
