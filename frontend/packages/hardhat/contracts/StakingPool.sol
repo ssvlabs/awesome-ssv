@@ -9,6 +9,7 @@ import "./interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
 error StakingPool__CantStakeZeroAmount(uint valueSent);
+error StakingPool__OnlyWhitelistAddress(address caller, address whitelistedAddress);
 
 contract StakingPool is Ownable, ReentrancyGuard {
     address public WhitelistKeyGenerator;
@@ -178,10 +179,9 @@ contract StakingPool is Ownable, ReentrancyGuard {
         uint256 _amount
     ) external {
         // Check if the message sender is the whitelisted address
-        require(
-            msg.sender == WhitelistKeyGenerator,
-            "Only whitelisted address can submit the key"
-        );
+        if(msg.sender != WhitelistKeyGenerator) {
+            revert StakingPool__OnlyWhitelistAddress(msg.sender, WhitelistKeyGenerator);
+        }
         // Approve the transfer of tokens to the SSV contract
         IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, _amount);
         // Register the validator and deposit the shares
