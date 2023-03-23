@@ -169,7 +169,7 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 
 - `brownie console`
 
-  - this will open automatically detect local blockchain running and connect to it.
+  - this will open automatically, detect the local blockchain running, and connect to it.
 
 - Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
 
@@ -177,7 +177,7 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 
 - `run('deploy')`
 
-- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
+- you will need a staking pool address to run the backend script. You can find it in `contrat_addresses.json`, it is also printed in the console.
 
 - To stake some eth run:
 - `StakingPool[0].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 8750000000})`
@@ -198,11 +198,11 @@ This repo works well with Goerli network as the network contains both the Beacon
 
 - `run('deploy')`
 
-- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed on the console.
+- you will need a staking pool address to run the backend script. You can find it in `contrat_addresses.json`, it is also printed on the console.
 
-Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
+Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
 
-When you have enough (32) goerliETH for to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
+When you have enough (32) goerliETH to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
 
 - `StakingPool[0].stake({'value':64*10**18})`
 
@@ -210,8 +210,8 @@ Now you can start the staking pool manager backend scripts
 
 #### Local deployment
 
-If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
+If you want to deploy your system locally additionally you'll need to deploy the Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
 
 ## Backend manager
 
-Once your smart contract are deployed you are ready to [RUN_BACKEND.md](RUN_BACKED.md)
+Once your smart contracts are deployed you are ready to [RUN_BACKEND.md](RUN_BACKED.md)
