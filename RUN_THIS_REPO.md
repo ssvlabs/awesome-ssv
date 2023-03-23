@@ -51,15 +51,15 @@ this minimalistic staking pool based on!
 
 ## How it works?
 
-- Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator ! 🤑
+- Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator! 🤑
 
 ### User Actions
 
-- User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
+- Users stake their ETH to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- Creates a ethereum validator key and gives it to staking pool for depositing for activation
+- Creates an Ethereum validator key and gives it to the staking pool to deposit for activation
 
-- Generates keyshares from the validator keystore and stakes them the SSV nodes
+- Generates keyshares from the validator keystore and stakes them with the SSV nodes
 
 - Saves the keystore and keyshares for verification at a later stage
 
@@ -67,9 +67,9 @@ this minimalistic staking pool based on!
 
 ### External Libraries used
 
-- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
+- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split Ethereum validator keys.
 
-- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators keys
+- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
 
 ### Install Dependencies
 
@@ -97,11 +97,11 @@ chmod +x setup.sh
 
 ### 1. Front End & Smart contracts - Scaffold-eth framework
 
-Continue to readme in `frontend` folder [FE_README.md](/frontend/README.md)
+Continue to README in `frontend` folder [FE_README.md](/frontend/README.md)
 
-It will navigate you through all the remaining process. You do **NOT** need to come back to this readme.
+It will navigate you through the remaining process. You do **NOT** need to come back to this README.
 
-If you want to deploy smart contracts only using brownie framwerk continue to next step
+If you want to deploy smart contracts only using brownie framework continue to the next step
 
 ### 2. Smart Contracts only - Brownie framework
 
@@ -121,9 +121,9 @@ cd demo-contract/
 
 1. You will need to setup your RPC
 
-you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura
+you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use Infura
 
-or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one
+or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use Alchemy. You can obtain one
 
 from [infura here](https://app.infura.io/)
 
@@ -145,7 +145,7 @@ brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
 
 Now go to `demo-contract/scripts/deploy.py` and change the following:
 
-- `whitelist, withdrawal_creds` update these values use deployer address, that will you use to run the backend script
+- `whitelist, withdrawal_creds` update these values using the deployer address that you will use to run the backend script
 
 Optional
 
@@ -155,7 +155,7 @@ Optional
 
 #### Goerli-fork
 
-This repo works best with locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
+This repo works best with a locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
 Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
 
@@ -163,7 +163,7 @@ Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send 
 
 - `npx hardhat node --network hardhat --fork https://goerli.infura.io/v3/<your id>`
 
-ENDPOINT = goerli endpoint from alchemy or infura
+ENDPOINT = goerli endpoint from Alchemy or Infura
 
 - Now you can use this network to deploy your contracts and interact with SSV contracts
 
