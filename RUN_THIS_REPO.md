@@ -1,10 +1,10 @@
 # LSD staking pool powered by SSV
 
-This repo showcases minimalistic backend for an LSD staking pool. It is for learning purposes ONLY and should NOT be a
+This repo showcases a minimalistic backend for an LSD staking pool. It is for learning purposes ONLY and should NOT be a
 
 base for any solution used in production. It contains backend scripts and smart contracts to manage and stake Ether,
 
-minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
+minting an LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
 
 ## Video walkthrough
 
@@ -13,13 +13,13 @@ minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distribute
 **NOTE:**
 
 - **Readmes always take precendece** - Some parts of this video may be outdated.
-- Video goes into **more detail and gives more background**. If you have some experience with this stuff can safely skip it and follow Readmes only.
+- Video goes into **more detail and gives more background**. If you have some experience with this stuff you can safely skip it and follow READMEs only.
 
 ## Credits
 
-Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service)
+Huge thanks to [@RohitAudit](https://github.com/RohitAudit) whose [repo](https://github.com/RohitAudit/ssv-service)
 
-is this minimalistic staking pool based on!
+this minimalistic staking pool based on!
 
 <!--
 
