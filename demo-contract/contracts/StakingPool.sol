@@ -53,6 +53,13 @@ contract StakingPool is Ownable, ReentrancyGuard {
         OperatorIDs = ids;
     }
 
+    /** 
+     * @notice called when the contract receives eth
+     */
+    receive() external payable {
+        updateExecutionRewards(msg.value);
+    }
+
     /**
      * @notice Get operator ids, check operators here https://explorer.ssv.network/
      */
@@ -204,8 +211,4 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit SharePriceUpdated(_newSharePrice);
     }
 
-    // called when the contract receives eth
-    receive() external payable {
-        updateExecutionRewards(msg.value);
-    }
 }
