@@ -46,7 +46,7 @@ Validator split shares can be found in `"/keyshares"` folder.
 ```
 validator_keys
 
-- Open new terminal in the main project folder
+- Open a new terminal in the main project folder
 
 To run the scripts you first need to install the requirements :
 
