@@ -12,14 +12,14 @@ minting an LSD token (ssvETH) and leveraging ssv.network to stake in a distribut
 
 **NOTE:**
 
-- **Readmes always take precendece** - Some parts of this video may be outdated.
+- **Readmes always take precedence** - Some parts of this video may be outdated.
 - Video goes into **more detail and gives more background**. If you have some experience with this stuff you can safely skip it and follow READMEs only.
 
 ## Credits
 
 Huge thanks to [@RohitAudit](https://github.com/RohitAudit) whose [repo](https://github.com/RohitAudit/ssv-service)
 
-this minimalistic staking pool based on!
+this minimalistic staking pool is based on!
 
 <!--
 
@@ -49,7 +49,7 @@ this minimalistic staking pool based on!
 
   Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code) -->
 
-## How it works?
+## How it works
 
 - Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator! 🤑
 
@@ -119,13 +119,13 @@ cd demo-contract/
 
 ### Brownie Environment setup
 
-1. You will need to setup your RPC
+1. You will need to set up your RPC
 
 you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use Infura
 
 or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use Alchemy. You can obtain one
 
-from [infura here](https://app.infura.io/)
+from [Infura here](https://app.infura.io/)
 
 2. You need to set up your deployer private key
 
@@ -135,7 +135,7 @@ management [here](https://eth-brownie.readthedocs.io/en/stable/account-managemen
 
 3. Installing packages
 
-you may need to install some packages, this is the one you need, if you need more, just copy the package path from browser or smart contract directly
+you may need to install some packages, this is the one you need, if you need more, just copy the package path from the browser or smart contract directly
 
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
@@ -157,7 +157,7 @@ Optional
 
 This repo works best with a locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
+Before running the fork, use the [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
 
 - Start the goerli fork network:
 
@@ -210,7 +210,7 @@ Now you can start the staking pool manager backend scripts
 
 #### Local deployment
 
-If you want to deploy your system locally additionally you'll need to deploy the Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
+If you want to deploy your system locally additionally you'll need to deploy the Ethereum Deposit Contract for validator activation, SSV token, and SSV contract to interact with.
 
 ## Backend manager
 
