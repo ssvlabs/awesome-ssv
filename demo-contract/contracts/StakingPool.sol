@@ -115,7 +115,9 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
 
     function stake() public payable {
-        require(msg.value > 0, "Can't stake zero amount");
+        if(msg.value <= 0) {
+            revert StakingPool__CantStakeZeroAmount(msg.value);
+        }
         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
