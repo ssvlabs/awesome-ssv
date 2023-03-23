@@ -3,11 +3,11 @@
 This repo:
 
 1. showcases how to [create and run LSD staking pool](/RUN_THIS_REPO.md) leveraging ssv.network,
-2. helps you **start building**, by maintaining is a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
+2. helps you **start building**, by maintaining a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
 
 ## Start BUIDLing
 
-This repo is meant to give you a head start in building a cool prototype of the next big staking app. Build something interesting on top such as transferable NFT validators, Restaking app, or whatever else and **open PR**.
+This repo is meant to give you a head start in building a cool prototype of the next big staking app. Build something interesting on top such as transferable NFT validators, Restaking app, or whatever else, and **open PR**.
 
 to **Create and run LSD staking pool**
 
@@ -17,7 +17,7 @@ open [RUN_THIS_REPO.md](RUN_THIS_REPO.md) for instructions.
 
 Huge thanks to
 
-- [@RohitAudit](https://github.com/RohitAudit) who develops & maintains all the **backend** magic on whose [repo-Garuda](https://github.com/RohitAudit/ssv-service) this minimalistic LSD staking pool based on.
+- [@RohitAudit](https://github.com/RohitAudit) who develops & maintains all the **backend** magic on whose [repo-Garuda](https://github.com/RohitAudit/ssv-service) this minimalistic LSD staking pool is based on.
 
 - [@nibthebear](https://github.com/TIM88-DOT) who has developed the **frontend**, js deployment, and revamped the **smart contracts**.
 
@@ -25,11 +25,11 @@ Huge thanks to
 
 ### Get funding
 
-You can hop into ssv discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330) and get feedback on your ideas. You may also check [active grants](https://grants.ssv.network/) directly. If you are considering applying for one, write in ssv discord and tag @Matty and @MarkoInEther. They will be happy to help you draft a rock star grant application.
+You can hop into SSV discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330) and get feedback on your ideas. You may also check [active grants](https://grants.ssv.network/) directly. If you are considering applying for one, write in SSV discord and tag @Matty and @MarkoInEther. They will be happy to help you draft a rock star grant application.
 
 ### Connect with teams
 
-Best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly and also @MarkoInEther and @Matty. They will help you to get to the right person.
+The best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly, and also @MarkoInEther and @Matty. They will help you to get to the right person.
 
 ---
 
