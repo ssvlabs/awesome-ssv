@@ -37,11 +37,11 @@ Your staking pool needs to be funded with some SSV to pay for running your valid
 
 It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
 
-### Outputs 
+### Outputs
 
-Your created validator keys and deposit data can be found in `"/validator_keys"` folder. 
+Your created validator keys and deposit data can be found in `"/validator_keys"` folder.
 
-Validator split shares can be found in `"/keyshares"` folder. 
+Validator split shares can be found in `"/keyshares"` folder.
 
 ```
 validator_keys
@@ -51,13 +51,17 @@ validator_keys
 To run script you first need to install the requirements :
 
 ```
+
 pip install -r requirements.txt
+
 ```
 
 To see what all command line option the script supports :
 
 ```
-python main.py -h/--help
+
+python3 main.py -h/--help
+
 ```
 
 Following are the option and their respective config:
@@ -67,9 +71,10 @@ Following are the option and their respective config:
   - Fill in the params in config file and give it as an argument
 
 ```
-python main.py create-keys -c <CONFIG_FILE>
 
-e.g. 
+python3 main.py create-keys -c <CONFIG_FILE>
+
+e.g.
 
 python3 main.py create-keys -c sample_config/validator-config.json
 
@@ -80,9 +85,10 @@ python3 main.py create-keys -c sample_config/validator-config.json
   - Fill in the params in config file and give it as an argument
 
 ```
-python main.py generate-keyshares -c <CONFIG_FILE>
 
-e.g. 
+python3 main.py generate-keyshares -c <CONFIG_FILE>
+
+e.g.
 
 python3 main.py generate-keyshares -c sample_config/keyshare-config.json
 
@@ -93,10 +99,10 @@ python3 main.py generate-keyshares -c sample_config/keyshare-config.json
   - Fill in the params in config file and give it as an argument
 
 ```
-python main.py deposit-validators -c <CONFIG_FILE>
 
-e.g. 
+python3 main.py deposit-validators -c <CONFIG_FILE>
 
+e.g.
 
 python3 main.py deposit-validators -c sample_config/deposit-validator.json
 
@@ -107,7 +113,9 @@ python3 main.py deposit-validators -c sample_config/deposit-validator.json
   - Fill in the params in config file and give it as an argument
 
 ```
-python main.py deposit-keyshares -c <CONFIG_FILE>
+
+python3 main.py deposit-keyshares -c <CONFIG_FILE>
+
 ```
 
 - _stake_ : This is the backend script that monitors the stakepool and regularly generates validator pubkeys and SSV keyshares
@@ -115,14 +123,17 @@ python main.py deposit-keyshares -c <CONFIG_FILE>
   - Fill in the params in config file and give it as an argument
 
 ```
-python main.py stake -c <CONFIG_FILE>
 
-e.g. 
+python3 main.py stake -c <CONFIG_FILE>
 
-python main.py stake -c sample_config/stake-config.json
+e.g.
+
+python3 main.py stake -c sample_config/stake-config.json
+
 ```
-**NOTE:** use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli 
+**NOTE:** use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli
 
 ### LICENSE
 
 MIT License
+```

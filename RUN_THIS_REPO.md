@@ -214,4 +214,4 @@ If you want to deploy your system locally additionally you'll need to deploy Eth
 
 ## Backend manager
 
-Once your smart contract are deployed you are ready to [RUN_BACKED.md](RUN_BACKED.md)
+Once your smart contract are deployed you are ready to [RUN_BACKEND.md](RUN_BACKED.md)
