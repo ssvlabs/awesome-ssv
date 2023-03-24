@@ -1,8 +1,8 @@
 {
   "eth": {
-    "rpc": "",
-    "priv_key": ""
+    "rpc": "http://localhost:8545`",
+    "priv_key": "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
   },
-  "stakepool_contract": "",
+  "stakepool_contract": "0x4e850C82E0512B4Edcd00F8C993f3fb9dEA3e7e3",
   "deposit_file": ""
 }

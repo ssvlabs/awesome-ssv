@@ -8,7 +8,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const operators = useContractReader(readContracts, "StakingPool", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "StakingPool", "PubKeyDeposited", localProvider, 5);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
-
+  console.log("validators", validators);
   const handleOnSetNewOperators = async value => {
     await tx(writeContracts.StakingPool.updateOperators(JSON.parse(value)));
   };
@@ -38,10 +38,10 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log(values.pubkey);
     await tx(
       writeContracts.StakingPool.depositValidator(
-        values.pubkey,
-        values.withdrawalCredentials,
-        values.signature,
-        values.depositDataRoot,
+        "0x" + values.pubkey,
+        "0x" + values.withdrawalCredentials,
+        "0x" + values.signature,
+        "0x" + values.depositDataRoot,
       ),
     );
   };
