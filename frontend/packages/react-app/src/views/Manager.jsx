@@ -21,10 +21,10 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log("values:", values);
     await tx(
       writeContracts.StakingPool.depositShares(
-        values.pubkey.toString(),
-        JSON.parse(values.operatorIds),
-        JSON.parse(values.sharesPublicKeys),
-        JSON.parse(values.sharesEncrypted),
+        "0x" + values.pubkey.toString(),
+        JSON.parse("0x" + values.operatorIds),
+        JSON.parse("0x" + values.sharesPublicKeys),
+        JSON.parse("0x" + values.sharesEncrypted),
         ethers.utils.parseEther(values.amount.toString()).toString(),
       ),
     );

@@ -1,12 +1,12 @@
 {
   "eth": {
     "rpc": "http://localhost:8545",
-    "priv_key": "83f5d529c211e95b0e3f0a91e0c44763bb0b1718c9c129fb0bcee9ecf4a964e2"
+    "priv_key": "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
   },
   "contract_address": {
     "ssv_network": "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04",
-    "stakepool": "0xB696bD737C75F1e6dBa97e5E4667cfe76CA4DEbB",
+    "stakepool": "0xa97b35D0DaCC291fFF2C4f11Ed2fCa14686b71De",
     "ssv_token": "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
   },
-  "keystore_pass": ""
+  "keystore_pass": "123456"
 }

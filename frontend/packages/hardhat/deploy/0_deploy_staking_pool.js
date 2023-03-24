@@ -6,8 +6,8 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
-  const whitelist = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
-  const withdrawalCreds = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
+  const whitelist = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
+  const withdrawalCreds = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
   const operatorIds = [1, 2, 9, 42];
 
   const depositContract = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b";

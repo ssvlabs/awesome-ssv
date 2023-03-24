@@ -43,7 +43,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   };
 
   const handleOnUnstake = async value => {
-    if (ethers.utils.parseEther(value) > balanceStaked) {
+    if (Number(ethers.utils.parseEther(value)) > balanceStaked) {
       alert("You can't unstake more than you have !");
       return;
     } else {
