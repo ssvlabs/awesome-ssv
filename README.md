@@ -145,9 +145,9 @@ Add your project into appropriate category in this readme file and create a pull
 
 **Example project**
 
-- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence project description
+- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description  |`license used` | `languages used` (e.g. `MIT | JS`)
 
-One paragraph description talking what my project is about, how is it special. Please keep your description concise, the limit is 80 words.
+One paragraph description talking what my repo is about, how is it special. Please keep your description concise, the limit is 80 words.
 
 ### LICENSE
 
