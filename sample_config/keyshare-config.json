@@ -1,8 +1,8 @@
 {
   "keystore_files": [
-    "validator_keys/keystore-m_12381_3600_0_0_0-1677133554.json"
+    "validator_keys/keystore-m_12381_3600_2_0_0-1660812573.json"
   ],
-  "keystore_password": "",
+  "keystore_password": "ssvstkaing",
   "operators": [
     {
       "id": 1,
