@@ -1,10 +1,10 @@
-// contracts deployed from hardhat
-const localhostSsvETH = require("./localhost/ssvETH");
-const localhostStakingPool = require("./localhost/stakingPool");
-const goerliSsvETH = require("./goerli/ssvETH");
-const goerliStakingPool = require("./goerli/stakingPool");
+// we manually export the abi and address from the hardhat script after deploying the StakingPool contract because SSVETH gets deployed within
 
-// static contract abi
+const localhostSsvETH = require("./localhost/ssvETH");
+const goerliSsvETH = require("./goerli/ssvETH");
+
+// static contracts abi
+
 const DEPOSITCONTRACTABI = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
@@ -422,10 +422,6 @@ module.exports = {
   // localhost
   31337: {
     contracts: {
-      STAKINGPOOL: {
-        address: localhostStakingPool.address,
-        abi: localhostStakingPool.abi,
-      },
       DEPOSITCONTRACT: {
         address: "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b",
         abi: DEPOSITCONTRACTABI,
@@ -440,7 +436,6 @@ module.exports = {
         address: "0x3a9f01091C446bdE031E39ea8354647AFef091E7",
         abi: SSVTOKENADDRESSABI,
       },
-
       SSVETHCONTRACT: {
         address: localhostSsvETH.address,
         abi: localhostSsvETH.abi,
@@ -450,10 +445,6 @@ module.exports = {
   // Goerli testnet
   5: {
     contracts: {
-      STAKINGPOOL: {
-        address: goerliStakingPool.address,
-        abi: goerliStakingPool.abi,
-      },
       DEPOSITCONTRACT: {
         address: "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b",
         abi: DEPOSITCONTRACTABI,
