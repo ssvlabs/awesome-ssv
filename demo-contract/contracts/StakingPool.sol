@@ -8,6 +8,9 @@ import "../interfaces/IDepositContract.sol";
 import "../interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
+/** this contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals. 
+ * By using custom errors instead, we don't need to use up storage space on the `require`'s revert string messages.
+ * This also allows developers and users to see customizable output values when the custom error is invoked */
 error StakingPool__CantStakeZeroAmount(uint valueSent);
 error StakingPool__OnlyWhitelistAddress(address caller, address whitelistedAddress);
 
@@ -118,6 +121,8 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
 
     function stake() public payable {
+        /** Ensuring that the caller has passed atleast some value to the function/contract. 
+        This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
         if(msg.value <= 0) {
             revert StakingPool__CantStakeZeroAmount(msg.value);
         }
@@ -178,7 +183,8 @@ contract StakingPool is Ownable, ReentrancyGuard {
         bytes[] calldata _sharesEncrypted,
         uint256 _amount
     ) external {
-        // Check if the message sender is the whitelisted address
+        /* Check if the message sender is the whitelisted address
+         * This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
         if(msg.sender != WhitelistKeyGenerator) {
             revert StakingPool__OnlyWhitelistAddress(msg.sender, WhitelistKeyGenerator);
         }

@@ -34,8 +34,6 @@ This backend allows for easily managing the staking pool.
 
 - Make sure that for the backend script, you are using a private key corresponding to your `whitelist` address from your `deploy` script.
 
-- Use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli
-
 - Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
 
 It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
@@ -134,6 +132,8 @@ e.g.
 python3 main.py stake -c sample_config/stake-config.json
 
 ```
+**NOTE:** Use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli
+
 ### LICENSE
 
 MIT License
