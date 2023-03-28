@@ -144,7 +144,7 @@ Add your project to the appropriate category in this README file and create a pu
 
 - [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one-sentence project description
 
-One paragraph description talking what my project is about, and how is it special. Please keep your description concise, the limit is 80 words.
+One paragraph description explaining what my project is about and how is it special. Please keep your description concise, the limit is 80 words.
 
 ### LICENSE
 
