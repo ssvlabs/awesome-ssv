@@ -8,7 +8,7 @@ minting an LSD token (ssvETH) and leveraging ssv.network to stake in a distribut
 
 ## Video walkthrough
 
-[![Repo walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4xgCsi_kSVI/0.jpg)](http://www.youtube.com/watch?v=4xgCsi_kSVI "Repo walkthrough & launchig 🌈LSD pool")
+[![Repo walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4xgCsi_kSVI/0.jpg)](http://www.youtube.com/watch?v=4xgCsi_kSVI "Repo walkthrough & launchig 🌈LSD pool"){:target="\_blank"}
 
 **NOTE:**
 

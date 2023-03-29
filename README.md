@@ -55,7 +55,7 @@ You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.n
 
 ### Tools
 
-#### Validator key splitting / distributor (key shares creation)
+#### Validator key splitting / distribution (key shares creation)
 
 To use the SSV network a validator key needs to be split into keyshares, which then need to be encrypted for chosen operators. You can use these tools for it, and to know more read the [documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
 
@@ -70,6 +70,13 @@ This is the Go implementation of the [ssv-keys repository](https://github.com/bl
 - [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys) `MIT | Electron/React`
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
+
+
+#### Validator key generation / management 
+
+- [SSV-Tool by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators and estimating costs of operation | MIT | JS
+
+To make the registration process easier, the tool manages key generation and smart contract interaction; the user only needs to provide keystore files and operator ids. This tool also provides a flexible method for estimating operation expenses to match various operation assumptions. SSV V2 is currently being tested; SSV V3 and batch processing support will be added shortly.
 
 #### Distributed (validator) key generation
 
@@ -119,22 +126,10 @@ If you got an Ubuntu server, you can use Stereum's Node tool to connect to it an
 
 Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial-grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
-### Notification services
+### Tutorials   
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
-  - Hal has built a custom Notify Recipe for SSV that allows SSV users to automatically monitor and get custom notifications for monitoring, operation runway, operator fee change, and many more SSV protocol-related events. Users will set up their notifications using the Hal Notify app and then receive their notifications on the channel or their preference (email, telegram, discord, etc.)
-
-- [Hellman - allerts](https://alert.hellman.team/metrics) / [Hellman - repo](https://github.com/HellmanResearch)
-
-  - HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/users with 7\*24 hours monitoring of account balance, operation performance & status.
-
-### Tools
-
-- [SSV Keys's Go implementation](https://github.com/duktig666/ssv-keys-go)
-  - This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
-
-### Other
 
 ### How to add your project
 
@@ -142,9 +137,10 @@ Add your project to the appropriate category in this README file and create a pu
 
 **Example project**
 
-- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one-sentence project description
 
-One paragraph description explaining what my project is about and how is it special. Please keep your description concise, the limit is 80 words.
+- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description  |`license used` | `languages used` (e.g. `MIT | JS`)
+
+One paragraph description talking what my repo is about, how is it special. Please keep your description concise, the limit is 80 words.
 
 ### LICENSE
 

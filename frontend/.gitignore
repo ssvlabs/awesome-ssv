@@ -12,6 +12,7 @@ packages/hardhat/deployments
 packages/hardhat/cache*
 packages/**/data
 !packages/react-app/src/contracts/contracts.js
+packages/react-app/src/contracts/
 
 
 # ts
