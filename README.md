@@ -55,6 +55,15 @@ You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.n
 
 ### Tools
 
+- [awesome-ssv backend](RUN_BACKEND.md) `MIT | PY`
+  This backend scrip in this repo allows has all the necessary functions to easily manage a staking pool. It can be also used separately, just to generate keys or do key splitting.  
+  It has these actions:
+
+      - Create Validator keys (for Deposit)
+      - generate-keyshares (for SSV contract)
+      - deposit-keyshares
+      - deposit-validators
+
 #### Validator key splitting / distribution (key shares creation)
 
 To use the SSV network a validator key needs to be split into keyshares, which then need to be encrypted for chosen operators. You can use these tools for it, and to know more read the [documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
@@ -71,8 +80,7 @@ This is the Go implementation of the [ssv-keys repository](https://github.com/bl
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
-
-#### Validator key generation / management 
+#### Validator key generation / management
 
 - [SSV-Tool by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators and estimating costs of operation | MIT | JS
 
@@ -126,10 +134,9 @@ If you got an Ubuntu server, you can use Stereum's Node tool to connect to it an
 
 Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial-grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
-### Tutorials   
+### Tutorials
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
-
 
 ### How to add your project
 
@@ -137,8 +144,7 @@ Add your project to the appropriate category in this README file and create a pu
 
 **Example project**
 
-
-- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description  |`license used` | `languages used` (e.g. `MIT | JS`)
+- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description |`license used` | `languages used` (e.g. `MIT | JS`)
 
 One paragraph description talking what my repo is about, how is it special. Please keep your description concise, the limit is 80 words.
 
