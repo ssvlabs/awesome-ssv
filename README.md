@@ -136,7 +136,17 @@ Our SSV services include operator support and staking options to help you maximi
 
 ### Tutorials
 
+Check the **[Tutorials folder](/tutorials)**
+
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
+
+- [Video - run SSV node in 10 minutes🚀](https://www.youtube.com/watch?v=HFb4uxHC50w)
+
+## How to contribute
+
+- **introduce a new features** by creating an issue, if they are usefull for the ecosystem ssv dao may fund you developing them! join discord hang out in #dev-support channel!
+
+- **correct error** by opening a PR.
 
 ### How to add your project
 
