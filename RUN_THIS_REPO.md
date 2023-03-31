@@ -1,10 +1,10 @@
 # LSD staking pool powered by SSV
 
-This repo showcases minimalistic backend for an LSD staking pool. It is for learning purposes ONLY and should NOT be a
+This repo showcases a minimalistic backend for an LSD staking pool. It is for learning purposes ONLY and should NOT be a
 
 base for any solution used in production. It contains backend scripts and smart contracts to manage and stake Ether,
 
-minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
+minting an LSD token (ssvETH) and leveraging ssv.network to stake in a distributed and decentralized manner.
 
 ## Video walkthrough
 
@@ -12,14 +12,14 @@ minting a LSD token (ssvETH) and leveraging ssv.network to stake in a distribute
 
 **NOTE:**
 
-- **Readmes always take precendece** - Some parts of this video may be outdated.
-- Video goes into **more detail and gives more background**. If you have some experience with this stuff can safely skip it and follow Readmes only.
+- **Readmes always take precedence** - Some parts of this video may be outdated.
+- Video goes into **more detail and gives more background**. If you have some experience with this stuff you can safely skip it and follow READMEs only.
 
 ## Credits
 
-Huge thanks to [@RohitAudit](https://github.com/RohitAudit) on whose [repo](https://github.com/RohitAudit/ssv-service)
+Huge thanks to [@RohitAudit](https://github.com/RohitAudit) whose [repo](https://github.com/RohitAudit/ssv-service)
 
-is this minimalistic staking pool based on!
+this minimalistic staking pool is based on!
 
 <!--
 
@@ -49,17 +49,17 @@ is this minimalistic staking pool based on!
 
   Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code) -->
 
-## How it works?
+## How it works
 
-- Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator ! 🤑
+- Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator! 🤑
 
 ### User Actions
 
-- User stakes their eth to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
+- Users stake their ETH to a staking contract for which he is minted a liquid staked derivative token, ssvETH.
 
-- Creates a ethereum validator key and gives it to staking pool for depositing for activation
+- Creates an Ethereum validator key and gives it to the staking pool to deposit for activation
 
-- Generates keyshares from the validator keystore and stakes them the SSV nodes
+- Generates keyshares from the validator keystore and stakes them with the SSV nodes
 
 - Saves the keystore and keyshares for verification at a later stage
 
@@ -67,9 +67,9 @@ is this minimalistic staking pool based on!
 
 ### External Libraries used
 
-- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split ethereum validator keys.
+- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split Ethereum validator keys.
 
-- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate ethereum validators keys
+- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
 
 ### Install Dependencies
 
@@ -97,11 +97,11 @@ chmod +x setup.sh
 
 ### 1. Front End & Smart contracts - Scaffold-eth framework
 
-Continue to readme in `frontend` folder [FE_README.md](/frontend/README.md)
+Continue to README in `frontend` folder [FE_README.md](/frontend/README.md)
 
-It will navigate you through all the remaining process. You do **NOT** need to come back to this readme.
+It will navigate you through the remaining process. You do **NOT** need to come back to this README.
 
-If you want to deploy smart contracts only using brownie framwerk continue to next step
+If you want to deploy smart contracts only using brownie framework continue to the next step
 
 ### 2. Smart Contracts only - Brownie framework
 
@@ -119,13 +119,13 @@ cd demo-contract/
 
 ### Brownie Environment setup
 
-1. You will need to setup your RPC
+1. You will need to set up your RPC
 
-you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use infura
+you can do so by writing into your console `export WEB3_INFURA_PROJECT_ID=<your id>` if you use Infura
 
-or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use alchemy. You can obtain one
+or `export WEB3_ALCHEMY_PROJECT_ID=<your id>` if you use Alchemy. You can obtain one
 
-from [infura here](https://app.infura.io/)
+from [Infura here](https://app.infura.io/)
 
 2. You need to set up your deployer private key
 
@@ -135,7 +135,7 @@ management [here](https://eth-brownie.readthedocs.io/en/stable/account-managemen
 
 3. Installing packages
 
-you may need to install some packages, this is the one you need, if you need more, just copy the package path from browser or smart contract directly
+you may need to install some packages, this is the one you need, if you need more, just copy the package path from the browser or smart contract directly
 
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
@@ -145,7 +145,7 @@ brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
 
 Now go to `demo-contract/scripts/deploy.py` and change the following:
 
-- `whitelist, withdrawal_creds` update these values use deployer address, that will you use to run the backend script
+- `whitelist, withdrawal_creds` update these values using the deployer address that you will use to run the backend script
 
 Optional
 
@@ -155,21 +155,21 @@ Optional
 
 #### Goerli-fork
 
-This repo works best with locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
+This repo works best with a locally forked Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-Before running the fork, use [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
+Before running the fork, use the [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
 
 - Start the goerli fork network:
 
 - `npx hardhat node --network hardhat --fork https://goerli.infura.io/v3/<your id>`
 
-ENDPOINT = goerli endpoint from alchemy or infura
+ENDPOINT = goerli endpoint from Alchemy or Infura
 
 - Now you can use this network to deploy your contracts and interact with SSV contracts
 
 - `brownie console`
 
-  - this will open automatically detect local blockchain running and connect to it.
+  - this will open automatically, detect the local blockchain running, and connect to it.
 
 - Make sure you updated `whitelist, withdrawal_creds` addresses in `deploy.py` file.
 
@@ -177,12 +177,12 @@ ENDPOINT = goerli endpoint from alchemy or infura
 
 - `run('deploy')`
 
-- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed in the console.
+- you will need a staking pool address to run the backend script. You can find it in `contrat_addresses.json`, it is also printed in the console.
 
 - To stake some eth run:
 - `StakingPool[0].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 8750000000})`
 
-- Now you can start the backend scripts here [RUN_BACKED.md](RUN_BACKED.md)
+- Now you can start the backend scripts here [RUN_BACKEND.md](RUN_BACKEND.md)
 
 #### Goerli
 
@@ -198,11 +198,11 @@ This repo works well with Goerli network as the network contains both the Beacon
 
 - `run('deploy')`
 
-- you will need staking pool address for to run the backend script. you can find it in `contrat_addresses.json`, it is also printed on the console.
+- you will need a staking pool address to run the backend script. You can find it in `contrat_addresses.json`, it is also printed on the console.
 
-Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help with getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
+Once you have deployed your contracts you can stake your sweet ETH! You will receive your liquid ssvETH representing your stake. If you need help getting your hands on 32 goerliETH to test validator deployment, we should be able to help you on [our discord](https://discord.com/invite/AbYHBfjkDY).
 
-When you have enough (32) goerliETH for to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
+When you have enough (32) goerliETH to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
 
 - `StakingPool[0].stake({'value':64*10**18})`
 
@@ -210,8 +210,8 @@ Now you can start the staking pool manager backend scripts
 
 #### Local deployment
 
-If you want to deploy your system locally additionally you'll need to deploy Ethereum Deposit Contract for validator activation, SSV token and SSV contract to interact with.
+If you want to deploy your system locally additionally you'll need to deploy the Ethereum Deposit Contract for validator activation, SSV token, and SSV contract to interact with.
 
 ## Backend manager
 
-Once your smart contract are deployed you are ready to [RUN_BACKED.md](RUN_BACKED.md)
+Once your smart contracts are deployed you are ready to [RUN_BACKEND.md](RUN_BACKEND.md)

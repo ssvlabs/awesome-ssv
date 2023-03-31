@@ -8,6 +8,12 @@ import "../interfaces/IDepositContract.sol";
 import "../interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
+/** this contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals. 
+ * By using custom errors instead, we don't need to use up storage space on the `require`'s revert string messages.
+ * This also allows developers and users to see customizable output values when the custom error is invoked */
+error StakingPool__CantStakeZeroAmount(uint valueSent);
+error StakingPool__OnlyWhitelistAddress(address caller, address whitelistedAddress);
+
 contract StakingPool is Ownable, ReentrancyGuard {
     address public WhitelistKeyGenerator;
     address public WITHDRAWAL_ADDRESS;
@@ -18,7 +24,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-    address public Oracle_address;
+    // address public Oracle_address; 
     
     uint256 beaconRewards;
     uint256 executionRewards;
@@ -51,6 +57,13 @@ contract StakingPool is Ownable, ReentrancyGuard {
         SSV_CONTRACT_ADDR = ssv_contract;
         SSV_TOKEN_ADDR = ssv_token;
         OperatorIDs = ids;
+    }
+
+    /** 
+     * @notice called when the contract receives eth
+     */
+    receive() external payable {
+        updateExecutionRewards(msg.value);
     }
 
     /**
@@ -108,11 +121,15 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
 
     function stake() public payable {
-        require(msg.value > 0, "Can't stake zero amount");
+        /** Ensuring that the caller has passed atleast some value to the function/contract. 
+        This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
+        if(msg.value <= 0) {
+            revert StakingPool__CantStakeZeroAmount(msg.value);
+        }
         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
-        userStake[msg.sender] = msg.value;
+        userStake[msg.sender] += msg.value;
     }
 
     /**
@@ -166,11 +183,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
         bytes[] calldata _sharesEncrypted,
         uint256 _amount
     ) external {
-        // Check if the message sender is the whitelisted address
-        require(
-            msg.sender == WhitelistKeyGenerator,
-            "Only whitelisted address can submit the key"
-        );
+        /* Check if the message sender is the whitelisted address
+         * This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
+        if(msg.sender != WhitelistKeyGenerator) {
+            revert StakingPool__OnlyWhitelistAddress(msg.sender, WhitelistKeyGenerator);
+        }
         // Approve the transfer of tokens to the SSV contract
         IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, _amount);
         // Register the validator and deposit the shares
@@ -204,8 +221,4 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit SharePriceUpdated(_newSharePrice);
     }
 
-    // called when the contract receives eth
-    receive() external payable {
-        updateExecutionRewards(msg.value);
-    }
 }

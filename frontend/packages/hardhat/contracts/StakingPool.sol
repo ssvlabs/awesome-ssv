@@ -8,6 +8,9 @@ import "./interfaces/IDepositContract.sol";
 import "./interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
+error StakingPool__CantStakeZeroAmount(uint valueSent);
+error StakingPool__OnlyWhitelistAddress(address caller, address whitelistedAddress);
+
 contract StakingPool is Ownable, ReentrancyGuard {
     address public WhitelistKeyGenerator;
     address public WITHDRAWAL_ADDRESS;
@@ -18,7 +21,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-    address public Oracle_address;
+    // address public Oracle_address;
     
     uint256 public beaconRewards;
     uint256 public executionRewards;
@@ -51,6 +54,13 @@ contract StakingPool is Ownable, ReentrancyGuard {
         SSV_CONTRACT_ADDR = ssv_contract;
         SSV_TOKEN_ADDR = ssv_token;
         OperatorIDs = ids;
+    }
+
+    /** 
+     * @notice called when the contract receives eth
+     */
+    receive() external payable {
+        updateExecutionRewards(msg.value);
     }
 
     /**
@@ -108,11 +118,13 @@ contract StakingPool is Ownable, ReentrancyGuard {
      */
 
     function stake() public payable {
-        require(msg.value > 0, "Can't stake zero amount");
+        if(msg.value <= 0) {
+            revert StakingPool__CantStakeZeroAmount(msg.value);
+        }
         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
         ssvETH.mint(msg.sender, amount_minted);
         emit UserStaked(msg.sender, msg.value);
-        userStake[msg.sender] = msg.value;
+        userStake[msg.sender] += msg.value;
     }
 
     /**
@@ -167,10 +179,9 @@ contract StakingPool is Ownable, ReentrancyGuard {
         uint256 _amount
     ) external {
         // Check if the message sender is the whitelisted address
-        require(
-            msg.sender == WhitelistKeyGenerator,
-            "Only whitelisted address can submit the key"
-        );
+        if(msg.sender != WhitelistKeyGenerator) {
+            revert StakingPool__OnlyWhitelistAddress(msg.sender, WhitelistKeyGenerator);
+        }
         // Approve the transfer of tokens to the SSV contract
         IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, _amount);
         // Register the validator and deposit the shares
@@ -204,8 +215,4 @@ contract StakingPool is Ownable, ReentrancyGuard {
         emit SharePriceUpdated(_newSharePrice);
     }
 
-    // called when the contract receives eth
-    receive() external payable {
-        updateExecutionRewards(msg.value);
-    }
 }

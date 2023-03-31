@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [-d "ssv-keys"]; then
+if [ -d "ssv-keys" ]; then
   echo "ssv-keys directory already there"
 else
   echo "cloning ssv-keys"
