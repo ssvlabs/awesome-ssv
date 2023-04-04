@@ -11,7 +11,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const operatorIds = [1, 2, 9, 42];
 
   const depositContract = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b";
-  const ssvNetworkContract = "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04";
+  const ssvNetworkContract = "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3";
   const ssvTokenAddress = "0x3a9f01091C446bdE031E39ea8354647AFef091E7";
 
   const stakingpool = await deploy("StakingPool", {
