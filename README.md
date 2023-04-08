@@ -11,7 +11,7 @@ This repo is meant to give you a head start in building a cool prototype of the 
 
 to **Create and run LSD staking pool**
 
-open [RUN_THIS_REPO.md](RUN_THIS_REPO.md) for instructions.
+open [RUN_SMART_CONTRACTS_ONLY.md](/RUN_SMART_CONTRACTS_ONLY.md) for instructions.
 
 ### Credits
 
