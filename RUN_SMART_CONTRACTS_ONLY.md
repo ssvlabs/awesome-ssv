@@ -21,34 +21,6 @@ Huge thanks to [@RohitAudit](https://github.com/RohitAudit) whose [repo](https:/
 
 this minimalistic staking pool is based on!
 
-<!--
-
-### Demo Contracts on Goerli
-
-
-
-- Staking Pool
-
-  Contract: [0x0B3382A006DD7F03ED1333c6C7472857fFFB6778](https://goerli.etherscan.io/address/0x0B3382A006DD7F03ED1333c6C7472857fFFB6778#code)
-
-
-
-- Keys-manager
-
-  Contract: [0x2b54244C61346DcD14CB77f8642CeA941Aa82664](https://goerli.etherscan.io/address/0x2b54244C61346DcD14CB77f8642CeA941Aa82664#code)
-
-
-
-- RoETH
-
-  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code)
-
-
-
-- Common
-
-  Contract: [0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c](https://goerli.etherscan.io/address/0xCe24cc06357Ee4960f802D8D44004F2cb84D4d4c#code) -->
-
 ## How it works
 
 - Staking has never been so easy, thanks to SSV, you can stake your ETH and earn ssvETH without running your own validator! 🤑
@@ -65,11 +37,9 @@ this minimalistic staking pool is based on!
 
 ## How to deploy?
 
-### External Libraries used
+This readme tutorial is for smart-contract-only deployment using brownie framework. If you want to deploy with frontend as well or prefer using `JS` continue to README in frontend folder [FE_README.md](/frontend/README.md)
 
-- [SSV-KEYS](https://github.com/bloxapp/ssv-keys.git) : Used to split Ethereum validator keys.
-
-- [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
+If you are happy just with backend, continue.
 
 ### Install Dependencies
 
@@ -79,43 +49,6 @@ this minimalistic staking pool is based on!
 
 - [hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation) read more here
   - `npm install -g hardhat`
-
-### Initial setup
-
-- make the script executable and run it
-
-```
-
-chmod +x setup.sh
-
-./setup.sh
-
-
-```
-
-## Deployments
-
-### 1. Front End & Smart contracts - Scaffold-eth framework
-
-Continue to README in `frontend` folder [FE_README.md](/frontend/README.md)
-
-It will navigate you through the remaining process. You do **NOT** need to come back to this README.
-
-If you want to deploy smart contracts only using brownie framework continue to the next step
-
-### 2. Smart Contracts only - Brownie framework
-
-#### Dependencies
-
-- [python](https://www.python.org/downloads/), you can install it here.
-
-- [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/), you can install it here.
-
-```
-
-cd demo-contract/
-
-```
 
 ### Brownie Environment setup
 
@@ -135,7 +68,9 @@ management [here](https://eth-brownie.readthedocs.io/en/stable/account-managemen
 
 3. Installing packages
 
-you may need to install some packages, this is the one you need, if you need more, just copy the package path from the browser or smart contract directly
+you may need to install some packages, this is the one you need, if you need more, just copy the package path from the browser or smart contract directly.
+
+example:
 
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.0
@@ -167,6 +102,8 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 
 - Now you can use this network to deploy your contracts and interact with SSV contracts
 
+- `cd demo-contract/`
+
 - `brownie console`
 
   - this will open automatically, detect the local blockchain running, and connect to it.
@@ -189,6 +126,8 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 This repo works well with Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
 - Start the network:
+
+- `cd demo-contract/`
 
 - `brownie console --network goerli`
 

@@ -1,11 +1,32 @@
 # Backend
 
-This backend allows for easily managing the staking pool.
+This backend allows for easily managing of the staking pool.
+
+It can:
 
 - Create Validator keys (for Deposit)
 - generate-keyshares (for SSV contract)
 - deposit-keyshares
 - deposit-validators
+- monitor staking pool balance, create + deposit the validator to beacon chain and create + deposit keyshares to ssv network.
+
+## Prerequiste - Smart contract deployments
+
+You need to have smart contracts deployed before running this backend. After deployed, continue with this tutorial. You can choose to deply them together with frontend using scaffold-eth framework built in `JS` or deploy smart contracts only with brownie framework built in `PY`.
+
+### 1. Front End plus Smart contracts - Scaffold-eth framework
+
+Continue to README in `frontend` folder [FE_README.md](/frontend/README.md)
+
+It will navigate you through the remaining process. Come back once smart contracts are deployed.
+
+If you want to deploy smart contracts only using brownie framework continue to the next step.
+
+### 2. Smart Contracts Only - Brownie framework
+
+Continue to README [RUN_SMART_CONTRACTS_ONLY.md](/RUN_SMART_CONTRACTS_ONLY.md) to deploy smart contract only using brownie framework.
+
+It will navigate you through the remaining process. Come back once smart contracts are deployed.
 
 ### External Libraries used
 
@@ -13,20 +34,22 @@ This backend allows for easily managing the staking pool.
 
 - [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
 
-### Install Dependencies
+## Install Dependencies
 
 - [python](https://www.python.org/downloads/), you can install it here.
 
-## Before Running Backend Manager
+## Initial setup
 
-### Deploy Contracts
+- make the script executable and run it
 
-- Smart Contracts only - Brownie framework
+```
 
-  - Follow [RUN_THIS_REPO.md](RUN_THIS_REPO.md)
+chmod +x setup.sh
 
-- Front End & Smart contracts - Scaffold-eth framework
-  - Follow [FE_README.md](/frontend/README.md)
+./setup.sh
+
+
+```
 
 ## Run Backend Manager
 

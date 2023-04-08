@@ -1,6 +1,6 @@
 ## Video
 
-[![🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀](http://img.youtube.com/vi/HFb4uxHC50w/0.jpg)](https://www.youtube.com/watch?v=HFb4uxHC50w "🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀"){:target="\_blank"}
+[![🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀](http://img.youtube.com/vi/HFb4uxHC50w/0.jpg)](https://www.youtube.com/watch?v=HFb4uxHC50w "🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀")
 
 **DISCLAIMER**
 The content provided is for informational purposes only and should not be considered as professional advice. The information presented may not be complete, accurate or up-to-date. The reader or viewer is solely responsible for any actions taken based on the information provided. The author and publisher shall not be held liable for any losses, damages or injuries arising from the use of the information provided. It is recommended to seek professional advice for specific situations.
