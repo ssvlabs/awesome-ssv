@@ -80,8 +80,6 @@ This is the Go implementation of the [ssv-keys repository](https://github.com/bl
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
-#### Validator key generation / management
-
 - [SSV-Tool by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators and estimating costs of operation | MIT | JS
 
 To make the registration process easier, the tool manages key generation and smart contract interaction; the user only needs to provide keystore files and operator ids. This tool also provides a flexible method for estimating operation expenses to match various operation assumptions. SSV V2 is currently being tested; SSV V3 and batch processing support will be added shortly.
