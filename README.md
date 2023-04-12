@@ -43,7 +43,9 @@ The best way is via discord channel [#devs-support](https://discord.com/channels
 
 - [Operator services](#operator-services)
 
-- [Guides](#guides)
+- [Tutorials](#tutorials)
+
+- [How to contribute](#how-to-contribute)
 
 - [How to add your project](#how-to-add-your-project)
 
@@ -132,9 +134,9 @@ If you got an Ubuntu server, you can use Stereum's Node tool to connect to it an
 
 Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial-grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
-### Tutorials
+## Tutorials
 
-Check the **[Tutorials folder](/tutorials)**
+Check the **[Tutorials folder](/tutorials)** for more information about the tutorials or follow the links below. 
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
@@ -144,7 +146,7 @@ Check the **[Tutorials folder](/tutorials)**
 
 ### Join the Buidlers 
 
-Start getting familiar with DVT staking go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#dev-support channel`. If you cannot see it claim a role.
+Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#dev-support` channel. If you cannot see it claim a role.
 
 ### Fix errors
 
