@@ -16,7 +16,7 @@ class EthNode:
             self.local = True
         else:
             pass
-        self.account = self.eth_node.eth.account.privateKeyToAccount(
+        self.account = self.eth_node.eth.account.from_key(
             private_key)
 
 
@@ -24,11 +24,12 @@ class EthNode:
         # self.eth_node.eth.call(tx)
         tx['nonce'] = self.eth_node.eth.get_transaction_count(
             self.account.address)
-        if self.local:
-            # tx.pop('maxPriorityFeePerGas')
-            tx.pop('maxFeePerGas')
+        # self.eth_node.eth.call(tx)
+        # if self.local:
+        #     tx.pop('maxFeePerGas')
         signed_tx = self.eth_node.eth.account.sign_transaction(
             tx, self.account.key)
+        print(tx)
         tx_hash = self.eth_node.eth.send_raw_transaction(
             signed_tx.rawTransaction)
         tx_receipt = self.eth_node.eth.wait_for_transaction_receipt(tx_hash)

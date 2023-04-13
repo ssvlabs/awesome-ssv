@@ -37,7 +37,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     event SharePriceUpdated(uint256 newPrice);
     event KeySharesDeposited(
         bytes pubkey,
-        bytes[] sharesPublicKeys,
+        bytes sharesPublicKeys,
         uint256 amount
     );
 
@@ -171,17 +171,17 @@ contract StakingPool is Ownable, ReentrancyGuard {
      * @notice Deposit shares for a validator
      * @param _pubkey: Public key of the validator
      * @param _operatorIds: IDs of the validator's operators
-     * @param _sharesPublicKeys: Public keys of the shares
-     * @param _sharesEncrypted: Encrypted shares
+     * @param _shares: Public keys of the shares
      * @param _amount: Amount of tokens to be deposited
+     * @param _cluster: Latest Cluster information
      * @dev Callable by the whitelisted address
      */
     function depositShares(
         bytes calldata _pubkey,
-        uint32[] calldata _operatorIds,
-        bytes[] calldata _sharesPublicKeys,
-        bytes[] calldata _sharesEncrypted,
-        uint256 _amount
+        uint64[] calldata _operatorIds,
+        bytes calldata _shares,
+        uint256 _amount,
+        ISSVNetworkCore.Cluster memory _cluster
     ) external {
         /* Check if the message sender is the whitelisted address
          * This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
@@ -194,14 +194,14 @@ contract StakingPool is Ownable, ReentrancyGuard {
         ISSVNetwork(SSV_CONTRACT_ADDR).registerValidator(
             _pubkey,
             _operatorIds,
-            _sharesPublicKeys,
-            _sharesEncrypted,
-            _amount
+            _shares,
+            _amount,
+            _cluster
         );
         // Add the public key to the list of validators
         Validators.push(_pubkey);
         // Emit an event to log the deposit of shares
-        emit KeySharesDeposited(_pubkey, _sharesPublicKeys, _amount);
+        emit KeySharesDeposited(_pubkey, _shares, _amount);
     }
 
     /**

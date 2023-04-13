@@ -1,12 +1,14 @@
 {
   "eth": {
-    "rpc": "https://goerli.infura.io/v3/<YOUR_KEY>",
+    "rpc": "",
+    "goerli_rpc": "",
     "priv_key": ""
   },
   "contract_address": {
-    "ssv_network": "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04",
-    "stakepool": "0xCD5A484Af2C6ECf9fD6dE2d65C2002Cbdb1C1794",
+    "ssv_network": "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3",
+    "ssv_network_views": "0x8dB45282d7C4559fd093C26f677B3837a5598914",
+    "stakepool": "0x67F7C08f0c6E93fcFc42C0E8E681Bd8c8E496124",
     "ssv_token": "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
   },
-  "keystore_pass": ""
+  "keystore_pass": "test"
 }
