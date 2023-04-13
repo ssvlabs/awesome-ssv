@@ -7,7 +7,7 @@ else
   git clone https://github.com/bloxapp/ssv-keys.git
   cd ssv-keys
   git fetch -a
-  git checkout v2
+  git checkout v3
   cd ..
   rm ssv-keys/package.json
   cp ssv/package.json ssv-keys/package.json

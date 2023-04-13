@@ -27,7 +27,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 ssv-keys
-ssv
 awesome-ssv-staking-frontend/package-lock.json
 awesome-ssv-staking-frontend/yarn.lock
 package-lock.json
@@ -118,8 +117,7 @@ venv.bak/
 # contracts 
 frontend/packages/react-app/src/contracts/
 
-# contract config 
-sample_config
+# contract config
 
 # Spyder project settings
 .spyderproject
