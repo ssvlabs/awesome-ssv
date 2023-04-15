@@ -142,6 +142,8 @@ Check the **[Tutorials folder](/tutorials)** for more information about the tuto
 
 - [Video - run SSV node in 10 minutes🚀](https://www.youtube.com/watch?v=HFb4uxHC50w)
 
+- [Video - Launch you own 🌈LSD pool on Goerli with DVT | ssv.network v3](http://www.youtube.com/watch?v=CiV76rOY4go)
+
 ## How to contribute
 
 ### Join the Buidlers 
