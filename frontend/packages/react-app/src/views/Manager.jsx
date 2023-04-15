@@ -3,12 +3,14 @@ import { useContractReader } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { Address, Balance } from "../components";
 import { ethers } from "ethers";
+import generateDepositData from '../helpers/generateDepositData';
+import Keyshares from "../components/Keyshares";
 const { Search } = Input;
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
   const operators = useContractReader(readContracts, "StakingPool", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "StakingPool", "PubKeyDeposited", localProvider, 5);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
-
+  console.log("all validators", validators)
   const handleOnSetNewOperators = async value => {
     await tx(writeContracts.StakingPool.updateOperators(JSON.parse(value)));
   };
@@ -38,10 +40,10 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log(values.pubkey);
     await tx(
       writeContracts.StakingPool.depositValidator(
-        values.pubkey,
-        values.withdrawalCredentials,
-        values.signature,
-        values.depositDataRoot,
+        "0x" + values.pubkey,
+        "0x" + values.withdrawalCredentials,
+        "0x" + values.signature,
+        "0x" + values.depositDataRoot,
       ),
     );
   };
@@ -49,6 +51,15 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const onDepositValidatorFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
+
+  const onGenerateDepositData = () => {
+    generateDepositData().then(data => {
+      console.log('Mnemonic:', data.mnemonic);
+      console.log('Deposit data:', data.depositData);
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 
   return (
     <div>
@@ -128,13 +139,16 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
               </a>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
+                href="https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend
+                🖥️ Generating deposit data in backend
               </a>
             </div>
+            <Button style={{ marginBottom: 22 }} onClick={onGenerateDepositData}>
+              Generate deposit data
+            </Button>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -179,15 +193,15 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
           <Divider />
           <div>
-            <h4 style={{ padding: 8, marginTop: 12 }}>Deposit shares:</h4>
+            <h3 style={{ padding: 8, marginTop: 12 }}>Deposit shares:</h3>
             <div style={{ padding: 8, marginBottom: 12 }}>
               <a
                 style={{ padding: 8 }}
-                href="https://github.com/bloxapp/awesome-ssv/blob/backend/RUN_THIS_REPO.md"
+                href="https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🖥️ Generating input in backend
+                🖥️ Generating Keyshares in backend
               </a>
               <a
                 style={{ padding: 8 }}
@@ -198,6 +212,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 📜 Deposit contract source
               </a>
             </div>
+            <Keyshares />
             <Form
               name="basic"
               labelCol={{ span: 8 }}

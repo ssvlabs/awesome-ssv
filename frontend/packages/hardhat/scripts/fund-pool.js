@@ -2,7 +2,7 @@ const { ethers } = require("hardhat");
 
 async function fundStakingPool() {
   // Connect to the deployed StakingPool contract
-  const stakingPoolAddress = "0xbd4c9e797a8DBbfdde9C77bc5A5b21ACf611Db8f"; // <-- replace this with your staking pool contract address
+  const stakingPoolAddress = "0x8086F2ab25023CF90d6efA36f8B5943B0e349A9C"; // <-- replace this with your staking pool contract address
   const stakingPoolContract = await ethers.getContractAt(
     "StakingPool",
     stakingPoolAddress

@@ -266,6 +266,7 @@ function App(props) {
               loadWeb3Modal={loadWeb3Modal}
               logoutOfWeb3Modal={logoutOfWeb3Modal}
               blockExplorer={blockExplorer}
+              readContracts={readContracts}
             />
           </div>
         </div>

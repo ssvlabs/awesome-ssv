@@ -1,5 +1,5 @@
 {
   "validator_count": 4,
-  "withdrawal_creds": "0x69ab0638369669a9492B9f4e687dA0d8FDE6c927",
-  "keystore_password": ""
+  "withdrawal_creds": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "keystore_password": "123456"
 }
