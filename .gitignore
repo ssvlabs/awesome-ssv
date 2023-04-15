@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# generated ssv-keys binary
+ssv/ssv-cli
+ssv/ssv-cli.exe
+
 # Distribution / packaging
 .Python
 build/

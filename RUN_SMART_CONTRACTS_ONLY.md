@@ -1,6 +1,6 @@
 ## Video walkthrough
 
-[![Repo walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4xgCsi_kSVI/0.jpg)](http://www.youtube.com/watch?v=4xgCsi_kSVI "Repo walkthrough & launchig 🌈LSD pool"){:target="\_blank"}
+[![Video walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/CiV76rOY4go/0.jpg)](http://www.youtube.com/watch?v=CiV76rOY4go "Repo walkthrough & launchig 🌈LSD pool")
 
 **NOTE:**
 
@@ -9,14 +9,24 @@
 
 ## How to deploy?
 
+### Live deployment
+
+This is a live deployment on goerli, using newest JATO network and v3 contracts, feel free to `stake` some eth ;).
+
+```json
+  "contract_address": {
+    "ssv_network": "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3",
+    "ssv_network_views": "0x8dB45282d7C4559fd093C26f677B3837a5598914",
+    "stakepool": "0x4BDd99cc01c1e91E73DF4feaDAd6C78ade76BB8F",
+    "ssv_token": "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
+  }
+```
+
 ### Install Dependencies
 
 - [python](https://www.python.org/downloads/), you can install it here.
 
 - [eth-Brownie](https://eth-brownie.readthedocs.io/en/stable/install.html), you can install it here.
-
-- [hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation) read more here
-  - `npm install -g hardhat`
 
 ### Brownie Environment setup
 
@@ -62,9 +72,13 @@ This repo works best with a locally forked Goerli network as the network contain
 
 Before running the fork, use the [SSV faucet](https://faucet.ssv.network/) and send yourself some SSV. You will need it in the next step for your pool manager script to registerValidator.
 
+- Install Hardhat
+
+  - `npm install`
+
 - Start the goerli fork network:
 
-- `npx hardhat node --network hardhat --fork https://goerli.infura.io/v3/<your id>`
+  - `npx hardhat node --network hardhat --fork https://goerli.infura.io/v3/<your id>`
 
 ENDPOINT = goerli endpoint from Alchemy or Infura
 
@@ -85,7 +99,7 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 - you will need a staking pool address to run the backend script. You can find it in `contrat_addresses.json`, it is also printed in the console.
 
 - To stake some eth run:
-- `StakingPool[0].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 8750000000})`
+- `StakingPool[-1].stake({'value':64*10**18, 'from': accounts[0], 'gas_price': 87500000000})`
 
 - Now you can start the backend scripts here [RUN_BACKEND.md](RUN_BACKEND.md)
 
@@ -93,7 +107,7 @@ ENDPOINT = goerli endpoint from Alchemy or Infura
 
 This repo works well with Goerli network as the network contains both the Beacon Deposit contract and SSV contracts.
 
-- Start the network:
+##### Start the network:
 
 - `cd demo-contract/`
 
@@ -111,9 +125,19 @@ Once you have deployed your contracts you can stake your sweet ETH! You will rec
 
 When you have enough (32) goerliETH to test depositing a validator change the value in the `stake.py` script or simply run this in your console:
 
-- `StakingPool[0].stake({'value':64*10**18})`
+- `StakingPool[-1].stake({'value':32*10**18, 'gas_price': 875000000000})`
 
 Now you can start the staking pool manager backend scripts
+
+##### Verify contract
+
+To verify the contract you need to export your `ETHERSCAN_TOKEN` first:
+
+`export ETHERSCAN_TOKEN=<YOUR TOKEN>`
+
+After that **change the contract address** in `verify.py` script and run it:
+
+`brownie run scripts/deploy.py --network goerli`
 
 #### Local deployment
 
