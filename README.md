@@ -9,9 +9,7 @@ This repo:
 
 This repo is meant to give you a head start in building a cool prototype of the next big staking app. Build something interesting on top such as transferable NFT validators, Restaking app, or whatever else, and **open PR**.
 
-to **Create and run LSD staking pool**
-
-open [RUN_SMART_CONTRACTS_ONLY.md](/RUN_SMART_CONTRACTS_ONLY.md) for instructions.
+to **Create and run LSD staking pool** open [RUN_THIS_REPO.md](/RUN_THIS_REPO.md) for instructions.
 
 ### Credits
 
