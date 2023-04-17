@@ -37,7 +37,7 @@ this minimalistic staking pool is based on!
 
 ## How to deploy?
 
-### 1. Front End plus Smart contracts - Scaffold-eth framework
+### !! Currently NOT compatible with v3 please use option 2 below | 1. Front End plus Smart contracts - Scaffold-eth framework 
 
 If you want to deploy smart contract together with frontend using scaffold-eth framework built in `JS`continue to [RUN_SMART_CONTRACTS_AND_FRONTEND.md](/RUN_SMART_CONTRACTS_AND_FRONTEND.md).
 
