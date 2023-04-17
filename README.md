@@ -144,6 +144,10 @@ Check the **[Tutorials folder](/tutorials)** for more information about the tuto
 
 - [Video - Launch you own 🌈LSD pool on Goerli with DVT | ssv.network v3](http://www.youtube.com/watch?v=CiV76rOY4go)
 
+- [Video - 🚀🏗👷‍♀️ SSV Node Migration V2(shifu) to V3(Jato)](https://youtu.be/YUnthJg1_4Q)
+
+- [Video - 🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato) | ssv.network v3](https://youtu.be/HxLFC7tMYIs)
+
 ## How to contribute
 
 ### Join the Buidlers 
