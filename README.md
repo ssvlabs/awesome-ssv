@@ -134,7 +134,7 @@ Our SSV services include operator support and staking options to help you maximi
 
 ## Tutorials
 
-Check the **[Tutorials folder](/tutorials)** for more information about the tutorials or follow the links below. 
+Check the **[Tutorials folder](/tutorials)** for more information about the tutorials or follow the links below.
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
@@ -148,7 +148,7 @@ Check the **[Tutorials folder](/tutorials)** for more information about the tuto
 
 ## How to contribute
 
-### Join the Buidlers 
+### Join the Buidlers
 
 Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#dev-support` channel. If you cannot see it claim a role.
 
@@ -156,12 +156,11 @@ Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/
 
 If you see any typos in the tutorials, have a suggestion for better phrasing or see a bug in the code **open a PR!**.
 
-### Suggest improvements 
+### Suggest improvements
 
-Do you think some things could be done better in the repo? Do you have ideas how to expand it? 
+Do you think some things could be done better in the repo? Do you have ideas how to expand it?
 **Open an issue** and share it in the `#dev-support channel`.
-If your featere is usefull for the ecosystem SSV DAO may fund you developing it! 
-
+If your featere is usefull for the ecosystem SSV DAO may fund you developing it!
 
 ### How to add your project
 
