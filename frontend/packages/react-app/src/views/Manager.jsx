@@ -1,16 +1,23 @@
+import { useState } from 'react';
 import { List, Typography, Input, Divider, Form, Button } from "antd";
 import { useContractReader } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { Address, Balance } from "../components";
 import { ethers } from "ethers";
 import generateDepositData from '../helpers/generateDepositData';
-import Keyshares from "../components/Keyshares";
+import generateKeyshares from '../helpers/generateKeyshares'
+
 const { Search } = Input;
+
 export default function Manager({ localProvider, tx, writeContracts, readContracts }) {
+  const [depositData, setDepositData] = useState(null);
+  const [depositDataRoot, setDepositDataRoot] = useState(null);
   const operators = useContractReader(readContracts, "StakingPool", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "StakingPool", "PubKeyDeposited", localProvider, 5);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
+
   console.log("all validators", validators)
+
   const handleOnSetNewOperators = async value => {
     await tx(writeContracts.StakingPool.updateOperators(JSON.parse(value)));
   };
@@ -35,15 +42,16 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const onDepositSharesFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
+
   const onDepositValidatorSubmit = async values => {
     console.log("values:", values);
     console.log(values.pubkey);
     await tx(
       writeContracts.StakingPool.depositValidator(
-        "0x" + values.pubkey,
-        "0x" + values.withdrawalCredentials,
-        "0x" + values.signature,
-        "0x" + values.depositDataRoot,
+        values.pubkey,
+        values.withdrawalCredentials,
+        values.signature,
+        values.depositDataRoot,
       ),
     );
   };
@@ -52,13 +60,16 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     console.log("Failed:", errorInfo);
   };
 
-  const onGenerateDepositData = () => {
-    generateDepositData().then(data => {
-      console.log('Mnemonic:', data.mnemonic);
-      console.log('Deposit data:', data.depositData);
-    }).catch(error => {
-      console.error(error);
-    });
+  const onGenerateDepositData = async () => {
+    const data = await generateDepositData();
+    console.log("depositData", data.depositData);
+    console.log("depositDataRoot", data.depositDataRoot);
+    setDepositData(data.depositData);
+    setDepositDataRoot(data.depositDataRoot);
+  }
+
+  const onGenerateKeyshares = async () => {
+    await generateKeyshares();
   }
 
   return (
@@ -146,15 +157,37 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 🖥️ Generating deposit data in backend
               </a>
             </div>
-            <Button style={{ marginBottom: 22 }} onClick={onGenerateDepositData}>
-              Generate deposit data
-            </Button>
+
+
+            {!depositData && (
+              <Button style={{ marginBottom: 22 }} onClick={onGenerateDepositData}>
+                Generate Deposit Data
+              </Button>
+            )}
+
             <Form
               name="basic"
               labelCol={{ span: 8 }}
               wrapperCol={{ span: 16 }}
               style={{ maxWidth: 500, margin: "auto" }}
-              initialValues={{ remember: true }}
+              fields={[
+                {
+                  name: ["pubkey"],
+                  value: depositData ? `0x${depositData.pubkey}` : undefined
+                },
+                {
+                  name: ["withdrawalCredentials"],
+                  value: depositData ? depositData.withdrawalCredentials : undefined
+                },
+                {
+                  name: ["signature"],
+                  value: depositData ? `0x${depositData.signature}` : undefined
+                },
+                {
+                  name: ["depositDataRoot"],
+                  value: depositDataRoot ? `${depositDataRoot}` : undefined
+                }
+              ]}
               onFinish={onDepositValidatorSubmit}
               onFinishFailed={onDepositValidatorFailed}
               autoComplete="off"
@@ -212,13 +245,16 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
                 📜 Deposit contract source
               </a>
             </div>
-            <Keyshares />
+
+            <Button style={{ marginBottom: 22 }} onClick={onGenerateKeyshares}>
+                Generate Deposit Data
+              </Button>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
               wrapperCol={{ span: 16 }}
               style={{ maxWidth: 500, margin: "auto" }}
-              initialValues={{ remember: true }}
+              value={{ remember: true }}
               onFinish={onDepositSharesSubmit}
               onFinishFailed={onDepositSharesFailed}
               autoComplete="off"
@@ -270,6 +306,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
           }}
         />
       </div>
-    </div>
+    </div >
   );
 }
