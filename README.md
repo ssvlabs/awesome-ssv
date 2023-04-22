@@ -9,9 +9,7 @@ This repo:
 
 This repo is meant to give you a head start in building a cool prototype of the next big staking app. Build something interesting on top such as transferable NFT validators, Restaking app, or whatever else, and **open PR**.
 
-to **Create and run LSD staking pool**
-
-open [RUN_THIS_REPO.md](RUN_THIS_REPO.md) for instructions.
+to **Create and run LSD staking pool** open [RUN_THIS_REPO.md](/RUN_THIS_REPO.md) for instructions.
 
 ### Credits
 
@@ -43,7 +41,9 @@ The best way is via discord channel [#devs-support](https://discord.com/channels
 
 - [Operator services](#operator-services)
 
-- [Guides](#guides)
+- [Tutorials](#tutorials)
+
+- [How to contribute](#how-to-contribute)
 
 - [How to add your project](#how-to-add-your-project)
 
@@ -59,10 +59,10 @@ You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.n
   This backend scrip in this repo allows has all the necessary functions to easily manage a staking pool. It can be also used separately, just to generate keys or do key splitting.  
   It has these actions:
 
-      - Create Validator keys (for Deposit)
-      - generate-keyshares (for SSV contract)
-      - deposit-keyshares
-      - deposit-validators
+      - create validator keys (for Beacon Chain Deposit Contract)
+      - generate keyshares (for SSV Contract)
+      - deposit keyshares
+      - deposit validators
 
 #### Validator key splitting / distribution (key shares creation)
 
@@ -80,15 +80,13 @@ This is the Go implementation of the [ssv-keys repository](https://github.com/bl
 
 StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
 
-#### Validator key generation / management
-
-- [SSV-Tool by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators and estimating costs of operation | MIT | JS
+- [SSV-Tool to Register Val. in SSV Network by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators in SSV Network and estimating costs of operation | MIT | JS
 
 To make the registration process easier, the tool manages key generation and smart contract interaction; the user only needs to provide keystore files and operator ids. This tool also provides a flexible method for estimating operation expenses to match various operation assumptions. SSV V2 is currently being tested; SSV V3 and batch processing support will be added shortly.
 
 #### Distributed (validator) key generation
 
-This technology unlocks trustless staking use cases and removes the necessity for a single party to safeguard the full validator key.
+This technology unlocks trustless staking use cases and removes the necessity for a single party to hold & safeguard and split the full validator key.
 
 - [Rockx DKG](https://github.com/RockX-SG/frost-dkg-demo/) — frost based Distributed key generation (DKG)
 
@@ -134,19 +132,35 @@ If you got an Ubuntu server, you can use Stereum's Node tool to connect to it an
 
 Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial-grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
 
-### Tutorials
+## Tutorials
 
-Check the **[Tutorials folder](/tutorials)**
+Check the **[Tutorials folder](/tutorials)** for more information about the tutorials or follow the links below.
 
 - [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
 
 - [Video - run SSV node in 10 minutes🚀](https://www.youtube.com/watch?v=HFb4uxHC50w)
 
+- [Video - Launch you own 🌈LSD pool on Goerli with DVT | ssv.network v3](http://www.youtube.com/watch?v=CiV76rOY4go)
+
+- [Video - 🚀🏗👷‍♀️ SSV Node Migration V2(shifu) to V3(Jato)](https://youtu.be/YUnthJg1_4Q)
+
+- [Video - 🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato) | ssv.network v3](https://youtu.be/HxLFC7tMYIs)
+
 ## How to contribute
 
-- **introduce a new features** by creating an issue, if they are usefull for the ecosystem ssv dao may fund you developing them! join discord hang out in #dev-support channel!
+### Join the Buidlers
 
-- **correct error** by opening a PR.
+Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#dev-support` channel. If you cannot see it claim a role.
+
+### Fix errors
+
+If you see any typos in the tutorials, have a suggestion for better phrasing or see a bug in the code **open a PR!**.
+
+### Suggest improvements
+
+Do you think some things could be done better in the repo? Do you have ideas how to expand it?
+**Open an issue** and share it in the `#dev-support channel`.
+If your featere is usefull for the ecosystem SSV DAO may fund you developing it!
 
 ### How to add your project
 
@@ -158,6 +172,6 @@ Add your project to the appropriate category in this README file and create a pu
 
 One paragraph description talking what my repo is about, how is it special. Please keep your description concise, the limit is 80 words.
 
-### LICENSE
+## LICENSE
 
 MIT License

@@ -14,7 +14,7 @@ from typing import List
 #                        "-ssv", "1000"])
 # print(str(output).partition("key shares file at ")[2].partition(".json")[0] + ".json")
 
-Operator = namedtuple("Operator", "id pubkey fee name")
+Operator = namedtuple("Operator", "id pubkey fee")
 
 
 class OperatorData:
@@ -43,8 +43,7 @@ class OperatorData:
         for id in ids:
             operator_url_id = self.API_URL + self.operator_call + str(id)
             operator_data = self.make_call(operator_url_id)
-            operator = Operator(operator_data["id"], operator_data["public_key"], operator_data["fee"],
-                                operator_data["name"])
+            operator = Operator(operator_data["id"], operator_data["public_key"], operator_data["fee"])
             operators_data.append(operator)
         # print("operator_data")
         # print(operator_data)
@@ -66,7 +65,7 @@ class SSV:
         self.keystore_file = keystore_file
         self.keystore_pass = keystore_password
 
-    def generate_shares(self, operator_data: List[Operator], network_fees):
+    def generate_shares(self, operator_data: List[Operator]):
         """
 
         :return:
@@ -74,11 +73,11 @@ class SSV:
         print("===================================================================================")
         operator_ids = [str(operator.id) for operator in operator_data]
         operator_pubkeys = [operator.pubkey for operator in operator_data]
-        total_ssv_fee = (sum([int(operator.fee) for operator in operator_data]) + network_fees) * 2628000
         output_folder = os.getcwd() + "/keyshares"
         cli_path = self.CLI_PATH_LINUX_MAC if 'Linux' in platform.system() or 'Darwin' in platform.system() else self.CLI_PATH_WIN
-        output = check_output([cli_path, "key-shares", "-ks", self.keystore_file, "-ps", self.keystore_pass, "-oid",
-                               ",".join(operator_ids), "-ok", ",".join(operator_pubkeys), "-ssv", str(total_ssv_fee),
+        print(self.keystore_pass)
+        output = check_output([cli_path, "shares", "-ks", self.keystore_file, "-ps", self.keystore_pass,
+                               "-oids", ",".join(operator_ids), "-oks", ",".join(operator_pubkeys), "-ksv", "3",
                                "-of", output_folder])
         if "UnhandledPromiseRejectionWarning" in output.decode("utf-8"):
             raise Exception("ssv-cli failed to generate keyshares")

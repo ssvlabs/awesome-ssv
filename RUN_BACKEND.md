@@ -1,11 +1,32 @@
 # Backend
 
-This backend allows for easily managing the staking pool.
+This backend allows for easily managing of the staking pool.
+
+It can:
 
 - Create Validator keys (for Deposit)
-- generate-keyshares (for SSV contract)
-- deposit-keyshares
-- deposit-validators
+- Generate Keyshares (for SSV contract)
+- Deposit Keyshares
+- Deposit Validators
+- monitor staking pool balance, create + deposit the validator to beacon chain and create + deposit keyshares to ssv network.
+
+## Prerequiste - Smart contract deployments
+
+You need to have smart contracts deployed before running this backend. After deployed, continue with this tutorial. You can choose to deply them together with frontend using scaffold-eth framework built in `JS` or deploy smart contracts only with brownie framework built in `PY`.
+
+### 1. Front End plus Smart contracts - Scaffold-eth framework
+
+Continue to README in `frontend` folder [FE_README.md](/frontend/README.md)
+
+It will navigate you through the remaining process. Come back once smart contracts are deployed.
+
+If you want to deploy smart contracts only using brownie framework continue to the next step.
+
+### 2. Smart Contracts Only - Brownie framework
+
+Continue to README [RUN_SMART_CONTRACTS_ONLY.md](/RUN_SMART_CONTRACTS_ONLY.md) to deploy smart contract only using brownie framework.
+
+It will navigate you through the remaining process. Come back once smart contracts are deployed.
 
 ### External Libraries used
 
@@ -13,20 +34,22 @@ This backend allows for easily managing the staking pool.
 
 - [Ethereum-staking-cli](https://github.com/ethereum/staking-deposit-cli.git) : Used to generate Ethereum validators keys
 
-### Install Dependencies
+## Install Dependencies
 
 - [python](https://www.python.org/downloads/), you can install it here.
 
-## Before Running Backend Manager
+## Initial setup
 
-### Deploy Contracts
+- make the script executable and run it
 
-- Smart Contracts only - Brownie framework
+```
 
-  - Follow [RUN_THIS_REPO.md](RUN_THIS_REPO.md)
+chmod +x setup.sh
 
-- Front End & Smart contracts - Scaffold-eth framework
-  - Follow [FE_README.md](/frontend/README.md)
+./setup.sh
+
+
+```
 
 ## Run Backend Manager
 
@@ -34,9 +57,7 @@ This backend allows for easily managing the staking pool.
 
 - Make sure that for the backend script, you are using a private key corresponding to your `whitelist` address from your `deploy` script.
 
-- Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address.
-
-It will use it to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch it again.
+- Your staking pool needs to be funded with some SSV to pay for running your validator. Keep at least 50 SSV at your deployer address. It will be used to pay operators for running your distributed validator. You can get some Goerli SSV from [SSV faucet here](https://faucet.ssv.network/). If you are using a local goerli-fork, use the faucet on Goerli, send the SSV to your deployer address and launch your goerli-fork again.
 
 ### Outputs
 
@@ -44,7 +65,26 @@ Your created validator keys and deposit data can be found in `"/validator_keys"`
 
 Validator split shares can be found in `"/keyshares"` folder.
 
+#### How to use it
+
+- _stake_ : This is the backend script that monitors the staking pool and generates validator keys, SSV keyshares and send transactions to submit them.
+
+  - Example config file: sample_config/stake-config.json
+  - Fill in the params in the config file and pass it as an argument
+
+**NOTE:**
+
+- For `"rpc:"` value use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli.
+- For `"goerli_rpc:"` **alwyas** use goerli rpc endpoint `https://goerli.infura.io/v3/<your id>`, no matter if you are connecting to goerli-fork or live goerli. This is necessary for correctly fetching clusters.
+
 ```
+python3 main.py stake -c <CONFIG_FILE>
+
+
+python3 main.py stake -c sample_config/stake-config.json
+
+```
+
 validator_keys
 
 - Open a new terminal in the main project folder
@@ -119,22 +159,6 @@ python3 main.py deposit-keyshares -c <CONFIG_FILE>
 
 ```
 
-- _stake_ : This is the backend script that monitors the staking pool and regularly generates validator pubkeys and SSV keyshares
-  - Example config file: sample_config/stake-config.json
-  - Fill in the params in the config file and pass it as an argument
-
-```
-
-python3 main.py stake -c <CONFIG_FILE>
-
-e.g.
-
-python3 main.py stake -c sample_config/stake-config.json
-
-```
-**NOTE:** Use `http://localhost:8545` if you are connecting to goerli-fork and `https://goerli.infura.io/v3/<your id>` when connecting to goerli
-
 ### LICENSE
 
 MIT License
-```

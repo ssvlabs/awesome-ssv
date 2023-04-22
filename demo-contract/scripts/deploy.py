@@ -10,12 +10,12 @@ def main():
     deployer = get_deployer()
 
     # TODO OPTIONAL update these values
-    whitelist = "0x00704A2E3EAf3992c7C9802DF0088F8BA9e4426d"
-    withdrawal_creds = "0x00704A2E3EAf3992c7C9802DF0088F8BA9e4426d"
-    operator_ids = [1, 2, 9, 42]
+    whitelist = "0x44449d7cA8e3724cb9c9E30Ce49B286e275D79bf"
+    withdrawal_creds = "0x44449d7cA8e3724cb9c9E30Ce49B286e275D79bf"
+    operator_ids = [4, 9, 17, 76]
 
     deposit_contract = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b"
-    ssv_network_contract = "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04"
+    ssv_network_contract = "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3"
     ssv_token_address = "0x3a9f01091C446bdE031E39ea8354647AFef091E7"
 
     # ssvETH = "0xfcE8F661AbBf1417E6f73593B9cf779aF83501a9"
@@ -27,23 +27,23 @@ def main():
 
     print("deploying staking Pool...")
     stakingPool = StakingPool.deploy(whitelist, deposit_contract, withdrawal_creds,
-                                     ssv_network_contract, ssv_token_address, operator_ids, {'from': deployer, 'gas_price': 87500000000})
-    # print("staking pool deployed to:", stakingPool.address)
+                                     ssv_network_contract, ssv_token_address, operator_ids, {'from': deployer, 'gas_price': 875000000000})  # to change nonce  add "'nonce': 142" into the curly brackets
+    print("staking pool deployed to:", stakingPool.address)
 
-    # print("trasferring minting ownership...")
-    # ssvETH.transferOwnership(stakingPool.address, {
-    #                          'from': deployer})
+    print("trasferring minting ownership...")
+    ssvETH.transferOwnership(stakingPool.address, {
+                             'from': deployer})
 
     print("testing staking...")
     stakingPool.stake({'value': 65 * 10 ** 18,
-                      'from': deployer, 'gas_price': 87500000000})
+                      'from': deployer, 'gas_price': 875000000000})
 
     print("testing unStaking...")
     ssvETH = SSVETH.at(stakingPool.ssvETH())
     ssvETH.approve(stakingPool.address, 0.001 * 10 ** 18,
-                   {'from': deployer, 'gas_price': 87500000000})
+                   {'from': deployer, 'gas_price': 875000000000})
     stakingPool.unStake(
-        0.001 * 10 ** 18, {'from': deployer, 'gas_price': 87500000000})
+        0.001 * 10 ** 18, {'from': deployer, 'gas_price': 875000000000})
 
     with open('contrat_addresses.json', "r") as f:
         data = json.load(f)

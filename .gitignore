@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# generated ssv-keys binary
+ssv/ssv-cli
+ssv/ssv-cli.exe
+
 # Distribution / packaging
 .Python
 build/
@@ -27,7 +31,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 ssv-keys
-ssv
 awesome-ssv-staking-frontend/package-lock.json
 awesome-ssv-staking-frontend/yarn.lock
 package-lock.json
@@ -118,8 +121,7 @@ venv.bak/
 # contracts 
 
 
-# contract config 
-sample_config
+# contract config
 
 # Spyder project settings
 .spyderproject
