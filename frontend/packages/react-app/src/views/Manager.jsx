@@ -44,14 +44,12 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   };
 
   const onDepositValidatorSubmit = async values => {
-    console.log("values:", values);
-    console.log(values.pubkey);
     await tx(
       writeContracts.StakingPool.depositValidator(
         values.pubkey,
         values.withdrawalCredentials,
         values.signature,
-        values.depositDataRoot,
+        values.depositDataRoot
       ),
     );
   };
@@ -170,24 +168,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
               labelCol={{ span: 8 }}
               wrapperCol={{ span: 16 }}
               style={{ maxWidth: 500, margin: "auto" }}
-              fields={[
-                {
-                  name: ["pubkey"],
-                  value: depositData ? `0x${depositData.pubkey}` : undefined
-                },
-                {
-                  name: ["withdrawalCredentials"],
-                  value: depositData ? depositData.withdrawalCredentials : undefined
-                },
-                {
-                  name: ["signature"],
-                  value: depositData ? `0x${depositData.signature}` : undefined
-                },
-                {
-                  name: ["depositDataRoot"],
-                  value: depositDataRoot ? `${depositDataRoot}` : undefined
-                }
-              ]}
+
               onFinish={onDepositValidatorSubmit}
               onFinishFailed={onDepositValidatorFailed}
               autoComplete="off"
