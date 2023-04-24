@@ -5,7 +5,7 @@
       "chainId": "5",
       "contracts": {
         "StakingPool": {
-          "address": "0x799ae22F6Dc4199bD71758955933447da42Fe030",
+          "address": "0x576b1761d93aa871474ef5c448d0381601209e5e",
           "abi": [
             {
               "inputs": [

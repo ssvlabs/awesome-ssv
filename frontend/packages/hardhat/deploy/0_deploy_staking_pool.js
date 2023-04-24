@@ -5,8 +5,8 @@ const localChainId = "31337";
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  const keyGenerator = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
-  const withdrawal = "0x123465f75D79AdAEde008E978208cb2Cc28E8B04";
+  const keyGenerator = "0x4dC2e5A9B42d583A3455941b304878A9aE50d537";
+  const withdrawal = "0x4dC2e5A9B42d583A3455941b304878A9aE50d537";
   const operatorIds = [1, 2, 9, 42];
 
   const depositAddress = "0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b";
