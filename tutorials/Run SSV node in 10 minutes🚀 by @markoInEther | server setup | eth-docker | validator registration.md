@@ -65,12 +65,8 @@ if command -v ufw > /dev/null 2>&1; then
     ufw allow 13001/udp
     ufw allow 12001/tcp
     ufw allow 12001/udp
-    ufw allow 9001/tcp
-    ufw allow 9001/udp
     ufw allow 9000/tcp
     ufw allow 9000/udp
-    ufw allow 8545/tcp
-    ufw allow 8545/udp
     ufw allow 30303/tcp
     ufw allow 30303/udp
 else
