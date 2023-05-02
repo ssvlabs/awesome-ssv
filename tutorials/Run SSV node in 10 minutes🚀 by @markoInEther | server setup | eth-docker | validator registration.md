@@ -17,6 +17,22 @@ Setup ssv node
 Generate operator key https://eth-docker.net/Support/BloxSSV
 Register operator on goerli
 
+**IMPORTANT**
+When you are copying your secret key `SK` it **must** include equal sign `"="` if it is included at the end of your key. In VS code if you double click on the key it will select it without it so be careful. 
+
+**Example**
+Generated key pair looks like this: 
+```
+2023-03-31T11:36:02.885763Z     INFO    SSV-Node        cli/generate_operator_keys.go:27        generated public key (base64) {"pk": "LS0tLS1CRUdJTiBSU0EgUFVCTElDIEtFWS0tLS0tCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBelluYmdsUXk1My8zcHpnWHNJaTAKWmpSekpOUEN0UUdZZXpWVW9PK3g1eTJCMEZGbnd0K1c1RXNNUmFPY3p2ZHBTNnBNd256Um5FOVdxQjVzNDBCOQppRGVjeldGZkt6V3VDRm1yWGtGS2RRVFVmVXdmZmUwQUxmTFo1RHhaUU5XTmZWVnRpZUZ5K3JxTFNDL1V1bGFkCjU5aGQ5RmxWQndLSmFZc1VCVzYzRDBRSEJPZmp6eTRLOEw4eFFOUWRJTWtLUUlpOTNIWEhvQnpjN1U2bUp6cnMKR3JxVmRia0xsem16SHBEdVBLR0lYdnA2NkdyRER5c3F5RmFOQTBjTG14ZEdQMG5EVWxwK0ZsMThWTGduMTRBRQoxQ041WmRUSk5JaEtvVXQ3YjhsSjZ5UUxjaUpIUFZiZUpKZUIxTlNtQyttamJ4Zy9PWXY2S05ZOHQyS1FyV3p0Ckl3SURBUUFCCi0tLS0tRU5EIFJTQSBQVUJMSUMgS0VZLS0tLS0K"}
+2023-03-31T11:36:02.885881Z     INFO    SSV-Node        cli/generate_operator_keys.go:28        generated private key (base64)        {"sk": "LS0tLS1CRUd......................................................................................JVkFURSBLRVktLS0tLQo="}
+```
+
+
+The key you paste into your config file should look like this: 
+`LS0tLS1CRUd......................................................................................JVkFURSBLRVktLS0tLQo=`
+
+
+ 
 ### scripts
 
 create_user.sh
