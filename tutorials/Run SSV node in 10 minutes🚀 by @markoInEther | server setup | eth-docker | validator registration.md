@@ -1,13 +1,18 @@
-## Setting up SSV node
+## Setting up SSV node with Execution client + Beacon Chain
 
 [![🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀](http://img.youtube.com/vi/HFb4uxHC50w/0.jpg)](https://www.youtube.com/watch?v=HFb4uxHC50w "🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀")
 
 **DISCLAIMER**
 The content provided is for informational purposes only and should not be considered as professional advice. The information presented may not be complete, accurate or up-to-date. The reader or viewer is solely responsible for any actions taken based on the information provided. The author and publisher shall not be held liable for any losses, damages or injuries arising from the use of the information provided. It is recommended to seek professional advice for specific situations.
 
+### What will you do
+The video is walking through setting up **all nodes**(SSV+EL+CL) using eth-docker and setting up your server.  
+If you need to run SSV node only, follow the [official documentation](https://docs.ssv.network/run-a-node/operator-node/installation).
+
 ## Steps
 
-follow along with the video
+Follow along with the video. 
+
 
 get linux server setup
 Install prerequisites with bash script
