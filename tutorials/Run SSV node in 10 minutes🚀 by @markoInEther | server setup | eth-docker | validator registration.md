@@ -1,4 +1,4 @@
-## Video
+## Setting up SSV node
 
 [![🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀](http://img.youtube.com/vi/HFb4uxHC50w/0.jpg)](https://www.youtube.com/watch?v=HFb4uxHC50w "🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀")
 
@@ -108,3 +108,14 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-dock
 ./ethd config
 
 ```
+
+-------------------------------- 
+
+## Registering SSV node
+
+[![🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato)](http://img.youtube.com/vi/HxLFC7tMYIs/0.jpg)](https://www.youtube.com/watch?v=HxLFC7tMYIs"🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato)")
+
+
+
+
+
