@@ -129,7 +129,7 @@ You can skip this part, if you only need to register a new operator to v3.
 
 ## Other tutorials 
 
-[markoInEther youtube channel](https://www.youtube.com/channel/UCD7q4qIhrhFjEhSxGdLR-CQ){:target="_blank"}
+[markoInEther youtube channel](https://www.youtube.com/channel/UCD7q4qIhrhFjEhSxGdLR-CQ)
 
 
 
