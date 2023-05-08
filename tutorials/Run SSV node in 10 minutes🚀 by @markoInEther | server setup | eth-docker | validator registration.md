@@ -111,14 +111,25 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-dock
 
 -------------------------------- 
 
-## Registering SSV node via UI, migration from v2 to v3 
+## Registering SSV node to SSV network, migration from v2 to v3
 
 [![🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato)](http://img.youtube.com/vi/HxLFC7tMYIs/0.jpg)](https://www.youtube.com/watch?v=HxLFC7tMYIs "🚀🚀🦄 SSV Operator + Validator Migration V2 to V3")
 
 ## Steps
 
-follow along with the video
+Follow along with the video, first half will guide you through deregistering operator from v2 network. 
+You can skip this part, if you only need to register a new operator to v3. 
 
+[See other tutorials](https://www.youtube.com/channel/UCD7q4qIhrhFjEhSxGdLR-CQ)
+
+## Reach out 
+
+[SSV discord](https://discord.gg/invite/ssvnetworkofficial)
+ - `# operators-general` channel 
+
+## Other tutorials 
+
+[markoInEther youtube channel](https://www.youtube.com/channel/UCD7q4qIhrhFjEhSxGdLR-CQ)
 
 
 
