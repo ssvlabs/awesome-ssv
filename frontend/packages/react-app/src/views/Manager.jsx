@@ -245,7 +245,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             </div>
 
             <Button style={{ marginBottom: 22 }} onClick={onGenerateKeyshares}>
-                Generate Deposit Data
+                Generate Key Shares
               </Button>
             <Form
               name="basic"
