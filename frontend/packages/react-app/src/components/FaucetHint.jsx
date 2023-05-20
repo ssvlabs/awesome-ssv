@@ -36,6 +36,7 @@ function FaucetHint({ localProvider, targetNetwork, address }) {
           onClick={() => {
             faucetTx({
               to: address,
+              gasPrice : targetNetwork === "localhost" ? 60000000000 : gasPrice,
               value: ethers.utils.parseEther("100"),
             });
             //setFaucetClicked(true);

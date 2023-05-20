@@ -4,8 +4,10 @@ import { useThemeSwitcher } from "react-css-theme-switcher";
 import { useTokenPrice } from "../hooks";
 import Address from "./Address";
 import Balance from "./Balance";
+import TokenBalance from "./TokenBalance";
 import Wallet from "./Wallet";
-
+import { useContractReader } from "eth-hooks";
+const { ethers } = require("ethers");
 /** 
   ~ What it does? ~
 
@@ -53,11 +55,15 @@ export default function Account({
   logoutOfWeb3Modal,
   blockExplorer,
   isContract,
+  readContracts
 }) {
   const { currentTheme } = useThemeSwitcher();
 
+  // Mainnet price 
   const ssvTokenPrice = useTokenPrice("0x9D65fF81a3c488d585bBfb0Bfe3c7707c7917f54");
-  console.log(ssvTokenPrice);
+  // testnet balance 
+  const ssvTokenBalance = useContractReader(readContracts, "SSVTOKENADDRESS", "balanceOf", [address]);
+  console.log("ssvTokenBalance", ssvTokenBalance);
 
   let accountButtonInfo;
   if (web3Modal?.cachedProvider) {
@@ -68,11 +74,12 @@ export default function Account({
 
   const display = !minimized && (
     <span>
-      <span style={{ fontSize: 20, verticalAlign: "middle", padding: 8 }}>SSV Price: {ssvTokenPrice} </span>
+      <span style={{ fontSize: 15, verticalAlign: "middle", padding: 8 }}>SSV Price: {ssvTokenPrice} </span>
       {address && (
         <Address address={address} ensProvider={mainnetProvider} blockExplorer={blockExplorer} fontSize={20} />
       )}
       <Balance address={address} provider={localProvider} price={price} size={20} />
+       <span style={{ fontSize: 15, verticalAlign: "middle", padding: 8 }}>{ ssvTokenBalance ? Number(ethers.utils.formatEther(ssvTokenBalance)).toFixed(2) : 0} SSV </span>
       {!isContract && (
         <Wallet
           address={address}
@@ -82,7 +89,7 @@ export default function Account({
           price={price}
           color={currentTheme === "light" ? "#1890ff" : "#2caad9"}
           size={22}
-          padding={"0px"}
+          padding={"5px"}
         />
       )}
     </span>

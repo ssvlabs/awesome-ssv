@@ -119,7 +119,7 @@ env.bak/
 venv.bak/
 
 # contracts 
-frontend/packages/react-app/src/contracts/
+
 
 # contract config
 
