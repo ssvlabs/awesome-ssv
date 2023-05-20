@@ -9,3 +9,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.dropzone {
+  text-align: center;
+  padding: 10px;
+  width: 70%;
+  margin: auto;
+}

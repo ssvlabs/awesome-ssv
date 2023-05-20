@@ -72,13 +72,23 @@ module.exports = {
     goerli: {
       url: "https://goerli.infura.io/v3/02c55d691047439ab33be7c7dd9da4bc", // <---- YOUR INFURA ID! (or it won't work)
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/goerli", // <---- YOUR MORALIS ID! (not limited to infura)
-      accounts: ['83f5d529c211e95b0e3f0a91e0c44763bb0b1718c9c129fb0bcee9ecf4a964e2']
+      accounts: ['dd415aae47164aa431fbfdd17d058842cf333065c54e5973d95dcb5189351b92']
     },
 
   },
   dependencies: ["StakingPool", "ssvETH"],
   solidity: {
     compilers: [
+      {
+        version: "0.8.18",
+        docker: false,
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
       {
         version: "0.8.13",
         docker: false,
