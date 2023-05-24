@@ -8,13 +8,10 @@
 
 You can find our live demo deployment [Here](https://awesome-ssv-staking.surge.sh)
 
-# Frontend
+# 🚀 Quick Start Frontend
 
-## Prerequisites
-
-[Node (v18 LTS)](https://nodejs.org/en/download/)
-[Yarn (v1.x)](https://classic.yarnpkg.com/en/docs/install/)
-[Git](https://git-scm.com/downloads)
+Prerequisites: [Node (v18 LTS)](https://nodejs.org/en/download/) plus [Yarn (v1.x)](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
+🚨 If you are using a version < v18 you will need to remove `openssl-legacy-provider` from the `start` script in `package.json`
 
 ## Installation
 
