@@ -10,7 +10,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
   const operators = useContractReader(readContracts, "StakingPool", "getOperators");
   const pubKeyEvents = useEventListener(readContracts, "StakingPool", "PubKeyDeposited", localProvider, 5);
   const KeySharesDepositedEvents = useEventListener(readContracts, "StakingPool", "KeySharesDeposited", localProvider, 5);
-  
+
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
 
   console.log("all validators", validators)
@@ -26,7 +26,7 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
 
   return (
     <div>
-      <div style={{ border: "1px solid #cccccc", width: 600, margin: "auto", marginTop: 32 }}>
+      <div style={{ border: "1px solid #cccccc", width: 650, margin: "auto", marginTop: 32 }}>
         <h2 style={{ paddingTop: 16 }}>Pool managed overview:</h2>
 
         <div style={{ display: "flex" }}>
@@ -36,9 +36,12 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             bordered
             dataSource={validators}
             renderItem={item => (
-              <List.Item>
-                <Typography.Text mark>[Validator]</Typography.Text> {item}
-              </List.Item>
+              <>
+                <List.Item>
+                  <Typography.Text style={{ maxWidth: "100%" }} mark>{item}</Typography.Text>
+                </List.Item>
+                <br></br>
+              </>
             )}
           />
           <List
@@ -85,36 +88,36 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
         </div>
       </div>
 
-      <div style={{ width: 600, margin: "auto", marginTop: 32, display:"flex" }} >
-      <div style={{ width: 300, margin: "auto"}}>
-        <h3 style={{ paddingTop: 16 }}>Public Key Deposited Events:</h3>
-        <List
-          dataSource={pubKeyEvents}
-          renderItem={item => {
-            return (
-              <List.Item key={item.blockNumber}>
-                <Address value={item.args[0]} fontSize={16} /> =>
-                <Balance balance={item.args[1]} />
-              </List.Item>
-            );
-          }}
-        />
-      </div>
-      
-      <div style={{ width: 300, margin: "auto"}}>
-        <h3 style={{ paddingTop: 16 }}>Key Shares Deposited Events:</h3>
-        <List
-          dataSource={KeySharesDepositedEvents}
-          renderItem={item => {
-            return (
-              <List.Item key={item.blockNumber}>
-                <Address value={item.args[0]} fontSize={16} /> =>
-                <Balance balance={item.args[1]} />
-              </List.Item>
-            );
-          }}
-        />
-      </div>
+      <div style={{ width: 600, margin: "auto", marginTop: 32, display: "flex" }} >
+        <div style={{ width: 300, margin: "auto" }}>
+          <h3 style={{ paddingTop: 16 }}>Public Key Deposited Events:</h3>
+          <List
+            dataSource={pubKeyEvents}
+            renderItem={item => {
+              return (
+                <List.Item key={item.blockNumber}>
+                  <Address value={item.args[0]} fontSize={16} /> =>
+                  <Balance balance={item.args[1]} />
+                </List.Item>
+              );
+            }}
+          />
+        </div>
+
+        <div style={{ width: 300, margin: "auto" }}>
+          <h3 style={{ paddingTop: 16 }}>Key Shares Deposited Events:</h3>
+          <List
+            dataSource={KeySharesDepositedEvents}
+            renderItem={item => {
+              return (
+                <List.Item key={item.blockNumber}>
+                  <Address value={item.args[0]} fontSize={16} /> =>
+                  <Balance balance={item.args[1]} />
+                </List.Item>
+              );
+            }}
+          />
+        </div>
       </div>
     </div >
   );

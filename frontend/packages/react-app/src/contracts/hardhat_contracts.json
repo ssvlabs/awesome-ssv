@@ -1,11 +1,515 @@
 {
+  "5": {
+    "goerli": {
+      "name": "goerli",
+      "chainId": "5",
+      "contracts": {
+        "StakingPool": {
+          "address": "0x4BDd99cc01c1e91E73DF4feaDAd6C78ade76BB8F",
+          "abi": [
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "keyGenerator",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "depositAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "withdrawal",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "ssv_contract",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "ssv_token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint32[4]",
+                  "name": "ids",
+                  "type": "uint32[4]"
+                }
+              ],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "valueSent",
+                  "type": "uint256"
+                }
+              ],
+              "name": "StakingPool__CantStakeZeroAmount",
+              "type": "error"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "caller",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "whitelistedAddress",
+                  "type": "address"
+                }
+              ],
+              "name": "StakingPool__OnlyWhitelistAddress",
+              "type": "error"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "bytes",
+                  "name": "pubkey",
+                  "type": "bytes"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "bytes",
+                  "name": "sharesPublicKeys",
+                  "type": "bytes"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "KeySharesDeposited",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint32[4]",
+                  "name": "newOperators",
+                  "type": "uint32[4]"
+                }
+              ],
+              "name": "OperatorIDsChanged",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": true,
+                  "internalType": "address",
+                  "name": "previousOwner",
+                  "type": "address"
+                },
+                {
+                  "indexed": true,
+                  "internalType": "address",
+                  "name": "newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "OwnershipTransferred",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "bytes",
+                  "name": "pubkey",
+                  "type": "bytes"
+                }
+              ],
+              "name": "PubKeyDeposited",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "newPrice",
+                  "type": "uint256"
+                }
+              ],
+              "name": "SharePriceUpdated",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "user_address",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "UserStaked",
+              "type": "event"
+            },
+            {
+              "inputs": [],
+              "name": "SSV_CONTRACT_ADDR",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "SSV_TOKEN_ADDR",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "VALIDATOR_AMOUNT",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "name": "Validators",
+              "outputs": [
+                {
+                  "internalType": "bytes",
+                  "name": "",
+                  "type": "bytes"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "WITHDRAWAL_ADDRESS",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "WhitelistKeyGenerator",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "bytes",
+                  "name": "_pubkey",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint64[]",
+                  "name": "_operatorIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "_shares",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint32",
+                      "name": "validatorCount",
+                      "type": "uint32"
+                    },
+                    {
+                      "internalType": "uint64",
+                      "name": "networkFeeIndex",
+                      "type": "uint64"
+                    },
+                    {
+                      "internalType": "uint64",
+                      "name": "index",
+                      "type": "uint64"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "balance",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "active",
+                      "type": "bool"
+                    }
+                  ],
+                  "internalType": "struct ISSVNetworkCore.Cluster",
+                  "name": "_cluster",
+                  "type": "tuple"
+                }
+              ],
+              "name": "depositShares",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "bytes",
+                  "name": "_pubkey",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "_withdrawal_credentials",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "_signature",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "_deposit_data_root",
+                  "type": "bytes32"
+                }
+              ],
+              "name": "depositValidator",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getOperators",
+              "outputs": [
+                {
+                  "internalType": "uint32[4]",
+                  "name": "",
+                  "type": "uint32[4]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getShareprice",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "_userAddress",
+                  "type": "address"
+                }
+              ],
+              "name": "getUserStake",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getValidators",
+              "outputs": [
+                {
+                  "internalType": "bytes[]",
+                  "name": "",
+                  "type": "bytes[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "owner",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "renounceOwnership",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "ssvETH",
+              "outputs": [
+                {
+                  "internalType": "contract SSVETH",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "stake",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "newOwner",
+                  "type": "address"
+                }
+              ],
+              "name": "transferOwnership",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "unStake",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "_newBeaconRewards",
+                  "type": "uint256"
+                }
+              ],
+              "name": "updateBeaconRewards",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint32[4]",
+                  "name": "_newOperators",
+                  "type": "uint32[4]"
+                }
+              ],
+              "name": "updateOperators",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "stateMutability": "payable",
+              "type": "receive"
+            }
+          ]
+        }
+      }
+    }
+  },
   "31337": {
     "localhost": {
       "name": "localhost",
       "chainId": "31337",
       "contracts": {
         "StakingPool": {
-          "address": "0xcC691Bb7F3bDAA6a43264407b538137f6068fAF2",
+          "address": "0xC6f6d8c9036A106eC0FdF845c088414451eCE4EC",
           "abi": [
             {
               "inputs": [
