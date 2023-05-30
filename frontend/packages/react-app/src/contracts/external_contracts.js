@@ -428,7 +428,7 @@ module.exports = {
       },
 
       SSVNETWORKCONTRACT: {
-        address: "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04",
+        address: "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3",
         abi: SSVNETWORKCONTRACTABI,
       },
 
@@ -451,7 +451,7 @@ module.exports = {
       },
 
       SSVNETWORKCONTRACT: {
-        address: "0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04",
+        address: "0xAfdb141Dd99b5a101065f40e3D7636262dce65b3",
         abi: SSVNETWORKCONTRACTABI,
       },
 
