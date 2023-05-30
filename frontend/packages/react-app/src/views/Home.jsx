@@ -11,17 +11,15 @@ const { Search } = Input;
 
 function Home({ localProvider, readContracts, writeContracts, userSigner, gasPrice, address, localChainId }) {
   const localProviderPollingTime = getRPCPollTime(localProvider);
-  console.log("contract", readContracts);
   const [unStakeLoading, setUnStakeLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
   const beaconRewards = useContractReader(readContracts, "StakingPool", "beaconRewards");
+  console.log("beaconRewards", beaconRewards);
   const executionRewards = useContractReader(readContracts, "StakingPool", "executionRewards");
-  console.log("sharePrice", sharePrice?.toString());
   //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
-  console.log("userEarnings", userEarnings?.toString());
   const balanceStaked = useContractReader(readContracts, "StakingPool", "getUserStake", [address]);
   const stakingPoolAddress = readContracts && readContracts?.StakingPool?.address;
   const stakingPoolBalance = useBalance(localProvider, stakingPoolAddress, localProviderPollingTime);
@@ -43,8 +41,6 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   };
 
   const handleOnUnstake = async value => {
-    console.log("balanceStaked", Number(balanceStaked));
-    console.log("value", Number(ethers.utils.parseEther(value)));
     if (Number(ethers.utils.parseEther(value)) > Number(balanceStaked)) {
       alert("You can't unstake more than you have !");
       return;
