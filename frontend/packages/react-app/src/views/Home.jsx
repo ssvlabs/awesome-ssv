@@ -15,10 +15,12 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [stakeLoading, setStakeLoading] = useState(false);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
+  //const beaconRewards = useContractReader(readContracts, "StakingPool", "getBeaconRewards");
+  //const executionRewards = useContractReader(readContracts, "StakingPool", "getExecutionRewards");
+  // replace 
   const beaconRewards = useContractReader(readContracts, "StakingPool", "beaconRewards");
-  console.log("beaconRewards", beaconRewards);
   const executionRewards = useContractReader(readContracts, "StakingPool", "executionRewards");
-  //const parsedSharePrice = Number(sharePrice / 10 ** 18).toFixed(18);
+  
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   const balanceStaked = useContractReader(readContracts, "StakingPool", "getUserStake", [address]);
   const stakingPoolAddress = readContracts && readContracts?.StakingPool?.address;

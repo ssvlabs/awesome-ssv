@@ -70,9 +70,9 @@ module.exports = {
       */
     },
     goerli: {
-      url: "https://goerli.infura.io/v3/02c55d691047439ab33be7c7dd9da4bc", // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://goerli.infura.io/v3/${process.env.GOERLI_INFURA_KEY}`, // <---- YOUR INFURA ID! (or it won't work)
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/goerli", // <---- YOUR MORALIS ID! (not limited to infura)
-      accounts: ['dd415aae47164aa431fbfdd17d058842cf333065c54e5973d95dcb5189351b92']
+      accounts: [process.env.GOERLI_DEPLOYER_PRIV_KEY]
     },
 
   },
