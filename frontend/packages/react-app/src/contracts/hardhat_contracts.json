@@ -5,7 +5,7 @@
       "chainId": "5",
       "contracts": {
         "StakingPool": {
-          "address": "0x4BDd99cc01c1e91E73DF4feaDAd6C78ade76BB8F",
+          "address": "0x5191874d91b1a991f98d14bdf243e3608d57E09a",
           "abi": [
             {
               "inputs": [
@@ -342,6 +342,32 @@
               "name": "depositValidator",
               "outputs": [],
               "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getBeaconRewards",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getExecutionRewards",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
               "type": "function"
             },
             {

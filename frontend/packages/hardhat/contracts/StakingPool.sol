@@ -4,8 +4,8 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "../interfaces/IDepositContract.sol";
-import "../interfaces/mocks/ISSVNetwork.sol";
+import "./interfaces/IDepositContract.sol";
+import "./interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
 /** this contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals.
