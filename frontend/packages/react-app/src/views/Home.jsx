@@ -15,12 +15,10 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
   const [stakeLoading, setStakeLoading] = useState(false);
   const validators = useContractReader(readContracts, "StakingPool", "getValidators");
   const sharePrice = useContractReader(readContracts, "SSVETHCONTRACT", "sharePrice");
-  //const beaconRewards = useContractReader(readContracts, "StakingPool", "getBeaconRewards");
-  //const executionRewards = useContractReader(readContracts, "StakingPool", "getExecutionRewards");
-  // replace 
-  const beaconRewards = useContractReader(readContracts, "StakingPool", "beaconRewards");
-  const executionRewards = useContractReader(readContracts, "StakingPool", "executionRewards");
-  
+  const beaconRewards = useContractReader(readContracts, "StakingPool", "getBeaconRewards");
+  const executionRewards = useContractReader(readContracts, "StakingPool", "getExecutionRewards");
+  console.log("beaconRewards", beaconRewards);
+  console.log("executionRewards", executionRewards);
   const userEarnings = useContractReader(readContracts, "SSVETHCONTRACT", "balanceOf", [address]);
   const balanceStaked = useContractReader(readContracts, "StakingPool", "getUserStake", [address]);
   const stakingPoolAddress = readContracts && readContracts?.StakingPool?.address;
@@ -161,6 +159,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               Beacon chain rewards :
               <div style={{ padding: 8, fontSize: 20 }}>
                 <TokenBalance balance={executionRewards} fontSize={64} />
+                <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
               </div>
             </div>
           </div>

@@ -23,10 +23,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
     await tx(writeContracts.StakingPool.updateBeaconRewards(ethers.utils.parseEther(value.toString()).toString()));
   };
 
-  const handleOnSetNewShareprice = async value => {
-    await tx(writeContracts.StakingPool.updateSharePrice(ethers.utils.parseEther(value.toString()).toString()));
-  };
-
 
   return (
     <div>
@@ -88,15 +84,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             onSearch={value => handleUpdateBeaconRewards(value)}
           />
           <Divider />
-          {/* <h4 style={{ padding: 8, marginTop: 12 }}>Update share price:</h4>
-          <Search
-            style={{ width: "70%", margin: "auto" }}
-            placeholder="new share price value"
-            enterButton="Submit"
-            size="medium"
-            onSearch={value => handleOnSetNewShareprice(value)}
-          />
-          <Divider /> */}
         </div>
       </div>
 
