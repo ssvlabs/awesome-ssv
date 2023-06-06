@@ -6,6 +6,7 @@
       "contracts": {
         "StakingPool": {
           "address": "0x46c9fFD8Adf9D0f6e8698315dCb21035A034d282",
+
           "abi": [
             {
               "inputs": [
@@ -342,6 +343,32 @@
               "name": "depositValidator",
               "outputs": [],
               "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getBeaconRewards",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getExecutionRewards",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
               "type": "function"
             },
             {

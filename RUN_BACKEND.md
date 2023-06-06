@@ -12,7 +12,7 @@ It can:
 
 ## Prerequiste - Smart contract deployments
 
-You need to have smart contracts deployed before running this backend. After deployed, continue with this tutorial. You can choose to deply them together with frontend using scaffold-eth framework built in `JS` or deploy smart contracts only with brownie framework built in `PY`.
+You need to have smart contracts deployed before running this backend. After deployed, continue with this tutorial. You can choose to deploy them together with frontend using scaffold-eth framework built in `JS` or deploy smart contracts only with brownie framework built in `PY`.
 
 ### 1. Front End plus Smart contracts - Scaffold-eth framework
 

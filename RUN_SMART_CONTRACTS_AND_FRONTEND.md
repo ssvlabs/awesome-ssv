@@ -8,13 +8,11 @@
 
 You can find our live demo deployment [Here](https://awesome-ssv-staking.surge.sh)
 
-# Frontend
+# 🚀 Quick Start Frontend
 
-## Prerequisites
+Prerequisites: [Node (v18 LTS)](https://nodejs.org/en/download/) plus [Yarn (v1.x)](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
 
-[Node (v18 LTS)](https://nodejs.org/en/download/)
-[Yarn (v1.x)](https://classic.yarnpkg.com/en/docs/install/)
-[Git](https://git-scm.com/downloads)
+🚨 If you are using a version < v18 you will need to remove `openssl-legacy-provider` from the `start` script in `package.json`
 
 ## Installation
 
@@ -44,7 +42,7 @@ or
 
 2. `const initialNetwork = NETWORKS.localhost;` if running with `yarn fork`.
 
-# Editing
+# Frontend Editing
 
 📝 Edit your frontend `App.jsx` in `packages/react-app/src`
 
@@ -52,7 +50,7 @@ or
 
 ✏ Edit the home view and the manager view in `packages/react-app/src/views/Home.jsx` and `packages/react-app/src/views/Manager.jsx`respectively.
 
-# Deploy Contracts
+# Contract Deployment
 
 🔏 Edit the smart contracts in `packages/hardhat/contracts`
 
@@ -92,7 +90,8 @@ yarn fund-pool
 
 If you want to deploy on the live Goerli testnet, you'll only need :
 
-Set up your `defaultNetwork` to `"goerli"` in `hardhat-config.js`
+1. Set up your `defaultNetwork` to `"goerli"` in `packages/hardhat/hardhat-config.js`
+2. Create an `.env` file under `packages/hardhat` and set `"GOERLI_INFURA_KEY"` with your own Infura key and `"GOERLI_DEPLOYER_PRIV_KEY"` with your deployer wallet private key (for safety measures, make sure you have have no real funds on it). 
 
 Then :
 
@@ -116,7 +115,7 @@ yarn verify --network goerli <NEW_DEPLOYED_CONTRACT_ADDRESS>
 
 ❗❗ Important reminder : ❗❗
 
-💥 Once you have your contracts deployed you will need to update the default network in `App.jsx` to match your default network in `hardhat-config.js` !
+💥 Once you have your contracts deployed don't forget to set up the default network in `App.jsx` to match the one in `hardhat-config.js` !
 
 # Show off to the world
 

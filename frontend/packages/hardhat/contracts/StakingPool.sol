@@ -29,8 +29,8 @@ contract StakingPool is Ownable, ReentrancyGuard {
     bytes[] public Validators;
     // address public Oracle_address;
 
-    uint256 beaconRewards;
-    uint256 executionRewards;
+    uint256 private beaconRewards;
+    uint256 private executionRewards;
 
     mapping(address => uint256) private userStake;
 
@@ -96,6 +96,20 @@ contract StakingPool is Ownable, ReentrancyGuard {
     function getShareprice() public view returns (uint256) {
         uint256 _sharePrice = ssvETH.sharePrice();
         return _sharePrice;
+    }
+
+    /**
+     * @notice Get beacon rewards
+     */
+    function getBeaconRewards() public view returns (uint256) {
+        return beaconRewards;
+    }
+
+    /**
+     * @notice Get execution rewards
+     */
+    function getExecutionRewards() public view returns (uint256) {
+        return executionRewards;
     }
 
     /**

@@ -8,11 +8,14 @@ import "../interfaces/IDepositContract.sol";
 import "../interfaces/mocks/ISSVNetwork.sol";
 import "./SSVETH.sol";
 
-/** this contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals. 
+/** this contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals.
  * By using custom errors instead, we don't need to use up storage space on the `require`'s revert string messages.
  * This also allows developers and users to see customizable output values when the custom error is invoked */
 error StakingPool__CantStakeZeroAmount(uint valueSent);
-error StakingPool__OnlyWhitelistAddress(address caller, address whitelistedAddress);
+error StakingPool__OnlyWhitelistAddress(
+    address caller,
+    address whitelistedAddress
+);
 
 contract StakingPool is Ownable, ReentrancyGuard {
     address public WhitelistKeyGenerator;
@@ -24,10 +27,10 @@ contract StakingPool is Ownable, ReentrancyGuard {
     address public SSV_CONTRACT_ADDR;
     uint32[4] OperatorIDs;
     bytes[] public Validators;
-    // address public Oracle_address; 
-    
-    uint256 beaconRewards;
-    uint256 executionRewards;
+    // address public Oracle_address;
+
+    uint256 private beaconRewards;
+    uint256 private executionRewards;
 
     mapping(address => uint256) private userStake;
 
@@ -59,7 +62,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
         OperatorIDs = ids;
     }
 
-    /** 
+    /**
      * @notice called when the contract receives eth
      */
     receive() external payable {
@@ -96,6 +99,20 @@ contract StakingPool is Ownable, ReentrancyGuard {
     }
 
     /**
+     * @notice Get beacon rewards
+     */
+    function getBeaconRewards() public view returns (uint256) {
+        return beaconRewards;
+    }
+
+    /**
+     * @notice Get execution rewards
+     */
+    function getExecutionRewards() public view returns (uint256) {
+        return executionRewards;
+    }
+
+    /**
      * @dev Update operators
      * @param _newOperators: Array of the the new operators Ids
      */
@@ -123,7 +140,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
     function stake() public payable {
         /** Ensuring that the caller has passed atleast some value to the function/contract. 
         This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
-        if(msg.value <= 0) {
+        if (msg.value <= 0) {
             revert StakingPool__CantStakeZeroAmount(msg.value);
         }
         uint256 amount_minted = (msg.value * ssvETH.sharePrice()) / 1e18;
@@ -185,8 +202,11 @@ contract StakingPool is Ownable, ReentrancyGuard {
     ) external {
         /* Check if the message sender is the whitelisted address
          * This contract utilizes custom errors to optimize gas usage, instead of normal `require` conditionals */
-        if(msg.sender != WhitelistKeyGenerator) {
-            revert StakingPool__OnlyWhitelistAddress(msg.sender, WhitelistKeyGenerator);
+        if (msg.sender != WhitelistKeyGenerator) {
+            revert StakingPool__OnlyWhitelistAddress(
+                msg.sender,
+                WhitelistKeyGenerator
+            );
         }
         // Approve the transfer of tokens to the SSV contract
         IERC20(SSV_TOKEN_ADDR).approve(SSV_CONTRACT_ADDR, _amount);
@@ -220,5 +240,4 @@ contract StakingPool is Ownable, ReentrancyGuard {
         ssvETH.changeSharePrice(_newSharePrice);
         emit SharePriceUpdated(_newSharePrice);
     }
-
 }

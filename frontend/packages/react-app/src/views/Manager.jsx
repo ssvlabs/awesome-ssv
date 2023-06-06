@@ -84,7 +84,6 @@ export default function Manager({ localProvider, tx, writeContracts, readContrac
             onSearch={value => handleUpdateBeaconRewards(value)}
           />
           <Divider />
-
         </div>
       </div>
 
