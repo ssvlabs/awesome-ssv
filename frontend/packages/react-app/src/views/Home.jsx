@@ -148,7 +148,7 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               )}
             </div>
             <div>
-              <h4 style={{ padding: 8 }}>Active stake:</h4>
+              <h4 style={{ padding: 8 }}>Staking Pool Balance:</h4>
               <TokenBalance balance={Number(stakingPoolBalance)} fontSize={64} />{" "}
               <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
             </div>
@@ -163,6 +163,20 @@ function Home({ localProvider, readContracts, writeContracts, userSigner, gasPri
               Beacon chain rewards :
               <div style={{ padding: 8, fontSize: 20 }}>
                 <TokenBalance balance={executionRewards} fontSize={64} />
+              </div>
+              <div>
+                <h4 style={{ padding: 8 }}>Active Stake:</h4>
+                <span
+                  style={{
+                    verticalAlign: "middle",
+                    fontSize: 24,
+                    padding: 8,
+                    cursor: "pointer",
+                  }}
+                >
+                  {validators?.length * 32}
+                </span>
+                <span style={{ fontSize: 20, verticalAlign: "middle" }}>ETH</span>
               </div>
             </div>
           </div>
