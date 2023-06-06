@@ -180,6 +180,9 @@ contract StakingPool is Ownable, ReentrancyGuard {
             _signature,
             _deposit_data_root
         );
+
+        // Add the public key to the list of validators
+        Validators.push(_pubkey);
         // Emit an event to log the deposit of the public key
         emit PubKeyDeposited(_pubkey);
     }
@@ -218,8 +221,7 @@ contract StakingPool is Ownable, ReentrancyGuard {
             _amount,
             _cluster
         );
-        // Add the public key to the list of validators
-        Validators.push(_pubkey);
+
         // Emit an event to log the deposit of shares
         emit KeySharesDeposited(_pubkey, _shares, _amount);
     }

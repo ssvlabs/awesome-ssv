@@ -21,6 +21,7 @@ Prerequisites: [Node (v18 LTS)](https://nodejs.org/en/download/) plus [Yarn (v1.
 ```bash
 git clone https://github.com/bloxapp/awesome-ssv
 ```
+
 > 2️⃣ make sure you have the right network set
 
 > 3️⃣ install and start the frontend:
@@ -41,13 +42,13 @@ or
 
 2. `const initialNetwork = NETWORKS.localhost;` if running with `yarn fork`.
 
-
 # Frontend Editing
 
 📝 Edit your frontend `App.jsx` in `packages/react-app/src`
 
-✏ Edit the home view and the manager view in  `packages/react-app/src/views/Home.jsx` and `packages/react-app/src/views/Manager.jsx`respectively.  
+📝 Point your frontend to your already deployed contracts by changing the `"address":` field either in `"goerli"` or `"localhost"` section in the file `packages/react-app/src/contracts/hardhat_contracts.json`
 
+✏ Edit the home view and the manager view in `packages/react-app/src/views/Home.jsx` and `packages/react-app/src/views/Manager.jsx`respectively.
 
 # Contract Deployment
 
@@ -77,7 +78,7 @@ After setting up your `defaultNetwork` to `"localhost"` in `hardhat-config.js` y
 yarn deploy
 ```
 
-Once done you can fund the pool : 
+Once done you can fund the pool :
 
 ```bash
 yarn fund-pool
@@ -97,9 +98,10 @@ Then :
 ```bash
 yarn deploy
 ```
+
 🎇 after this your new staking pool and ssvETH contracts should reflect on automatically in `packages/react-app/src/contracts/goerli/`
 
-✅ you can also verify  your staking pool contract on Goerli by using this :
+✅ you can also verify your staking pool contract on Goerli by using this :
 
 ```bash
 yarn verify --constructor-args arguments.js --network goerli <NEW_DEPLOYED_CONTRACT_ADDRESS>
@@ -108,7 +110,7 @@ yarn verify --constructor-args arguments.js --network goerli <NEW_DEPLOYED_CONTR
 ✅ and your ssvETH contract by using this :
 
 ```bash
-yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
+yarn verify --network goerli <NEW_DEPLOYED_CONTRACT_ADDRESS>
 ```
 
 ❗❗ Important reminder : ❗❗
@@ -121,36 +123,27 @@ yarn verify --network goerli NEW_DEPLOYED_CONTRACT_ADDRESS
 
 ---
 
-
 # Backend
 
-Now it's time to activate some validators beacon chain and use ssv network to run it! 
+Now it's time to activate some validators beacon chain and use ssv network to run it!
 
-All the backend functionality for this, namely 
+All the backend functionality for this, namely
 
 1. validator creation
 2. validator activation with beacon chain
 3. splitting your validator (DVT!) into multiple shares
-4. registering validator share with ssv.network 
+4. registering validator share with ssv.network
 
 are done for you out of the box!!!
 
-
 🚀 Just follow the readme and run scripts [here](https://github.com/bloxapp/awesome-ssv/blob/main/RUN_BACKEND.md)
-
 
 💼 Add/Edit your deployment scripts in `packages/hardhat/scripts/deploy` for Goerli and in `packages/hardhat/deploy` for localhost (Goerli fork)
 
-
-
-# Interested? Get involved 
+# Interested? Get involved
 
 - build sth interesting on top, transferable NFT validators, Restaking app, or whatever else and **open PR**.
 
 ## Connect
 
 Best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly and also @MarkoInEther and @Matty. They will help you to get to the right person.
-
-
-
-

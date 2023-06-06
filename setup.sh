@@ -1,5 +1,6 @@
 #!/bin/bash
 
+npm install
 if [ -d "ssv-keys" ]; then
   echo "ssv-keys directory already there"
 else

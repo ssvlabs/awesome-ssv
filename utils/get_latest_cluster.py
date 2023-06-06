@@ -1,26 +1,22 @@
 import json
-from collections import namedtuple
-
+import sys
 from web3 import Web3
-from utils.eth_connector import EthNode
 
 
 class SSVNetwork:
     abi = []
     contract = None
     web3: Web3 = None
-    goerli: Web3 = None
 
-    def __init__(self, ssv_address, _web3: Web3, _goerli: Web3, abi_path=None):
+    def __init__(self, ssv_address, _web3: Web3, abi_path=None):
         self._import_abi(filepath=abi_path)
         self.web3 = _web3
-        self.goerli = _goerli
         self.contract = self.web3.eth.contract(
             abi=self.abi, address=ssv_address)
 
     def _import_abi(self, filepath):
         if filepath is None:
-            with open("utils/SSVNetwork.json", "r") as file:
+            with open("SSVNetwork.json", "r") as file:
                 self.abi = json.load(file)["abi"]
             file.close()
         else:
@@ -47,90 +43,13 @@ class SSVNetwork:
         return [0, 0, 0, 0, True]
 
 
-# class SSVNetworkview:
-#     abi = []
-#     web3: Web3 = None
+if __name__ == '__main__':
+    web3 = Web3(Web3.HTTPProvider(sys.argv[1]))
+    operator_id = sys.argv[2]
+    owner_address = sys.argv[3]
+    print(operator_id)
+    print(owner_address)
+    ssv = SSVNetwork(sys.argv[4], web3)
+    print(ssv.get_latest_cluster(owner_address,operator_id))
 
-#     def __init__(self, ssv_address, web3: Web3, abi_path=None):
-
-#         self._import_abi(filepath=abi_path)
-#         self.contract = web3.eth.contract(abi=self.abi, address=ssv_address)
-
-#     def _import_abi(self, filepath):
-#         if filepath is None:
-#             with open("utils/SSVNetworkViews.json", "r") as file:
-#                 self.abi = json.load(file)["abi"]
-#             file.close()
-#         else:
-#             with open(filepath, "r") as file:
-#                 self.abi = json.load(file)["abi"]
-#             file.close()
-
-#     def get_operator_fee(self, id):
-#         return self.contract.functions.getOperatorFee(id).call()
-
-#     def get_network_fee(self):
-#         return self.contract.functions.getNetworkFee().call()
-
-
-# class SSVToken:
-#     abi = [{
-#         "inputs": [
-#             {
-#                 "internalType": "address",
-#                 "name": "account",
-#                 "type": "address"
-#             }
-#         ],
-#         "name": "balanceOf",
-#         "outputs": [
-#             {
-#                 "internalType": "uint256",
-#                 "name": "",
-#                 "type": "uint256"
-#             }
-#         ],
-#         "stateMutability": "view",
-#         "type": "function"
-#     }, {
-#         "inputs": [
-#             {
-#                 "internalType": "address",
-#                 "name": "to",
-#                 "type": "address"
-#             },
-#             {
-#                 "internalType": "uint256",
-#                 "name": "amount",
-#                 "type": "uint256"
-#             }
-#         ],
-#         "name": "transfer",
-#         "outputs": [
-#             {
-#                 "internalType": "bool",
-#                 "name": "",
-#                 "type": "bool"
-#             }
-#         ],
-#         "stateMutability": "nonpayable",
-#         "type": "function"
-#     }
-#     ]
-
-#     def __init__(self, ssv_address, web3: Web3):
-#         self.contract = web3.eth.contract(abi=self.abi, address=ssv_address)
-
-#     def get_balance(self, account_address):
-#         return self.contract.functions.balanceOf(account_address).call()
-
-#     def transfer_token(self, address, amount, account_address):
-#         return self.contract.functions.transfer(address, amount).build_transaction(
-#             {"from": account_address})
-
-
-# if __name__ == '__main__':
-#     web3 = EthNode("https://eth-goerli.g.alchemy.com/v2/9y1ltLyP99wkj4RY0Nsp67Eat3WAlDoz",
-#                    "0d19dfbb7dd09b8f19d76d9e57036cd109b55cf12c97080918c533b7bb6b12a7")
-#     ssv = SSVNetwork("0xb9e155e65B5c4D66df28Da8E9a0957f06F11Bc04", web3.eth_node)
-#     print(ssv.get_operator(1))
+    # TO run: python get_latest_cluster.py <eth_rpc> <operator_ids_comma_separated> <owner_address> <ssv_address>
