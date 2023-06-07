@@ -80,23 +80,23 @@ def deposit_keyshare(config_file):
     ssv_token = SSVToken(config.ssv_token, web3_eth.eth_node)
     stake_pool = StakingPool(config.stakepool_contract, web3_eth.eth_node)
     print(ssv_token.get_balance(
-        web3_eth.eth_node.to_checksum_address(config.stakepool_contract)))
+        web3_eth.eth_node.toChecksumAddress(config.stakepool_contract)))
     for file in config.keyshares:
         shares = read_file(file)
-        if ssv_token.get_balance(web3_eth.eth_node.to_checksum_address(config.stakepool_contract)) < int(
+        if ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(config.stakepool_contract)) < int(
                 shares.payload.readable.ssvAmount):
             print(
                 "ssv token balance of stakepool is less than the required amount. Sending some tokens")
             if ssv_token.get_balance(
-                web3_eth.eth_node.to_checksum_address(web3_eth.account.address)) > 2 * int(
+                web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > 2 * int(
                     shares.payload.readable.ssvAmount):
-                tx = ssv_token.transfer_token(web3_eth.eth_node.to_checksum_address(config.stakepool_contract),
+                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.stakepool_contract),
                                               2 * int(shares.payload.readable.ssvAmount), web3_eth.account.address)
                 web3_eth.make_tx(tx)
                 print("Added SSV tokens to stakepool account")
-            elif ssv_token.get_balance(web3_eth.eth_node.to_checksum_address(web3_eth.account.address)) > int(
+            elif ssv_token.get_balance(web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > int(
                     shares.payload.readable.ssvAmount):
-                tx = ssv_token.transfer_token(web3_eth.eth_node.to_checksum_address(config.contract_address.stakepool),
+                tx = ssv_token.transfer_token(web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool),
                                               int(shares.payload.readable.ssvAmount), web3_eth.account.address)
                 web3_eth.make_tx(tx)
                 print(
@@ -232,21 +232,21 @@ def start_staking(config_file):
                     fees = (network_fees +
                             sum(operator.fee for operator in op)) * (900000)
                     if ssv_token.get_balance(
-                            web3_eth.eth_node.to_checksum_address(config.contract_address.stakepool)) < int(fees):
+                            web3_eth.eth_node.toChecksumAddress(config.contract_address.stakepool)) < int(fees):
                         print(
                             "ssv token balance of stakepool is less than the required amount. Sending some tokens")
                         if ssv_token.get_balance(
-                                web3_eth.eth_node.to_checksum_address(web3_eth.account.address)) > 2 * int(fees):
+                                web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > 2 * int(fees):
                             tx = ssv_token.transfer_token(
-                                web3_eth.eth_node.to_checksum_address(
+                                web3_eth.eth_node.toChecksumAddress(
                                     config.contract_address.stakepool),
                                 2 * int(fees), web3_eth.account.address)
                             web3_eth.make_tx(tx)
                             print("Added SSV tokens to stakepool account")
                         elif ssv_token.get_balance(
-                                web3_eth.eth_node.to_checksum_address(web3_eth.account.address)) > int(fees):
+                                web3_eth.eth_node.toChecksumAddress(web3_eth.account.address)) > int(fees):
                             tx = ssv_token.transfer_token(
-                                web3_eth.eth_node.to_checksum_address(
+                                web3_eth.eth_node.toChecksumAddress(
                                     config.contract_address.stakepool),
                                 int(fees), web3_eth.account.address)
                             web3_eth.make_tx(tx)

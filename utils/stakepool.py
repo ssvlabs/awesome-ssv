@@ -31,7 +31,7 @@ class StakingPool:
 
     def deposit_validator(self, pubkey, withdrawal_creds, signature, deposit_data_root, account_address):
         return self.contract.functions.depositValidator(pubkey, withdrawal_creds, signature,
-                                                        deposit_data_root).build_transaction(
+                                                        deposit_data_root).buildTransaction(
             {"from": account_address})
 
     def get_operator_ids(self):
@@ -47,5 +47,5 @@ class StakingPool:
         :return:
         """
         return self.contract.functions.depositShares(pubkey, operator_ids, shares,
-                                                     amount, cluster).build_transaction(
+                                                     amount, cluster).buildTransaction(
             {"from": account_address, 'gas':1500000})

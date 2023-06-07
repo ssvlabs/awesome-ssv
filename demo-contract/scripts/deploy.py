@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import time
 
 from brownie import *
 from scripts.utils.helpers import *
@@ -10,7 +11,7 @@ def main():
     deployer = get_deployer()
 
     # TODO OPTIONAL update these values
-    whitelist = "0x44449d7cA8e3724cb9c9E30Ce49B286e275D79bf"
+    whitelist = "0x49c5e038dc918F841589cE517fF975A4429eEb5c"
     withdrawal_creds = "0x44449d7cA8e3724cb9c9E30Ce49B286e275D79bf"
     operator_ids = [4, 9, 17, 76]
 
@@ -29,17 +30,19 @@ def main():
     stakingPool = StakingPool.deploy(whitelist, deposit_contract, withdrawal_creds,
                                      ssv_network_contract, ssv_token_address, operator_ids, {'from': deployer, 'gas_price': 875000000000})  # to change nonce  add "'nonce': 142" into the curly brackets
     print("staking pool deployed to:", stakingPool.address)
+    time.sleep(3)
 
     print("trasferring minting ownership...")
+    ssvETH = SSVETH.at(stakingPool.ssvETH())
     ssvETH.transferOwnership(stakingPool.address, {
-                             'from': deployer})
+                             'from': deployer, 'gas_price': 875000000000})
 
     print("testing staking...")
     stakingPool.stake({'value': 65 * 10 ** 18,
                       'from': deployer, 'gas_price': 875000000000})
 
     print("testing unStaking...")
-    ssvETH = SSVETH.at(stakingPool.ssvETH())
+
     ssvETH.approve(stakingPool.address, 0.001 * 10 ** 18,
                    {'from': deployer, 'gas_price': 875000000000})
     stakingPool.unStake(
