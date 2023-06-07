@@ -32,7 +32,7 @@ class SSVNetwork:
         from_block = self.goerli.eth.get_block_number() - step
         to_block = self.goerli.eth.get_block_number()
         while to_block > 8661727:
-            filter = self.contract.events.OperatorAdded.create_filter(fromBlock=from_block, toBlock=to_block,
+            filter = self.contract.events.OperatorAdded.createFilter(fromBlock=from_block, toBlock=to_block,
                                                                       argument_filters={'operatorId': id})
             result = filter.get_all_entries()
             if len(result) > 0:
@@ -54,7 +54,7 @@ class SSVNetwork:
             filter_deploy = filter.deploy(self.web3)
             result = filter_deploy.get_all_entries()
             if len(result) > 0:
-                return [i for i in dict(result[len(result) - 1].args.cluster).values()]
+                return result[len(result) - 1].args.cluster
             to_block = from_block
             from_block -= step
         return [0, 0, 0, 0, True]
@@ -138,7 +138,7 @@ class SSVToken:
         return self.contract.functions.balanceOf(account_address).call()
 
     def transfer_token(self, address, amount, account_address):
-        return self.contract.functions.transfer(address, amount).build_transaction(
+        return self.contract.functions.transfer(address, amount).buildTransaction(
             {"from": account_address})
 
 

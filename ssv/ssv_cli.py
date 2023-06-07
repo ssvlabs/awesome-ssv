@@ -77,7 +77,7 @@ class SSV:
         cli_path = self.CLI_PATH_LINUX_MAC if 'Linux' in platform.system() or 'Darwin' in platform.system() else self.CLI_PATH_WIN
         print(self.keystore_pass)
         output = check_output([cli_path, "shares", "-ks", self.keystore_file, "-ps", self.keystore_pass,
-                               "-oids", ",".join(operator_ids), "-oks", ",".join(operator_pubkeys), "-ksv", "3",
+                               "-oids", ",".join(operator_ids), "-oks", ",".join(operator_pubkeys),
                                "-of", output_folder])
         if "UnhandledPromiseRejectionWarning" in output.decode("utf-8"):
             raise Exception("ssv-cli failed to generate keyshares")
@@ -96,7 +96,7 @@ class SSV:
             print(file_path)
             shares = json.load(file_path)
         file_path.close()
-        return shares["payload"]["readable"]
+        return shares["payload"]
 
 
 if __name__ == '__main__':
