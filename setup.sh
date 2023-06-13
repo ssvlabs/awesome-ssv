@@ -14,10 +14,10 @@ else
   cp ssv/package.json ssv-keys/package.json
   yarn install --cwd ssv-keys
   case "$OSTYPE" in
-    linux*) yarn package-linux --cwd ssv-keys && cp ssv-keys/bin/linux/ssv-keys-lin ssv/ssv-cli;;
-    darwin* ) yarn package-macos --cwd ssv-keys && cp ssv-keys/bin/macos/ssv-keys-mac ssv/ssv-cli;;
-    msys* ) yarn package-win --cwd ssv-keys && cp ssv-keys/bin/win/ssv-keys.exe ssv/ssv-cli.exe;;
-    cygwin* ) yarn package-win --cwd ssv-keys && cp ssv-keys/bin/win/ssv-keys.exe ssv/ssv-cli.exe;;
+    linux*) yarn --cwd ssv-keys package-linux  && cp ssv-keys/bin/linux/ssv-keys-lin ssv/ssv-cli;;
+    darwin* ) yarn --cwd ssv-keys package-macos && cp ssv-keys/bin/macos/ssv-keys-mac ssv/ssv-cli;;
+    msys* ) yarn --cwd ssv-keys package-win  && cp ssv-keys/bin/win/ssv-keys.exe ssv/ssv-cli.exe;;
+    cygwin* ) yarn --cwd ssv-keys package-win && cp ssv-keys/bin/win/ssv-keys.exe ssv/ssv-cli.exe;;
   esac
 fi
 
