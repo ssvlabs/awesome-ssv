@@ -150,4 +150,8 @@ keyshares
 
 # my config 
 my-stake-config.json
+my-stake-config_copy.json
+
+# frontend 
+/frontend/packages/hardhat/deployments/*
 
