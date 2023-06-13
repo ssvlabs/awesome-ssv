@@ -152,6 +152,10 @@ keyshares
 my-stake-config.json
 my-stake-config_copy.json
 
-# frontend 
+# frontend deployment files
 /frontend/packages/hardhat/deployments/*
+/frontend/packages/react-app/src/contracts/*
 
+
+# backend local state
+/fallback.json
