@@ -1,4 +1,4 @@
-## Setting up SSV node with Execution client + Beacon Chain
+# 🔷🏃‍♂️SSV Node - run SSV Full Stack - 🦄Eaisiest way to run SSV node in 10 minutes🚀
 
 [![🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀](http://img.youtube.com/vi/HFb4uxHC50w/0.jpg)](https://www.youtube.com/watch?v=HFb4uxHC50w "🏃‍♂️🦄Eaisiest way to run SSV node in 10 minutes🚀")
 
