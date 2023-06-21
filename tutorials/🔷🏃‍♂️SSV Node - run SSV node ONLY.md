@@ -6,7 +6,6 @@ This tutorial assumes you already have Execution client and Beacon node running 
 
 [![Video walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4_Ek8mCUZCk/0.jpg)](http://www.youtube.com/watch?v=4_Ek8mCUZCk "🔷🏃‍♂️SSV Node - run SSV node ONLY")
 
-https://youtu.be/4_Ek8mCUZCk
 ## Run ssv node docker container separately from eth-docker stack 
 
 To run an ssv nodes go through these 3 steps: 
