@@ -34,10 +34,13 @@ Follow along with the video.
 ### Useful code 
 
 
+
+```bash
  ssh user@82.999.000.000 -L 3002:127.0.0.1:3002 #ssv-docker
+```
 
 
-
+```yml
   - job_name: ssv_nodes
     metrics_path: /metrics
     static_configs:
@@ -50,6 +53,7 @@ Follow along with the video.
       - targets:
         - lido-ssv-node:15000
 
+```
 
 
 ## Other video tutorials
