@@ -1,12 +1,14 @@
 # 🔷🏃‍♂️SSV Node - run SSV node Only
 
-This tutorial assumes you already have Execution client and Beacon node running (step one). If this is not the case, there are many tutorials how to just run nodes with exposed ports, see [my other ssv tutorial](https://github.com/bloxapp/awesome-ssv/blob/main/tutorials/Run%20SSV%20node%20in%2010%20minutes%20by%20markoInEther%20server%20setup%20eth-docker%20validator%20registration.md) running full stack using `eth-docker`. 
-
-## Video walkthrough
-
 [![Video walkthrough & launchig 🌈LSD pool](http://img.youtube.com/vi/4_Ek8mCUZCk/0.jpg)](http://www.youtube.com/watch?v=4_Ek8mCUZCk "🔷🏃‍♂️SSV Node - run SSV node ONLY")
 
-## Run ssv node docker container separately from eth-docker stack 
+**DISCLAIMER**
+The content provided is for informational purposes only and should not be considered as professional advice. The information presented may not be complete, accurate or up-to-date. The reader or viewer is solely responsible for any actions taken based on the information provided. The author and publisher shall not be held liable for any losses, damages or injuries arising from the use of the information provided. It is recommended to seek professional advice for specific situations.
+
+This tutorial assumes you already have Execution client and Beacon node running (step one). If this is not the case, there are many tutorials how to just run nodes with exposed ports, see [my other ssv tutorial](https://github.com/bloxapp/awesome-ssv/blob/main/tutorials/Run%20SSV%20node%20in%2010%20minutes%20by%20markoInEther%20server%20setup%20eth-docker%20validator%20registration.md) running full stack using `eth-docker`. 
+
+
+## Steps 
 
 To run an ssv nodes go through these 3 steps: 
 1. ~~running Execution Node and Beacon node with exposed ws port(EN) and http port(BN).~~
