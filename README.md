@@ -1,33 +1,25 @@
-# Awesome SSV
+# readme.md Awesome SSV 
 
-This repo:
+This is a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
 
-1. showcases how to [create and run LSD staking pool](/RUN_THIS_REPO.md) leveraging ssv.network,
-2. helps you **start building**, by maintaining a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
+If you are looking for other resources to help you start building, check out
+**[lsd-pool](https://github.com/ssv-network/lsd-pool/)** 
+a playground repository with LSD staking pool powered by SSV. 
 
-## Start BUIDLing
+-------------------------------- 
+### **🚨 UPDATE 🚨** 
 
-This repo is meant to give you a head start in building a cool prototype of the next big staking app. Build something interesting on top such as transferable NFT validators, Restaking app, or whatever else, and **open PR**.
+LSD Staking pool previously hosted here, has now separate repo and it is hosted at 
+**https://github.com/ssv-network/lsd-pool/**
 
-to **Create and run LSD staking pool** open [RUN_THIS_REPO.md](/RUN_THIS_REPO.md) for instructions.
-
-### Credits
-
-Huge thanks to
-
-- [@RohitAudit](https://github.com/RohitAudit) who develops & maintains all the **backend** magic on whose [repo-Garuda](https://github.com/RohitAudit/ssv-service) this minimalistic LSD staking pool is based on.
-
-- [@nibthebear](https://github.com/TIM88-DOT) who has developed the **frontend**, js deployment, and revamped the **smart contracts**.
+--------------------------------  
 
 ## SSV projects & resources
 
-### Get funding
-
-You can hop into SSV discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330) and get feedback on your ideas. You may also check [active grants](https://grants.ssv.network/) directly. If you are considering applying for one, write in SSV discord and tag @Matty and @MarkoInEther. They will be happy to help you draft a rock star grant application.
 
 ### Connect with teams
 
-The best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly, and also @MarkoInEther and @Matty. They will help you to get to the right person.
+The best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly, and also @MarkoInEther and @Matty. We will help you to get to the right person.
 
 ---
 
@@ -48,14 +40,17 @@ The best way is via discord channel [#devs-support](https://discord.com/channels
 - [How to add your project](#how-to-add-your-project)
 
 ---
+### Get funded
+
+You can hop into SSV discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330) and get feedback on your ideas. You may also check [active grants](https://grants.ssv.network/) directly. If you are considering applying for one, write in SSV discord and tag @Matty and @MarkoInEther. They will be happy to help you draft a rock star grant application.
 
 ### Documentation
 
-You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.network/).
+You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.network/). There are also addition tutorials in the [tutorials folder](https://github.com/bloxapp/awesome-ssv/tree/main/tutorials). 
 
 ### Tools
 
-- [awesome-ssv backend](RUN_BACKEND.md) `MIT | PY`
+- [lsd-pool Backend script](https://github.com/ssv-network/lsd-pool/blob/main/RUN_BACKEND.md) `MIT | PY` | **NOT** production ready
   This backend scrip in this repo allows has all the necessary functions to easily manage a staking pool. It can be also used separately, just to generate keys or do key splitting.  
   It has these actions:
 
@@ -174,4 +169,4 @@ One paragraph description talking what my repo is about, how is it special. Plea
 
 ## LICENSE
 
-MIT License
+	MIT License
