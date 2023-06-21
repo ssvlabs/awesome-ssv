@@ -7,9 +7,9 @@ The content provided is for informational purposes only and should not be consid
 
 ## Credits 
 
-Great thanks goes to [@Taiga]([url](https://twitter.com/zkTaiga)) for making all the necessary changes to the original `eth-docker` stack to make the monitoring work! 
+Great thanks goes to [@Taiga](https://twitter.com/zkTaiga) for making all the necessary changes to the original `eth-docker` stack to make the monitoring work! 
 and 
-[@Yorick]([url](https://twitter.com/cryptomanuf)) who has helped me with setting up nodes, `eht-docker` and staking stuff in general! 
+[@Yorick](https://twitter.com/cryptomanuf) who has helped me with setting up nodes, `eht-docker` and staking stuff in general! 
 
 ### What will you do
 The video is walking through setting up **monitoring**(SSV+EL+CL) using eth-docker prometheus and grafana.  
