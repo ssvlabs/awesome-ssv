@@ -19,7 +19,7 @@ To run an ssv nodes go through these 3 steps:
 
 *Once you are finished with step one, continue with this tutorial.* 
 
-### Creating config.yaml file
+### Creating configuration file
 
 ##### Generate Operator key pair
 
@@ -45,6 +45,7 @@ Do **NOT** forget to include `...==` at the end of the Secret Key if it is part 
 
 -------------------------------- 
 
+#### Create config.yaml
 
 create new folder where you will store your ssv node config file: 
 
