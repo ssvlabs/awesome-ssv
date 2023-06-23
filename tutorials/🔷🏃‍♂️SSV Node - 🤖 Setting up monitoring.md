@@ -36,7 +36,7 @@ Follow along with the video.
 
 
 ```bash
- ssh user@82.999.000.000 -L 3002:127.0.0.1:3002 #ssv-docker
+ ssh user@82.999.000.000 -L 3000:127.0.0.1:3000 #expose_graphana_port_locally
 ```
 
 
