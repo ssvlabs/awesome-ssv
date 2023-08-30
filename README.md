@@ -79,6 +79,10 @@ StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, 
 
 To make the registration process easier, the tool manages key generation and smart contract interaction; the user only needs to provide keystore files and operator ids. This tool also provides a flexible method for estimating operation expenses to match various operation assumptions. SSV V2 is currently being tested; SSV V3 and batch processing support will be added shortly.
 
+- [Deposit Batching Smart Contract by Ebunker](https://github.com/ebunker-io/ebunker-contracts-public) - smart contract allowing for deposit batching of validators | MIT | JS
+
+A smart contract that enables depositers to stake N ETH to N / 32 validators within a single transaction, with an upper bound of the block gas-limit. It offers high convenience for large ETH stakers and also saves them transaction costs.
+
 #### Distributed (validator) key generation
 
 This technology unlocks trustless staking use cases and removes the necessity for a single party to hold & safeguard and split the full validator key.
