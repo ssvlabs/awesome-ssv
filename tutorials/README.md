@@ -6,9 +6,7 @@ See other files in this folder.
 
 ## Video tutorials 
 
-### Youtube channels 
-
-[markoInEther youtube channel](https://www.youtube.com/@markoinether)
+### [markoInEther youtube channel](https://www.youtube.com/@markoinether)
 
 [CryptoManufaktur youtube channel](https://www.youtube.com/channel/UCS5mP-iWYxOCBVSVugPYUhQ)
 
