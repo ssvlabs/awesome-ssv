@@ -20,6 +20,7 @@ For more info follow the [official documentation](https://docs.ssv.network/run-a
 Follow along with the video. 
 
 	1. add new job to `/eth-docker/prometheus/custom-prom.yml` 
+ 		Name it the same as the ssv container
 	2. import dasboard to grafana 
 	3. edit dashboard 
 		- datasource may be wrong, if so:
@@ -52,6 +53,12 @@ Follow along with the video.
     static_configs:
       - targets:
         - lido-ssv-node:15000
+
+```
+
+Regex:
+```
+/([a-z0-9-]+):/
 
 ```
 
