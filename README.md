@@ -76,12 +76,11 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 #### Operator services
 
-- [Stereum](https://github.com/stereum-dev/ethereum-node/) - Node Setup GUI to simplify the Node Operator setup.
-- [eth-docker](https://github.com/eth-educators/eth-docker) - Node Setup GUI to simplify the Node Operator setup.
-- [SSV DApp Node Package](https://github.com/dappnode/DAppNodePackage-ssv-generic) - SSV Node Setup Wizard by DApp Node.
-- [ChainUp Cloud](https://cloud.chainup.com/) — ChainUp Cloud is an all-in-one platform to start an SSV node.
-- [SSV Stack](https://github.com/ssvlabs/ssv-stack) - Boilerplate for SSV Node setup and it's monitoring.
-- [Blockops Telescope](https://github.com/blockopsnetwork/telescope) - Observability Tool for blockchain nodes including SSV.
+- [Stereum](https://github.com/stereum-dev/ethereum-node/) `MIT | Vue/JS` - Node Setup GUI to simplify the Node Operator setup.
+- [eth-docker](https://github.com/eth-educators/eth-docker) `Apache | Shell` - Node Setup GUI to simplify the Node Operator setup.
+- [SSV DApp Node Package](https://github.com/dappnode/DAppNodePackage-ssv-generic) `GPL | Shell` - SSV Node Setup Wizard by DApp Node.
+- [SSV Stack](https://github.com/ssvlabs/ssv-stack) `Shell` - Boilerplate for SSV Node setup and it's monitoring.
+- [Blockops Telescope](https://github.com/blockopsnetwork/telescope) `Apache | Go` - Observability Tool for blockchain nodes including SSV.
 
 ---
 
@@ -99,9 +98,9 @@ Add your project to the appropriate category in this README file and create a Pu
 
 **Example project**
 
-- My project name (https://github.com/myrepos/my-awesome-ssv-repo/) - short one sentence repo description | `license used` | `languages used` (e.g. `MIT | JS`)
+- My project name (https://github.com/myrepos/my-awesome-ssv-repo/) `license used` | `languages used` (e.g. `MIT | JS`) - short one sentence repo description 
 
-**In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
+- **In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
 
 ---
 
