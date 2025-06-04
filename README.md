@@ -8,7 +8,7 @@ An Awesome list of <a href='https://ssv.network/'>SSV</a>-related tools & projec
 <br />
 The goal is to help developers start <a href='https://ssv.network/ba-dev/'>building with SSV</a>. 
 <br/>
-If you are looking to add your project to this page - head over to [the Contribute section](#how-to-contribute).
+If you are looking to add your project to this page - head over to <a href='#how-to-contribute'>the Contribute section</a>.
 <br/>
 </div>
 
@@ -26,11 +26,11 @@ If you are looking to add your project to this page - head over to [the Contribu
 ## Introduction
 SSV is a permissionless network that enables the distribution of validator operations between non-trusting operators. The [SSV Network smart contract](https://docs.ssv.network/developers/smart-contracts/ssvnetwork) allows anyone to integrate with the SSV protocol.
 
-### Documentation
+#### Documentation
 
 The best way to start building with SSV Network is by **reading our documentation** at [docs.ssv.network](https://docs.ssv.network/).
 
-### Connect with teams
+#### Connect with teams
 
 The best way to connect is via Discord channel [#discussions](https://discord.com/channels/723834989506068561/1075275453880877107). There you'll find help from community or SSV team will help to find the right team for your question.
 
@@ -38,26 +38,26 @@ The best way to connect is via Discord channel [#discussions](https://discord.co
 
 ## Tools
 
-### SDK
+#### SDK
 
 - [SSV SDK](https://github.com/ssvlabs/ssv-sdk) `GPL | TS` - A powerful library to interact with SSV Network programmatically. See module reference and examples [in our documentation](https://docs.ssv.network/developers/SSV-SDK/).
 
-### Subgraph
+#### Subgraph
 
-- [SSV Subgraph](https://github.com/ssvlabs/ssv-subgraph) `TS` - Subgraph that indexed SSV Smart Contract events. Described in details [in our documentation](https://docs.ssv.network/developers/tools/ssv-subgraph/). Our mainnet endpoint is `https://api.studio.thegraph.com/query/71118/ssv-network-ethereum/version/latest`, you can call it using your The Graph API key.
+- [SSV Subgraph](https://github.com/ssvlabs/ssv-subgraph) `GPL | TS` - Subgraph that indexed SSV Smart Contract events. Described in details [in our documentation](https://docs.ssv.network/developers/tools/ssv-subgraph/). Our mainnet endpoint is `https://api.studio.thegraph.com/query/71118/ssv-network-ethereum/version/latest`, you can call it using your The Graph API key.
 
-### Validator key splitting (key shares creation)
+#### Validator key splitting (key shares creation)
 
 - [SSV Keys](https://github.com/ssvlabs/ssv-keys) `GPL | TS` - A tool to split validator key into keyshares for chosen operators. To learn more read [the documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
 
-### Distributed (validator) Key Generation
+#### Distributed (validator) Key Generation
 
 You can read more about [how DKG works here](https://docs.ssv.network/developers/tools/ssv-dkg-client/).
 
 - [DKG by SSV Labs](https://github.com/ssvlabs/ssv-dkg) `GPL | Go` - Primary DKG tool, used across SSV Network.
 - [DKG by Randamu](https://github.com/randa-mu/ssv-dkg) `MIT | Go` - Alternative DKG tool, the project is in active development.
 
-### SSV Node clients
+#### SSV Node clients
 
 You can read more about how [SSV Operators work here](https://docs.ssv.network/operators/operator-onboarding/).
 
@@ -74,7 +74,7 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 - [Cluster Balance Tool](https://github.com/taylorferran/cluster-balance-tool) `JS` - Tool to fetch cluster's balance, using Subgrph under the hood.
 - [bApp example](https://github.com/ssvlabs/examples) `GPL | TS` - An Example of how Based Application can be used and built.
 
-### Operator services
+#### Operator services
 
 - [Stereum](https://github.com/stereum-dev/ethereum-node/) - Node Setup GUI to simplify the Node Operator setup.
 - [eth-docker](https://github.com/eth-educators/eth-docker) - Node Setup GUI to simplify the Node Operator setup.
@@ -87,13 +87,13 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 ## How to contribute
 
-### Join the Buidlers
+#### Join the Buidlers
 
 Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#discussions` channel. If you cannot see it - claim a role.
 
-### Fix errors
+#### Fix errors
 
-### Suggest improvements
+#### Suggest improvements
 
 Do you think some things could be done better in the repo? Do you have ideas how to expand it?
 **Open an issue** and share it in the `#discussions channel`.
@@ -101,7 +101,7 @@ If your featere is usefull for the ecosystem SSV DAO may fund you developing it!
 
 If you see any typos in the tutorials, have a suggestion for better phrasing or see a bug in the code **open a PR!**.
 
-### How to add your project
+#### How to add your project
 
 Add your project to the appropriate category in this README file and create a Pull Request.
 
