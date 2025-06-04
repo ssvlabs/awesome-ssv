@@ -12,8 +12,19 @@ If you are looking to add your project to this page - head over to [the Contribu
 <br/>
 </div>
 
+---
+## Contents
 
+- [Intro](#introduction)
+- [Tools](#tools)
+- [Showcase Projects](#showcase-projects)
+- [Operator services](#operator-services)
+- [How to contribute](#how-to-contribute)
+- [Add your project](#how-to-add-your-project)
+---
 
+## Introduction
+SSV is a permissionless network that enables the distribution of validator operations between non-trusting operators. The [SSV Network smart contract](https://docs.ssv.network/developers/smart-contracts/ssvnetwork) allows anyone to integrate with the SSV protocol.
 
 ### Documentation
 
@@ -23,14 +34,6 @@ The best way to start building with SSV Network is by **reading our documentatio
 
 The best way to connect is via Discord channel [#discussions](https://discord.com/channels/723834989506068561/1075275453880877107). There you'll find help from community or SSV team will help to find the right team for your question.
 
----
-## Contents
-
-- [Tools](#tools)
-- [Showcase Projects](#showcase-projects)
-- [Operator services](#operator-services)
-- [How to contribute](#how-to-contribute)
-- [Add your project](#how-to-add-your-project)
 ---
 
 ## Tools
