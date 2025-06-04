@@ -12,6 +12,9 @@ If you are looking to add your project to this page - head over to [the Contribu
 <br/>
 </div>
 
+
+
+
 ### Documentation
 
 The best way to start building with SSV Network is by **reading our documentation** at [docs.ssv.network](https://docs.ssv.network/).
@@ -58,6 +61,8 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 - [SSV Node by SSV Labs](https://github.com/ssvlabs/ssv) `GPL | Go`
 - [SSV Node by Sigma Prime](https://github.com/sigp/anchor) `Apache | Rust`
 
+---
+
 ## Showcase Projects
 
 - [FRENS](https://github.com/frens-pool) `Solidity/TS` - A tool to create own staking pools. The creation is done with smart contracts, validators are managed by SSV operators.
@@ -74,6 +79,8 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 - [ChainUp Cloud](https://cloud.chainup.com/) — ChainUp Cloud is an all-in-one platform to start an SSV node.
 - [SSV Stack](https://github.com/ssvlabs/ssv-stack) - Boilerplate for SSV Node setup and it's monitoring.
 - [Blockops Telescope](https://github.com/blockopsnetwork/telescope) - Observability Tool for blockchain nodes including SSV.
+
+---
 
 ## How to contribute
 
@@ -100,6 +107,8 @@ Add your project to the appropriate category in this README file and create a Pu
 - My project name (https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description | `license used` | `languages used` (e.g. `MIT | JS`)
 
 **In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
+
+---
 
 ## LICENSE
 
