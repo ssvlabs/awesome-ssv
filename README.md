@@ -32,7 +32,7 @@ The best way to start building with SSV Network is by **reading our documentatio
 
 #### Connect with teams
 
-The best way to connect is via Discord channel [#discussions](https://discord.com/channels/723834989506068561/1075275453880877107). There you'll find help from community or SSV team will help to find the right team for your question.
+The best way to connect is via [Discord channel](https://discord.gg/invite/ssvnetworkofficial). There you'll find help from community or SSV team will help to find the right team for your question.
 
 ---
 
@@ -87,19 +87,11 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 ## How to contribute
 
-#### Join the Buidlers
-
-Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#discussions` channel. If you cannot see it - claim a role.
-
-#### Fix errors
-
 #### Suggest improvements
 
-Do you think some things could be done better in the repo? Do you have ideas how to expand it?
-**Open an issue** and share it in the `#discussions channel`.
-If your featere is usefull for the ecosystem SSV DAO may fund you developing it!
+If you have ideas or improvements — **Open an issue** or bring it up in the SSV Discord [#discussions](https://discord.gg/invite/ssvnetworkofficial) channel.
 
-If you see any typos in the tutorials, have a suggestion for better phrasing or see a bug in the code **open a PR!**.
+If you see any typos in the tutorials, have a suggestion for better phrasing, or see a bug in the code — **Open a PR**.
 
 #### How to add your project
 
@@ -107,7 +99,7 @@ Add your project to the appropriate category in this README file and create a Pu
 
 **Example project**
 
-- My project name (https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description | `license used` | `languages used` (e.g. `MIT | JS`)
+- My project name (https://github.com/myrepos/my-awesome-ssv-repo/) - short one sentence repo description | `license used` | `languages used` (e.g. `MIT | JS`)
 
 **In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
 
