@@ -17,8 +17,9 @@ If you are looking to add your project to this page - head over to <a href='#how
 
 - [Intro](#introduction)
 - [Tools](#tools)
-- [Showcase Projects](#showcase-projects)
+- [Projects Showcase](#projects-showcase)
 - [Operator services](#operator-services)
+- [Related Concepts](#related-concepts)
 - [How to contribute](#how-to-contribute)
 - [Add your project](#how-to-add-your-project)
 ---
@@ -55,7 +56,6 @@ The best way to connect is via [Discord channel](https://discord.gg/invite/ssvne
 You can read more about [how DKG works here](https://docs.ssv.network/developers/tools/ssv-dkg-client/).
 
 - [DKG by SSV Labs](https://github.com/ssvlabs/ssv-dkg) `GPL | Go` - Primary DKG tool, used across SSV Network.
-- [DKG by Randamu](https://github.com/randa-mu/ssv-dkg) `MIT | Go` - Alternative DKG tool, the project is in active development.
 
 #### SSV Node clients
 
@@ -66,13 +66,14 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 ---
 
-## Showcase Projects
+## Projects Showcase
 
 - [FRENS](https://github.com/frens-pool) `Solidity/TS` - A tool to create own staking pools. The creation is done with smart contracts, validators are managed by SSV operators.
 - [MonitorSSV](https://github.com/monitorssv/monitorssv) `MIT | Go/JS` - SSV Network monitoring tool with various cool features.
 - [Verify Keyshares](https://github.com/RaekwonIII/verify-keyshares) `TS` - Simple app to verify that generated keyshares are valid.
 - [Cluster Balance Tool](https://github.com/taylorferran/cluster-balance-tool) `JS` - Tool to fetch cluster's balance, using Subgrph under the hood.
 - [bApp example](https://github.com/ssvlabs/examples) `GPL | TS` - An Example of how Based Application can be used and built.
+- [DKG by Randamu](https://github.com/randa-mu/ssv-dkg) `MIT | Go` - Alternative DKG tool, the project is in active development.
 
 #### Operator services
 
@@ -84,6 +85,12 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 ---
 
+## Related Concepts
+- [What are the bApps (Based Applications)?](https://docs.ssv.network/based-applications/learn/based-applications/)
+- [commit-boost client](https://github.com/Commit-Boost/commit-boost-client)
+- [Awesome Preconfirmations](https://github.com/NethermindEth/awesome-preconfirmations?tab=readme-ov-file#related-concepts)
+
+---
 ## How to contribute
 
 #### Suggest improvements
