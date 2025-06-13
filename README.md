@@ -1,175 +1,115 @@
-# readme.md Awesome SSV 
-
-This is a curated list of [SSV tools & projects & guides](#ssv-projects-&-resources)
-
-If you are looking for other resources to help you start building, check out
-**[lsd-pool](https://github.com/ssv-network/lsd-pool/)** 
-a playground repository with LSD staking pool powered by SSV. 
-
--------------------------------- 
-### **🚨 UPDATE 🚨** 
-
-LSD Staking pool previously hosted here, has now separate repo and it is hosted at 
-**https://github.com/ssv-network/lsd-pool/**
-
---------------------------------  
-
-## SSV projects & resources
-
-
-### Connect with teams
-
-The best way is via discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330), ask there, tag the team directly, and also @MarkoInEther and @Matty. We will help you to get to the right person.
+<br/>
+<div align="center">
+  <img width="250px" src="./awesome_ssv.png">
+</div>
+<br/>
+<div align="center">
+An Awesome list of <a href='https://ssv.network/'>SSV</a>-related tools & projects. 
+<br />
+The goal is to help developers start <a href='https://ssv.network/ba-dev/'>building with SSV</a>. 
+<br/>
+If you are looking to add your project to this page - head over to <a href='#how-to-contribute'>the Contribute section</a>.
+<br/>
+</div>
 
 ---
+## Contents
 
+- [Intro](#introduction)
 - [Tools](#tools)
-
-- [Notification services](#notification-services)
-
-- [Staking pools](#staking-pools)
-
-- [Staking services](#staking-services)
-
+- [Projects Showcase](#projects-showcase)
 - [Operator services](#operator-services)
-
-- [Tutorials](#tutorials)
-
+- [Related Concepts](#related-concepts)
 - [How to contribute](#how-to-contribute)
+- [Add your project](#how-to-add-your-project)
+---
 
-- [How to add your project](#how-to-add-your-project)
+## Introduction
+SSV is a permissionless network that enables the distribution of validator operations between non-trusting operators. The [SSV Network smart contract](https://docs.ssv.network/developers/smart-contracts/ssvnetwork) allows anyone to integrate with the SSV protocol.
+
+#### Documentation
+
+The best way to start building with SSV Network is by **reading our documentation** at [docs.ssv.network](https://docs.ssv.network/).
+
+#### Connect with teams
+
+The best way to connect is via [Discord channel](https://discord.gg/invite/ssvnetworkofficial). There you'll find help from community or SSV team will help to find the right team for your question.
 
 ---
-### Get funded
 
-You can hop into SSV discord channel [#devs-support](https://discord.com/channels/723834989506068561/766640777815523330) and get feedback on your ideas. You may also check [active grants](https://grants.ssv.network/) directly. If you are considering applying for one, write in SSV discord and tag @Matty and @MarkoInEther. They will be happy to help you draft a rock star grant application.
+## Tools
 
-### Documentation
+#### SDK
 
-You can **read the full documentation** at [docs.ssv.network](https://docs.ssv.network/). There are also addition tutorials in the [tutorials folder](https://github.com/bloxapp/awesome-ssv/tree/main/tutorials). 
+- [SSV SDK](https://github.com/ssvlabs/ssv-sdk) `GPL | TS` - A powerful library to interact with SSV Network programmatically. See module reference and examples [in our documentation](https://docs.ssv.network/developers/SSV-SDK/).
 
-### Tools
+#### Subgraph
 
-- [lsd-pool Backend script](https://github.com/ssv-network/lsd-pool/blob/main/RUN_BACKEND.md) `MIT | PY` | **NOT** production ready
-  This backend scrip in this repo allows has all the necessary functions to easily manage a staking pool. It can be also used separately, just to generate keys or do key splitting.  
-  It has these actions:
+- [SSV Subgraph](https://github.com/ssvlabs/ssv-subgraph) `GPL | TS` - Subgraph that indexed SSV Smart Contract events. Described in details [in our documentation](https://docs.ssv.network/developers/tools/ssv-subgraph/). Our mainnet endpoint is `https://api.studio.thegraph.com/query/71118/ssv-network-ethereum/version/latest`, you can call it using your The Graph API key.
 
-      - create validator keys (for Beacon Chain Deposit Contract)
-      - generate keyshares (for SSV Contract)
-      - deposit keyshares
-      - deposit validators
+#### Validator key splitting (key shares creation)
 
-#### Validator key splitting / distribution (key shares creation)
+- [SSV Keys](https://github.com/ssvlabs/ssv-keys) `GPL | TS` - A tool to split validator key into keyshares for chosen operators. To learn more read [the documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
 
-To use the SSV network a validator key needs to be split into keyshares, which then need to be encrypted for chosen operators. You can use these tools for it, and to know more read the [documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
+#### Distributed (validator) Key Generation
 
-- [SSV Keys - validator key splitting tool by Blox](https://github.com/bloxapp/ssv-keys) `MIT | JS`
+You can read more about [how DKG works here](https://docs.ssv.network/developers/tools/ssv-dkg-client/).
 
-This is a validator key splitting tool library implemented in JS/TS. It can be used to split validator keys and generate keyshares. It is easily implemented as an npm package. You can also [download executable cli](https://github.com/bloxapp/ssv-keys) of this tool.
+- [DKG by SSV Labs](https://github.com/ssvlabs/ssv-dkg) `GPL | Go` - Primary DKG tool, used across SSV Network.
 
-- [SSV Keys Go implementation by ChainUp](https://github.com/duktig666/ssv-keys-go) `Apache-2.0 | Go`
+#### SSV Node clients
 
-This is the Go implementation of the [ssv-keys repository](https://github.com/bloxapp/ssv-keys). The use case is for those who prefer generating keyshares using the Go language over Javascript/Typescript.
+You can read more about how [SSV Operators work here](https://docs.ssv.network/operators/operator-onboarding/).
 
-- [SSV Key GUI by Starkeys](https://github.com/stakestar/starkeys) `MIT | Electron/React`
+- [SSV Node by SSV Labs](https://github.com/ssvlabs/ssv) `GPL | Go`
+- [SSV Node by Sigma Prime](https://github.com/sigp/anchor) `Apache | Rust`
 
-StarKeys is a cross-platform SSV Key Distribution application that runs on Mac, Linux, and Windows using the Electron framework. The implementation is designed to operate fully offline. StarKeys offers a convenient and user-friendly way for users to interact with the SSV Distribution.
+---
 
-- [SSV-Tool to Register Val. in SSV Network by Nodeplus](https://github.com/nodeplusio/ssv-tool) - command-line utility for registering validators in SSV Network and estimating costs of operation | MIT | JS
+## Projects Showcase
 
-To make the registration process easier, the tool manages key generation and smart contract interaction; the user only needs to provide keystore files and operator ids. This tool also provides a flexible method for estimating operation expenses to match various operation assumptions. SSV V2 is currently being tested; SSV V3 and batch processing support will be added shortly.
+- [FRENS](https://github.com/frens-pool) `Solidity/TS` - A tool to create own staking pools. The creation is done with smart contracts, validators are managed by SSV operators.
+- [MonitorSSV](https://github.com/monitorssv/monitorssv) `MIT | Go/JS` - SSV Network monitoring tool with various cool features.
+- [Verify Keyshares](https://github.com/RaekwonIII/verify-keyshares) `TS` - Simple app to verify that generated keyshares are valid.
+- [Cluster Balance Tool](https://github.com/taylorferran/cluster-balance-tool) `JS` - Tool to fetch cluster's balance, using Subgrph under the hood.
+- [bApp example](https://github.com/ssvlabs/examples) `GPL | TS` - An Example of how Based Application can be used and built.
+- [DKG by Randamu](https://github.com/randa-mu/ssv-dkg) `MIT | Go` - Alternative DKG tool, the project is in active development.
 
-- [Deposit Batching Smart Contract by Ebunker](https://github.com/ebunker-io/ebunker-contracts-public) - smart contract allowing for deposit batching of validators | MIT | JS
+#### Operator services
 
-A smart contract that enables depositers to stake N ETH to N / 32 validators within a single transaction, with an upper bound of the block gas-limit. It offers high convenience for large ETH stakers and also saves them transaction costs.
+- [Stereum](https://github.com/stereum-dev/ethereum-node/) `MIT | Vue/JS` - Node Setup GUI to simplify the Node Operator setup.
+- [eth-docker](https://github.com/eth-educators/eth-docker) `Apache | Shell` - Node Setup GUI to simplify the Node Operator setup.
+- [SSV DApp Node Package](https://github.com/dappnode/DAppNodePackage-ssv-generic) `GPL | Shell` - SSV Node Setup Wizard by DApp Node.
+- [SSV Stack](https://github.com/ssvlabs/ssv-stack) `Shell` - Boilerplate for SSV Node setup and it's monitoring.
+- [Blockops Telescope](https://github.com/blockopsnetwork/telescope) `Apache | Go` - Observability Tool for blockchain nodes including SSV.
 
-#### Distributed (validator) key generation
+---
 
-This technology unlocks trustless staking use cases and removes the necessity for a single party to hold & safeguard and split the full validator key.
+## Related Concepts
+- [What are the bApps (Based Applications)?](https://docs.ssv.network/based-applications/learn/based-applications/)
+- [commit-boost client](https://github.com/Commit-Boost/commit-boost-client)
+- [Awesome Preconfirmations](https://github.com/NethermindEth/awesome-preconfirmations?tab=readme-ov-file#related-concepts)
 
-- [Rockx DKG](https://github.com/RockX-SG/frost-dkg-demo/) — frost based Distributed key generation (DKG)
-
-This repository provides a collection of services that demonstrate frost based DKG functionality, which generates a validator public key and splits shares among operators. The services included are an API service, a messenger service, a Node service for keygen initiation, results viewing, and deposit data retrieval for Ethereum 2.0 deposit contract
-
-### Notification services
-
-- [HAL](https://app.hal.xyz/) - The Crypto Notification System
-
-Hal has built a custom Notify Recipe for SSV that allows SSV users to automatically monitor and get custom notifications for monitoring, operation runway, operator fee change, and many more SSV protocol-related events. Users will set up their notifications using the Hal Notify app and then receive their notifications on the channel or their preference (email, telegram, discord, etc.)
-
-- [Hellman - allerts](https://alert.hellman.team/metrics) / [Hellman - repo](https://github.com/HellmanResearch)
-
-HellmanAlert is a monitoring of SSV.Network, which mainly provides operators/users with 7\*24 hours monitoring of account balance, operation performance & status.
-
-### Staking pools
-
-- [GARUDA](https://github.com/RohitAudit/ssv-service) - `MIT | PY, SOL` Staking pool, with backend bot handling validator creation, splitting, and registration.
-
-User stakes their ETH to a staking contract through which he is given a liquid staked derivative token called roETH. That's it! Users can just relax and wait for their roETH to compound over time and till then use the same tokens in other DeFi protocols
-
-- [FRENS](github.com/frens-pool) - community staking app, stake represented by NFTs
-
-Staking pools for peer-to-peer staking on trusted node operators (friends)
-
-### Staking services
-
-- [Casimir](https://github.com/consensusnetworks/casimir) - Decentralized self custody staking and asset management for Ethereum and more
-
-Casimir is a cross-chain digital asset management platform that allows users to manage all of their digital assets from NFTs to Staking across chains and wallets in a simple UI that enables users to retain privacy and self-custody.
-
-- [Blockscape Network](https://github.com/BlockscapeNetwork/ssv-institutional-staking) — KYC-compliant Ethereum staking powered by SSV
-
-Don't let compliance and regulatory requirements get in your way. We allow any institution to securely store and stake ETH assets in an insured, audited, and reward-generating way.
-
-### Operator services
-
-- [Stereum](https://github.com/stereum-dev/ethereum-node/) - a Node Setup GUI that built an easy SSV Network Operator setup
-
-If you got an Ubuntu server, you can use Stereum's Node tool to connect to it and install/maintain an SSV Operator without having to access the CLI. If you have any questions about it, let us know 😄.
-
-- [ChainUp Cloud](https://cloud.chainup.com/) — ChainUp Cloud is an all-in-one SSV platform
-
-Our SSV services include operator support and staking options to help you maximize your returns and partake in decentralization. Our team of experienced blockchain team is dedicated to providing the highest level of support, and we utilize industrial-grade infrastructure to ensure the reliability and security of our services. Our goal is to help you maximize your returns and achieve your business objectives.
-
-## Tutorials
-
-Check the **[Tutorials folder](/tutorials)** for more information about the tutorials or follow the links below.
-
-- [Video - How To Setup a Node On SSV Testnet V2](https://www.youtube.com/watch?v=X85Sxe9yS5U)
-
-- [Video - run SSV node in 10 minutes🚀](https://www.youtube.com/watch?v=HFb4uxHC50w)
-
-- [Video - Launch you own 🌈LSD pool on Goerli with DVT | ssv.network v3](http://www.youtube.com/watch?v=CiV76rOY4go)
-
-- [Video - 🚀🏗👷‍♀️ SSV Node Migration V2(shifu) to V3(Jato)](https://youtu.be/YUnthJg1_4Q)
-
-- [Video - 🚀🚀🦄 SSV Operator + Validator Migration V2(shifu) to V3(Jato) | ssv.network v3](https://youtu.be/HxLFC7tMYIs)
-
+---
 ## How to contribute
 
-### Join the Buidlers
+#### Suggest improvements
 
-Start getting familiar with DVT staking, go to [SSV Discord](https://discord.gg/invite/ssvnetworkofficial) and check out `#dev-support` channel. If you cannot see it claim a role.
+If you have ideas or improvements — **Open an issue** or bring it up in the SSV Discord [#discussions](https://discord.gg/invite/ssvnetworkofficial) channel.
 
-### Fix errors
+If you see any typos in the tutorials, have a suggestion for better phrasing, or see a bug in the code — **Open a PR**.
 
-If you see any typos in the tutorials, have a suggestion for better phrasing or see a bug in the code **open a PR!**.
+#### How to add your project
 
-### Suggest improvements
-
-Do you think some things could be done better in the repo? Do you have ideas how to expand it?
-**Open an issue** and share it in the `#dev-support channel`.
-If your featere is usefull for the ecosystem SSV DAO may fund you developing it!
-
-### How to add your project
-
-Add your project to the appropriate category in this README file and create a pull request.
+Add your project to the appropriate category in this README file and create a Pull Request.
 
 **Example project**
 
-- [My project name](https://github.com/myrepos/my-awesome-ssv-repo) — short one sentence repo description |`license used` | `languages used` (e.g. `MIT | JS`)
+- My project name (https://github.com/myrepos/my-awesome-ssv-repo/) `license used` | `languages used` (e.g. `MIT | JS`) - short one sentence repo description 
 
-One paragraph description talking what my repo is about, how is it special. Please keep your description concise, the limit is 80 words.
+- **In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
+
+---
 
 ## LICENSE
 
