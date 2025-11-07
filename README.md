@@ -33,7 +33,7 @@ The best way to start building with SSV Network is by **reading our documentatio
 
 #### Connect with teams
 
-The best way to connect is via [Discord channel](https://discord.gg/invite/ssvnetworkofficial). There you'll find help from community or SSV team will help to find the right team for your question.
+The best way to connect is via [Discord channel](https://discord.gg/5vT22pRBrf). There you'll find help from community or SSV team will help to find the right team for your question.
 
 ---
 
@@ -95,7 +95,7 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 
 #### Suggest improvements
 
-If you have ideas or improvements — **Open an issue** or bring it up in the SSV Discord [#discussions](https://discord.gg/invite/ssvnetworkofficial) channel.
+If you have ideas or improvements — **Open an issue** or bring it up in the SSV Discord [#discussions](https://discord.gg/5vT22pRBrf) channel.
 
 If you see any typos in the tutorials, have a suggestion for better phrasing, or see a bug in the code — **Open a PR**.
 
