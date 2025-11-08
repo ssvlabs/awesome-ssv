@@ -6,7 +6,7 @@
 <div align="center">
 An Awesome list of <a href='https://ssv.network/'>SSV</a>-related tools & projects. 
 <br />
-The goal is to help developers start <a href='https://ssv.network/ba-dev/'>building with SSV</a>. 
+The goal is to help developers start <a href='https://ssv.network/ba-dev/'>building with SSV 2.0</a>. 
 <br/>
 If you are looking to add your project to this page - head over to <a href='#how-to-contribute'>the Contribute section</a>.
 <br/>
@@ -17,9 +17,9 @@ If you are looking to add your project to this page - head over to <a href='#how
 
 - [Intro](#introduction)
 - [Tools](#tools)
+- [Related Concepts](#related-concepts)
 - [Projects Showcase](#projects-showcase)
 - [Operator services](#operator-services)
-- [Related Concepts](#related-concepts)
 - [How to contribute](#how-to-contribute)
 - [Add your project](#how-to-add-your-project)
 ---
@@ -27,9 +27,11 @@ If you are looking to add your project to this page - head over to <a href='#how
 ## Introduction
 SSV is a permissionless network that enables the distribution of validator operations between non-trusting operators. The [SSV Network smart contract](https://docs.ssv.network/developers/smart-contracts/ssvnetwork) allows anyone to integrate with the SSV protocol.
 
+SSV 2.0 is a bootstrapping model, it enables validators to do more and earn more by extending their security to all applications. Currently, it's the main focus of development in SSV Network.
+
 #### Documentation
 
-The best way to start building with SSV Network is by **reading our documentation** at [docs.ssv.network](https://docs.ssv.network/).
+The best way to start building with SSV 2.0 is by **reading our documentation** at [docs.ssv.network](https://docs.ssv.network/based-applications/developers/).
 
 #### Connect with teams
 
@@ -39,30 +41,29 @@ The best way to connect is via [Discord channel](https://discord.gg/5vT22pRBrf).
 
 ## Tools
 
+#### BA SDK
+
+- [SSV BA SDK](https://github.com/ssvlabs/ssv-sdk) `GPL | TS` - A library that allows developers to work with the Based Applications. See module reference and examples [in our documentation](https://docs.ssv.network/based-applications/developers/BA-SDK/).
+
 #### SDK
 
 - [SSV SDK](https://github.com/ssvlabs/ssv-sdk) `GPL | TS` - A powerful library to interact with SSV Network programmatically. See module reference and examples [in our documentation](https://docs.ssv.network/developers/SSV-SDK/).
 
+#### Smart Contracts
+- [Based Application Contracts](https://docs.ssv.network/based-applications/developers/smart-contracts/) - The link goes to docs page. There you'll find the contract methods reference. Also, [Based Applications Contracts](https://github.com/ssvlabs/based-applications) repository uses our smart contracts, it will help you to start testing your own bApps.
+- [DVT Smart Contracts](https://docs.ssv.network/developers/smart-contracts/) - The link goes to the docs page with an index of all SSV Smart Contracts. You'll also find the contract methods reference in that docs section.
+
 #### Subgraph
 
-- [SSV Subgraph](https://github.com/ssvlabs/ssv-subgraph) `GPL | TS` - Subgraph that indexed SSV Smart Contract events. Described in details [in our documentation](https://docs.ssv.network/developers/tools/ssv-subgraph/). Our mainnet endpoint is `https://api.studio.thegraph.com/query/71118/ssv-network-ethereum/version/latest`, you can call it using your The Graph API key.
+- [SSV Subgraph](https://github.com/ssvlabs/ssv-subgraph) `GPL | TS` - Subgraph that indexed SSV Smart Contract events. Described in details [in our documentation](https://docs.ssv.network/developers/tools/ssv-subgraph/), it's also a great tool to [fetch Based Application on-chain events](https://docs.ssv.network/based-applications/developers/subgraph). Our mainnet endpoint is `https://api.studio.thegraph.com/query/71118/ssv-network-ethereum/version/latest`, you can call it using your The Graph API key.
 
-#### Validator key splitting (key shares creation)
 
-- [SSV Keys](https://github.com/ssvlabs/ssv-keys) `GPL | TS` - A tool to split validator key into keyshares for chosen operators. To learn more read [the documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
+---
 
-#### Distributed (validator) Key Generation
-
-You can read more about [how DKG works here](https://docs.ssv.network/developers/tools/ssv-dkg-client/).
-
-- [DKG by SSV Labs](https://github.com/ssvlabs/ssv-dkg) `GPL | Go` - Primary DKG tool, used across SSV Network.
-
-#### SSV Node clients
-
-You can read more about how [SSV Operators work here](https://docs.ssv.network/operators/operator-onboarding/).
-
-- [SSV Node by SSV Labs](https://github.com/ssvlabs/ssv) `GPL | Go`
-- [SSV Node by Sigma Prime](https://github.com/sigp/anchor) `Apache | Rust`
+## Related Concepts
+- [What are the bApps (Based Applications)?](https://docs.ssv.network/based-applications/learn/based-applications/)
+- [commit-boost client](https://github.com/Commit-Boost/commit-boost-client)
+- [Awesome Preconfirmations](https://github.com/NethermindEth/awesome-preconfirmations?tab=readme-ov-file#related-concepts)
 
 ---
 
@@ -73,7 +74,9 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 - [Verify Keyshares](https://github.com/RaekwonIII/verify-keyshares) `TS` - Simple app to verify that generated keyshares are valid.
 - [Cluster Balance Tool](https://github.com/taylorferran/cluster-balance-tool) `JS` - Tool to fetch cluster's balance, using Subgrph under the hood.
 - [bApp example](https://github.com/ssvlabs/examples) `GPL | TS` - An Example of how Based Application can be used and built.
-- [DKG by Randamu](https://github.com/randa-mu/ssv-dkg) `MIT | Go` - Alternative DKG tool, the project is in active development.
+- [DKG by SSV Labs](https://github.com/ssvlabs/ssv-dkg) `GPL | Go` - Primary DKG tool, used across SSV Network. You can read more about [how DKG works here](https://docs.ssv.network/developers/tools/ssv-dkg-client/).
+- [SSV Keys](https://github.com/ssvlabs/ssv-keys) `GPL | TS` - A tool to split validator key into keyshares for chosen operators. To learn more read [the documentation](https://docs.ssv.network/developers/tools/ssv-key-distributor).
+
 
 #### Operator services
 
@@ -83,12 +86,12 @@ You can read more about how [SSV Operators work here](https://docs.ssv.network/o
 - [SSV Stack](https://github.com/ssvlabs/ssv-stack) `Shell` - Boilerplate for SSV Node setup and it's monitoring.
 - [Blockops Telescope](https://github.com/blockopsnetwork/telescope) `Apache | Go` - Observability Tool for blockchain nodes including SSV.
 
----
+#### SSV Node clients
 
-## Related Concepts
-- [What are the bApps (Based Applications)?](https://docs.ssv.network/based-applications/learn/based-applications/)
-- [commit-boost client](https://github.com/Commit-Boost/commit-boost-client)
-- [Awesome Preconfirmations](https://github.com/NethermindEth/awesome-preconfirmations?tab=readme-ov-file#related-concepts)
+You can read more about how [SSV Operators work here](https://docs.ssv.network/operators/operator-onboarding/).
+
+- [SSV Node by SSV Labs](https://github.com/ssvlabs/ssv) `GPL | Go`
+- [SSV Node by Sigma Prime](https://github.com/sigp/anchor) `Apache | Rust`
 
 ---
 ## How to contribute
@@ -108,9 +111,3 @@ Add your project to the appropriate category in this README file and create a Pu
 - My project name (https://github.com/myrepos/my-awesome-ssv-repo/) `license used` | `languages used` (e.g. `MIT | JS`) - short one sentence repo description 
 
 - **In the PR's description** — One paragraph description talking what my repo is about, how is it useful to SSV network.
-
----
-
-## LICENSE
-
-	MIT License
